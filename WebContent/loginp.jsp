@@ -36,14 +36,13 @@
 			session.setAttribute("user", username);
 
 			session.setMaxInactiveInterval(1800);
-			String value = Integer
-					.toString((int) (Math.random() * 2000));
+			//String value = Integer.toString((int) (Math.random() * 2000));
 			System.out.println(session.getId());
-			Cookie loginCookie = new Cookie("loginindex", value);
+			//Cookie loginCookie = new Cookie();
 			//Session.setlastSessionId("first", Integer.parseInt(value));
 			Session.setSession(username,(String)session.getId());
-			loginCookie.setMaxAge(1800);
-			response.addCookie(loginCookie);
+			//loginCookie.setMaxAge(1800);
+			//response.addCookie(loginCookie);
 			response.sendRedirect("msg.jsp?success=" + message);
 		}
 
