@@ -1,9 +1,6 @@
 <%@page import="jsp.*,java.util.*"%>
 <%@ include file="noCache.jsp"%>
-<!--
-AUTHOR                   : LNMIIT_ONLINE_VOTING_SYSTEM_TEAM
-LAST MODIFIED DATE       : 17-APRIL-2015
--->
+
 <%@page import="jsp.*,java.sql.*,java.util.*,java.text.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -11,7 +8,7 @@ LAST MODIFIED DATE       : 17-APRIL-2015
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Abort Election Event- LNMIIT_ONLINE_VOTING_PORTAL</title>
+<title>Abort Election Event- MBM_ONLINE_VOTING_PORTAL</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
@@ -149,7 +146,7 @@ LAST MODIFIED DATE       : 17-APRIL-2015
 	<header id="header" class="alt">
 		<h1 id="logo">
 			<a href="http://www.lnmiit.ac.in"><img
-				src="images/LNMIIT_logo.png" width="200px" height="100px"></a>
+				src="images/mbm_logo.png" width="200px" height="100px"></a>
 		</h1>
 		<nav id="nav">
 			<ul>
@@ -200,39 +197,7 @@ LAST MODIFIED DATE       : 17-APRIL-2015
 							</select>
 						</div>
 					</div>
-					<!-- <div class="row 50%">
-						<div class="12u">
-							<input type="date" id="datepicker" name="date" value="Date" />
-						</div>
-					</div>
-					<div class="row 50%">
-						<div class="12u">
-							<input type="time" name="starttime" placeholder="Start Time" />
-						</div>
-					</div>
-					<div class="row 50%">
-						<div class="12u">
-							<input type="time" name="endtime" placeholder="End Time" />
-						</div>
-					</div>
-					<div class="row 50%">
-						<div class="12u">
-							<p>Positions:</p>
-							<input type="checkbox" name="list" value="P">President<br>
-							<input type="checkbox" name="list" value="VP">Vice
-							President<br> <input type="checkbox" name="list" value="GSS">G.Sec
-							Sport<br> <input type="checkbox" name="list" value="GSC">G.sec
-							Cultural<br> <input type="checkbox" name="list" value="GSST">G.Sec
-							Science Tech.<br> <input type="checkbox" name="list"
-								value="UG_Senate_Fourth_Year">Senate Fourth Year UG<br>
-							<input type="checkbox" name="list" value="UG_Senate_Third_Year">Senate
-							Third Year UG<br> <input type="checkbox" name="list"
-								value="UG_Senate_Second_Year">Senate Second Year UG<br>
-							<input type="checkbox" name="list" value="UG_Senate_First_Year">Senate
-							First Year UG<br> <input type="checkbox" name="list"
-								value="PG">Post Graduate<br>
-						</div>
-					</div> -->
+					
 					<div class="row">
 						<div class="12u">
 							<ul class="buttons">

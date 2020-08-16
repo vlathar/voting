@@ -84,58 +84,15 @@ LAST MODIFIED DATE       : 17-APRIL-2015
 			}
 	}
 </script>
-<!--<script>
-	$(function() {
-		$('#datepicker').datepicker(
-				{
-					onSelect : function(dateText, inst) {
-						//Get today's date at midnight
-						var today = new Date();
-						today = Date.parse(today.getMonth() + 1 + '/'
-								+ today.getDate() + '/' + today.getFullYear());
-						//Get the selected date (also at midnight)
-						var selDate = Date.parse(dateText);
 
-						if (selDate < today) {
-							//If the selected date was before today, continue to show the datepicker
-							$('#datepicker').val('');
-							$(inst).datepicker('show');
-						}
-					}
-				});
-	});
-</script>
- -->
 </head>
 <body class="contact">
 	<%
 		
-		String sessionID = null;
-		int loginindex = 0;
-		Cookie[] cookies = request.getCookies();
-		if (cookies != null) {
-			for (Cookie cooki : cookies) {
-				if (cooki.getName().equals("JSESSIONID")) {
-					sessionID = cooki.getValue();
-					System.out.println("JSESSIONID=" + sessionID);
-					break;
-				}
-
-			}
-			for (Cookie cooki : cookies) {
-				if (cooki.getName().equals("loginindex")) {
-					loginindex = Integer.parseInt(cooki.getValue());
-					System.out.println("loginindex=" + loginindex);
-					break;
-				}
-
-			}
-		}
 		HttpSession session2 = request.getSession(false);
-		System.out.println(session2.getId()+" 00000 ");
-		if (session2.getAttribute("user")==null) 
+		if(Session.MultipleSessionCheck((String)session2.getAttribute("user"),(String)session2.getId())==true)
 		{
-			System.out.println("different session");
+			System.out.println("different session--2");
 			response.sendRedirect("index.jsp");
 			return;
 		}
