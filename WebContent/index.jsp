@@ -2,13 +2,13 @@
 <!DOCTYPE HTML>
 <!--
 
-AUTHOR                      : LNMIIT_ONLINE_VOTING_SYSTEM_DEVELOPMENT_TEAM_GROUP-26 SEPM2015
+AUTHOR                      : MBM_ONLINE_VOTING_SYSTEM_DEVELOPMENT_TEAM_GROUP-26 SEPM2015
 DATE OF LAST UPDATE         : 17 APRIL 2015 
 
 -->
 <html>
 <head>
-<title>LNMIIT ONLINE VOTING SYSTEM</title>
+<title>MBM ONLINE VOTING SYSTEM</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
@@ -51,14 +51,14 @@ DATE OF LAST UPDATE         : 17 APRIL 2015
 	<!-- Header -->
 	<header id="header" class="alt">
 		<h1 id="logo">
-			<a href="http://www.lnmiit.ac.in"><img
-				src="images/LNMIIT_logo.png" width="200px" height="100px"></a>
+			<a href="http://www.mbm.ac.in"><img
+				src="images/MBM_logo.png" width="200px" height="100px"></a>
 		</h1>
 		<nav id="nav">
 			<ul>
 				<li class="current"><a href="index.jsp">Welcome</a></li>
-				<li><a href="http://www.lnmiit.ac.in/DisplayPage.aspx?page=es">Election Rules</a></li>
-				<li><a href="Manual_for_LNMIIT_Online_Voting_System.html">Help Page</a></li>
+				<li><a href="#">Election Rules</a></li>
+				<li><a href="Manual_for_MBM_Online_Voting_System.html">Help Page</a></li>
 				<li><a href="contact.jsp">Contact Us</a></li>
 			</ul>
 		</nav>
@@ -67,16 +67,10 @@ DATE OF LAST UPDATE         : 17 APRIL 2015
 	<!-- Banner -->
 	<section id="banner">
 
-		<!--
-					".inner" is set up as an inline-block so it automatically expands
-					in both directions to fit whatever's inside it. This means it won't
-					automatically wrap lines, so be sure to use line breaks where
-					appropriate (<br />).
-				-->
 		<div class="inner">
 
 			<header>
-				<h3>LNMIIT ONLINE VOTING SYSTEM</h3>
+				<h3>MBM ONLINE VOTING SYSTEM</h3>
 			</header>
 			<form name="form" action="loginp.jsp" method="post">
 

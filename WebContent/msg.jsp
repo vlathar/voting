@@ -37,34 +37,17 @@ DATE OF LAST UPDATE         : 17 APRIL 2015
 	
 		String sessionID = null;
 		int loginindex = 0;
-		Cookie[] cookies = request.getCookies();
-		if (cookies != null) {
-			for (Cookie cooki : cookies) {
-				if (cooki.getName().equals("JSESSIONID")) {
-					sessionID = cooki.getValue();
-					//System.out.println("JSESSIONID=" + sessionID);
-					break;
-				}
-
-			}
-			for (Cookie cooki : cookies) {
-				if (cooki.getName().equals("loginindex")) {
-					loginindex = Integer.parseInt(cooki.getValue());
-					//System.out.println("loginindex=" + loginindex);
-					break;
-				}
-
-			}
-		}
+		//Cookie[] cookies = request.getCookies();
+		
 		HttpSession session2 = request.getSession(false);
 		System.out.println((String)session2.getAttribute("user"));
 		System.out.println(session2.getId()+" --- ");
-		if (session2.getAttribute("user")==null) 
+		/*if (session2.getAttribute("user")==null) 
 		{
 			System.out.println("different session");
 			response.sendRedirect("index.jsp");
 			return;
-		}
+		}*/
 		if(Session.MultipleSessionCheck((String)session2.getAttribute("user"),(String)session2.getId())==true)
 		{
 			System.out.println("different session--2");

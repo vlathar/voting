@@ -1,17 +1,10 @@
 <%@page import="jsp.*,java.util.*"%>
 <%@ include file="noCache.jsp"%>
 <!DOCTYPE HTML>
-<!--
-
-AUTHOR                      : LNMIIT_ONLINE_VOTING_SYSTEM_DEVELOPMENT_TEAM_GROUP-26 SEPM2015
-DATE OF LAST UPDATE         : 17 APRIL 2015 
-
--->
-
 
 <html>
 <head>
-<title>CEO_TERMINAL: LNMIIT ONLINE VOTING SYSTEM</title>
+<title>CEO_TERMINAL: MBM ONLINE VOTING SYSTEM</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
@@ -34,34 +27,13 @@ DATE OF LAST UPDATE         : 17 APRIL 2015
 </head>
 <body class="index">
 <%     
-		String sessionID = null;
-		int loginindex = 0;
-		Cookie[] cookies = request.getCookies();
-		if (cookies != null) {
-			for (Cookie cooki : cookies) {
-				if (cooki.getName().equals("JSESSIONID")) {
-					sessionID = cooki.getValue();
-					System.out.println("JSESSIONID=" + sessionID);
-					break;
-				}
-
-			}
-			for (Cookie cooki : cookies) {
-				if (cooki.getName().equals("loginindex")) {
-					loginindex = Integer.parseInt(cooki.getValue());
-					System.out.println("loginindex=" + loginindex);
-					break;
-				}
-
-			}
-		}
-
-		if (!Session.isSameSession(sessionID, loginindex)) {
+		HttpSession session2 = request.getSession(false);
+		if(Session.MultipleSessionCheck((String)session2.getAttribute("user"),(String)session2.getId())==true)
+		{
+			System.out.println("different session--2");
 			response.sendRedirect("index.jsp");
-			System.out.println("different session");
-
+			return;
 		}
-		
 		ArrayList<String> EventsAdded = new ArrayList<String>();
 		M_ElectionEvent EE = new M_ElectionEvent();
 		EventsAdded = EE.getEE();
@@ -80,8 +52,8 @@ DATE OF LAST UPDATE         : 17 APRIL 2015
 	<!-- Header -->
 	<header id="header" class="alt">
 		<h1 id="logo">
-			<a href="http://www.lnmiit.ac.in"><img
-				src="images/LNMIIT_logo.png" width="200px" height="100px"></a>
+			<a href="http://www.mbm.ac.in"><img
+				src="images/mbm_logo.png" width="200px" height="100px"></a>
 		</h1>
 		<nav id="nav">
 			<ul>
