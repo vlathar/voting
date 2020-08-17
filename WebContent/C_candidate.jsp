@@ -132,7 +132,7 @@
 				
 				positions=(ArrayList<String>)session.getAttribute("positions");
 				String rollno = (String)session.getAttribute("rollno");
-				int currentee =(int)session.getAttribute("eid");
+				int currentee =Integer.parseInt(session.getAttribute("eid").toString());
 				M_CandidatureApplication CA = new M_CandidatureApplication();
 				positions.remove(0);
 				session.setAttribute("positions", positions);
@@ -215,7 +215,7 @@
 				
 				positions=(ArrayList<String>)session.getAttribute("positions");
 				String rollno = (String)session.getAttribute("rollno");
-				int currentee =(int)session.getAttribute("eid");
+				int currentee =Integer.parseInt(session.getAttribute("eid").toString());
 				M_CandidatureApplication CA = new M_CandidatureApplication();
 				positions.remove(0);
 				session.setAttribute("positions", positions);
@@ -296,7 +296,7 @@
 				
 				positions=(ArrayList<String>)session.getAttribute("positions");
 				String rollno = (String)session.getAttribute("rollno");
-				int currentee =(int)session.getAttribute("eid");
+				int currentee =Integer.parseInt(session.getAttribute("eid").toString());
 				M_CandidatureApplication CA = new M_CandidatureApplication();
 				positions.remove(0);
 				session.setAttribute("positions", positions);
@@ -377,7 +377,7 @@
 				
 				positions=(ArrayList<String>)session.getAttribute("positions");
 				String rollno = (String)session.getAttribute("rollno");
-				int currentee =(int)session.getAttribute("eid");
+				int currentee =Integer.parseInt(session.getAttribute("eid").toString());
 				M_CandidatureApplication CA = new M_CandidatureApplication();
 				positions.remove(0);
 				session.setAttribute("positions", positions);
@@ -458,7 +458,7 @@
 				
 				positions=(ArrayList<String>)session.getAttribute("positions");
 				String rollno = (String)session.getAttribute("rollno");
-				int currentee =(int)session.getAttribute("eid");
+				int currentee =Integer.parseInt(session.getAttribute("eid").toString());
 				M_CandidatureApplication CA = new M_CandidatureApplication();
 				positions.remove(0);
 				session.setAttribute("positions", positions);
@@ -539,7 +539,7 @@
 				
 				positions=(ArrayList<String>)session.getAttribute("positions");
 				String rollno = (String)session.getAttribute("rollno");
-				int currentee =(int)session.getAttribute("eid");
+				int currentee =Integer.parseInt(session.getAttribute("eid").toString());
 				M_CandidatureApplication CA = new M_CandidatureApplication();
 				positions.remove(0);
 				session.setAttribute("positions", positions);
@@ -620,7 +620,7 @@
 				
 				positions=(ArrayList<String>)session.getAttribute("positions");
 				String rollno = (String)session.getAttribute("rollno");
-				int currentee =(int)session.getAttribute("eid");
+				int currentee =Integer.parseInt(session.getAttribute("eid").toString());
 				M_CandidatureApplication CA = new M_CandidatureApplication();
 				positions.remove(0);
 				session.setAttribute("positions", positions);
@@ -701,7 +701,7 @@
 				
 				positions=(ArrayList<String>)session.getAttribute("positions");
 				String rollno = (String)session.getAttribute("rollno");
-				int currentee =(int)session.getAttribute("eid");
+				int currentee =Integer.parseInt(session.getAttribute("eid").toString());
 				M_CandidatureApplication CA = new M_CandidatureApplication();
 				positions.remove(0);
 				session.setAttribute("positions", positions);
@@ -782,7 +782,7 @@
 				
 				positions=(ArrayList<String>)session.getAttribute("positions");
 				String rollno = (String)session.getAttribute("rollno");
-				int currentee =(int)session.getAttribute("eid");
+				int currentee =Integer.parseInt(session.getAttribute("eid").toString());
 				M_CandidatureApplication CA = new M_CandidatureApplication();
 				positions.remove(0);
 				session.setAttribute("positions", positions);
@@ -863,7 +863,7 @@
 				
 				positions=(ArrayList<String>)session.getAttribute("positions");
 				String rollno = (String)session.getAttribute("rollno");
-				int currentee =(int)session.getAttribute("eid");
+				int currentee =Integer.parseInt(session.getAttribute("eid").toString());
 				M_CandidatureApplication CA = new M_CandidatureApplication();
 				positions.remove(0);
 				session.setAttribute("positions", positions);
