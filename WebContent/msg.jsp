@@ -1,12 +1,6 @@
 <%@page import="jsp.*,java.util.*"%>
 <%@ include file="noCache.jsp"%>
 <!DOCTYPE HTML>
-<!--
-
-AUTHOR                      : LNMIIT_ONLINE_VOTING_SYSTEM_DEVELOPMENT_TEAM_GROUP-26 SEPM2015
-DATE OF LAST UPDATE         : 17 APRIL 2015 
-
--->
 
 
 <html>
@@ -40,14 +34,8 @@ DATE OF LAST UPDATE         : 17 APRIL 2015
 		//Cookie[] cookies = request.getCookies();
 		
 		HttpSession session2 = request.getSession(false);
-		System.out.println((String)session2.getAttribute("user"));
-		System.out.println(session2.getId()+" --- ");
-		/*if (session2.getAttribute("user")==null) 
-		{
-			System.out.println("different session");
-			response.sendRedirect("index.jsp");
-			return;
-		}*/
+		//System.out.println((String)session2.getAttribute("user"));
+		//System.out.println(session2.getId()+" --- ");
 		if(Session.MultipleSessionCheck((String)session2.getAttribute("user"),(String)session2.getId())==true)
 		{
 			System.out.println("different session--2");

@@ -1,9 +1,6 @@
 <%@page import="jsp.*,java.util.*"%>
 <%@ include file="noCache.jsp"%>
-<!--
-AUTHOR                   : LNMIIT_ONLINE_VOTING_SYSTEM_TEAM
-LAST MODIFIED DATE       : 17-APRIL-2015
--->
+
 <%@page import="jsp.*,java.sql.*,java.util.*,java.text.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -11,7 +8,7 @@ LAST MODIFIED DATE       : 17-APRIL-2015
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>View_Candidate_Portfolios- LNMIIT_ONLINE_VOTING_PORTAL</title>
+<title>View_Candidate_Portfolios- MBM_ONLINE_VOTING_PORTAL</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
