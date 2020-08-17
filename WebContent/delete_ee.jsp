@@ -1,9 +1,6 @@
 <%@page import="jsp.*,java.util.*"%>
 <%@ include file="noCache.jsp"%>
-<!--
-AUTHOR                   : LNMIIT_ONLINE_VOTING_SYSTEM_TEAM
-LAST MODIFIED DATE       : 17-APRIL-2015
--->
+
 <%@page import="jsp.*,java.sql.*,java.util.*,java.text.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -11,7 +8,7 @@ LAST MODIFIED DATE       : 17-APRIL-2015
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Delete Election Event- LNMIIT_ONLINE_VOTING_PORTAL</title>
+<title>Delete Election Event- MBM_ONLINE_VOTING_PORTAL</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
@@ -113,33 +110,13 @@ LAST MODIFIED DATE       : 17-APRIL-2015
 <body class="contact">
 	<%
 		session.setAttribute("fname", "delete_ee");
-	String sessionID = null;
-	int loginindex = 0;
-	Cookie[] cookies = request.getCookies();
-	if (cookies != null) {
-		for (Cookie cooki : cookies) {
-			if (cooki.getName().equals("JSESSIONID")) {
-				sessionID = cooki.getValue();
-				System.out.println("JSESSIONID=" + sessionID);
-				break;
-			}
-
+		HttpSession session2 = request.getSession(false);
+		if(Session.MultipleSessionCheck((String)session2.getAttribute("user"),(String)session2.getId())==true)
+		{
+			System.out.println("different session--2");
+			response.sendRedirect("index.jsp");
+			return;
 		}
-		for (Cookie cooki : cookies) {
-			if (cooki.getName().equals("loginindex")) {
-				loginindex = Integer.parseInt(cooki.getValue());
-				System.out.println("loginindex=" + loginindex);
-				break;
-			}
-
-		}
-	}
-
-	if (!Session.isSameSession(sessionID, loginindex)) {
-		response.sendRedirect("index.jsp");
-		System.out.println("different session");
-
-	}
 
 
 

@@ -8,7 +8,7 @@ LAST MODIFIED DATE       : 17-APRIL-2015
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Create Election Event- LNMIIT_ONLINE_VOTING_PORTAL</title>
+<title>Create Election Event- MBM_ONLINE_VOTING_PORTAL</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
@@ -144,35 +144,15 @@ LAST MODIFIED DATE       : 17-APRIL-2015
 	<%
 		
 	session.setAttribute("fname", "create_ee");
-	String sessionID = null;
-	int loginindex = 0;
-	Cookie[] cookies = request.getCookies();
-	if (cookies != null) {
-		for (Cookie cooki : cookies) {
-			if (cooki.getName().equals("JSESSIONID")) {
-				sessionID = cooki.getValue();
-				System.out.println("JSESSIONID=" + sessionID);
-				break;
-			}
-
-		}
-		for (Cookie cooki : cookies) {
-			if (cooki.getName().equals("loginindex")) {
-				loginindex = Integer.parseInt(cooki.getValue());
-				System.out.println("loginindex=" + loginindex);
-				break;
-			}
-
-		}
-	}
-
-	if (!Session.isSameSession(sessionID, loginindex)) {
+	HttpSession session2 = request.getSession(false);
+	//System.out.println((String)session2.getAttribute("user"));
+	//System.out.println(session2.getId()+" --- ");
+	if(Session.MultipleSessionCheck((String)session2.getAttribute("user"),(String)session2.getId())==true)
+	{
+		System.out.println("different session--2");
 		response.sendRedirect("index.jsp");
-		System.out.println("different session");
-
+		return;
 	}
-
-	
 	%>
 
 	<!-- Header -->

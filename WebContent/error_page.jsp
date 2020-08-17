@@ -1,14 +1,9 @@
 <%@ include file="noCache.jsp"%>
 <!DOCTYPE HTML>
-<!--
 
-AUTHOR                      : LNMIIT_ONLINE_VOTING_SYSTEM_DEVELOPMENT_TEAM_GROUP-26 SEPM2015
-DATE OF LAST UPDATE         : 17 APRIL 2015 
-
--->
 <html>
 <head>
-<title>Error_page | LNMIIT ONLINE VOTING SYSTEM</title>
+<title>Error_page | MBM ONLINE VOTING SYSTEM</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
@@ -62,7 +57,7 @@ DATE OF LAST UPDATE         : 17 APRIL 2015
 		<div class="inner">
 
 			<header>
-				<h3>LNMIIT ONLINE VOTING SYSTEM</h3>
+				<h3>MBM ONLINE VOTING SYSTEM</h3>
 			</header>
 			<h1>ERROR</h1>
 			<input type="submit" class="buttons" id="myBtn" name="BACK TO CEO-Termial" value="BACK TO CEO-Termial" onclick="window.location = 'ceo.jsp';">

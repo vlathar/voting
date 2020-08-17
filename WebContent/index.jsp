@@ -1,11 +1,6 @@
 <%@ include file="noCache.jsp"%>
 <!DOCTYPE HTML>
-<!--
 
-AUTHOR                      : MBM_ONLINE_VOTING_SYSTEM_DEVELOPMENT_TEAM_GROUP-26 SEPM2015
-DATE OF LAST UPDATE         : 17 APRIL 2015 
-
--->
 <html>
 <head>
 <title>MBM ONLINE VOTING SYSTEM</title>
