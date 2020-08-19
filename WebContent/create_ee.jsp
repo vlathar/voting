@@ -213,19 +213,18 @@ LAST MODIFIED DATE       : 17-APRIL-2015
 					<div class="row 50%">
 						<div class="12u">
 							<p>Positions:</p>
-							<input type="checkbox" name="list" value="P">President<br>
-							<input type="checkbox" name="list" value="VP">Vice
-							President<br> <input type="checkbox" name="list" value="GSS">G.Sec
-							Sports<br> <input type="checkbox" name="list" value="GSC">G.sec
-							Cultural<br> <input type="checkbox" name="list" value="GSST">G.Sec
-							Science and Tech.<br> <input type="checkbox" name="list"
+							<input type="checkbox" name="list" value="President">President<br>
+							<input type="checkbox" name="list" value="Vice-President">Vice-President<br> 
+							<input type="checkbox" name="list" value="G.SecSports">G.SecSports<br>
+	 						<input type="checkbox" name="list" value="G.SecCultural">G.SecCultural<br>
+							<input type="checkbox" name="list"
 								value="UG_Senate_Fourth_Year">Senate Fourth Year UG<br>
 							<input type="checkbox" name="list" value="UG_Senate_Third_Year">Senate
 							Third Year UG<br> <input type="checkbox" name="list"
 								value="UG_Senate_Second_Year">Senate Second Year UG<br>
 							<input type="checkbox" name="list" value="UG_Senate_First_Year">Senate
 							First Year UG<br> <input type="checkbox" name="list"
-								value="PG">Post Graduate<br>
+								value="PG">PG<br>
 						</div>
 					</div>
 					<div class="row">

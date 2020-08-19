@@ -144,6 +144,37 @@ public class M_ElectionEvent {
 			MySQL.close(c);
 		}
 	}
+	public int getEEId(String str) {
+
+		Connection c = null;
+		Statement st = null;
+		ResultSet rs = null;
+		int r = 0;
+		// r.add("test");
+		try {
+			c = MySQL.connect();
+			st = c.createStatement();
+			String query = "select eid from electionevent where name='"+str+"'";
+			System.out.println(query);
+			rs = st.executeQuery(query);
+
+			 while(rs.next()) {
+				String t = rs.getString(1);
+				System.out.println(t);
+				r=Integer.parseInt(t);
+				//r.add(t);
+			}
+			rs.close();
+			st.close();
+			return r;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return r;
+		} finally {
+			MySQL.close(c);
+		}
+	}
 
 	public int getCurrentEE() {
 

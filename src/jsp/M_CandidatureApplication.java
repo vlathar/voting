@@ -113,7 +113,7 @@ public class M_CandidatureApplication {
 		try {
 			c = MySQL.connect();
 			st = c.createStatement();
-			String query = "select rollno from applicants";
+			String query = "select rollno from applicants where isapproved=0";
 			System.out.println(query+" M_CA.java");
 			rs = st.executeQuery(query);
 
