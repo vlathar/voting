@@ -106,27 +106,35 @@
 						<div class="12u">
 								<%!ArrayList<String> ApplicantsAdded = new ArrayList<String>();%>
 								<%
-									try 
+								try
+								{
+									Map < String,ArrayList<String> > applications=M_CandidatureApplication.getApplications(0);
+									for (Map.Entry< String,ArrayList<String> > e : applications.entrySet())
 									{
-										ApplicantsAdded = (ArrayList<String>) (session.getAttribute("aprollno"));
-										for (int i = 0; i < ApplicantsAdded.size(); i++)
-										{
-											String val = ApplicantsAdded.get(i);
-								%>
-										<div class="content">	
-										  <div class="12u">
-											<form action="application_detail.jsp" method="post">	
-												<input type="submit" width ="100" class="buttons" name="rollno" value="<%=val%>" id="application" onclick="FormValidate()">		
-											</form>	
-											
-										  </div>			
-										</div>
-								<%}
-									} 
-									catch (Exception e) 
+										String s=e.getKey();
+										System.out.println(s);
+									%>
+									<p><%=s%></p>
+									<%  for (String rollno:e.getValue())
 									{
-										e.printStackTrace();
+											String val = rollno;
+									%>      
+									<div class="content">
+										<div class="12u">
+											<form action="application_detail.jsp" method="post">
+												<input type="submit" width ="100" class="buttons" name="rollno" value="<%=val%>" id="application" >
+											</form>
+									 	</div>
+									</div>
+									<%
 									}
+									} 
+								}
+								catch(Exception e)
+								{
+									String message="Some error encountered";
+									response.sendRedirect("msg.jsp?success=" + message);
+								}
 								%>
 						</div>
 					</div>

@@ -2,7 +2,8 @@ package jsp;
 
 import java.sql.*;
 import java.util.ArrayList;
-
+import java.util.HashMap;
+import java.util.Map;
 public class M_CandidatureApplication {
 
 	public int getBatch(String rollno) {
@@ -188,7 +189,7 @@ public class M_CandidatureApplication {
 
 	}
 
-	public boolean approve(String rollno) {
+	public boolean approve(String rollno,String e_event) {
 		Connection c = null;
 		Statement st = null;
 		try {
@@ -196,11 +197,36 @@ public class M_CandidatureApplication {
 			st = c.createStatement();
 			rollno = rollno.toUpperCase();
 			String query = "update applicants set isapproved = 1 where rollno ='"
-					+ rollno + "';";
+					+ rollno + "' and eventname='"+e_event+"';";
 			System.out.println(query+" M_CA.java");
 			st.executeUpdate(query);
 			query = "insert into candidates (rollno, haswon) values ('"
 					+ rollno + "',0);";
+			System.out.println(query+" M_CA.java");
+			st.executeUpdate(query);
+			st.close();
+			return true;
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			return false;
+
+		} finally {
+
+			MySQL.close(c);
+		}
+
+	}
+	public boolean reject(String rollno) {
+		Connection c = null;
+		Statement st = null;
+		try {
+			c = MySQL.connect();
+			st = c.createStatement();
+			rollno = rollno.toUpperCase();
+			String query = "delete from applicants where rollno ='"
+					+ rollno + "';";
 			System.out.println(query+" M_CA.java");
 			st.executeUpdate(query);
 			st.close();
@@ -317,6 +343,49 @@ public class M_CandidatureApplication {
 		}
 
 	}
+	
+	public static Map< String,ArrayList<String> > getApplications(int choice)
+    {
+		Connection c = null;
+		Statement st = null;
+		ResultSet rs = null;
+		String rollno;
+		String eventname;
+		Map < String,ArrayList<String> > applications=new HashMap< String,ArrayList<String> >();
+		try {
+			c = MySQL.connect();
+			st = c.createStatement();
+			String query = "select eventname,rollno from applicants where isapproved = "+choice;
+			System.out.println(query);
+			rs = st.executeQuery(query);
+			while(rs.next()){
+				eventname=rs.getString(1);
+				rollno= rs.getString(2);
+				if(applications.containsKey(eventname))
+				{
+					applications.get(eventname).add(rollno);
+				}
+				else
+				{
+					applications.put(eventname,new ArrayList<String>());
+					applications.get(eventname).add(rollno);
+				}		
+			}
+		
+			rs.close();
+			st.close();
+			return applications;
 
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return applications;
+		}
+		finally {
+			MySQL.close(c);
+		}
+
+   
+    }
 	
 }

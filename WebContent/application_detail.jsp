@@ -1,4 +1,4 @@
-<%@page import="jsp.*,java.util.*"%>
+<%@page import="jsp.*,java.util.*,javafx.util.Pair"%>
 <%@ include file="noCache.jsp"%>
 
 <!DOCTYPE HTML>
@@ -120,7 +120,7 @@
 				String email=applicantdetails.get(3);
 				String phoneno=applicantdetails.get(4);
 				String gender=applicantdetails.get(5);
-				
+				Pair<String,String> pairr= new Pair<String,String>(rollno,electionevent);
 				
 				
 			%>
@@ -166,8 +166,9 @@
 					<div class="row">
 						<div class="12u">
 							<div class="buttons">
-								
-								<div><input type="submit" class="special" value="Approve" /></div><br/>																																																																																																																																																																																					
+								<div><a href="/PROJECT1/C_msg.jsp?ID=0"><input type="hidden" class="special" name="Accept" value="<%=electionevent%>" /> Accept</a></div><br/>
+								<!--  <div><input type="button" class="special" name="Accept" value="<%=electionevent%>" onclick="window.location.href = 'C_msg.jsp?ID=0'" /></div><br/>-->
+								<div><input type="button" class="special" value="Reject" onclick="window.location.href = 'C_msg.jsp?ID=1'" /></div><br/>																																																																																																																																																																																					
 								<div><input type="button" class="special" value="Back" onclick="window.location.href = 'view_applications.jsp'"/></div>
 								
 							</div>

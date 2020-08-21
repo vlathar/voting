@@ -1,4 +1,4 @@
-<%@page import="jsp.*,java.sql.*,java.util.*,java.text.*"%>
+<%@page import="jsp.*,java.sql.*,java.util.*,java.text.*,javafx.util.Pair"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -72,19 +72,35 @@ if(Session.MultipleSessionCheck((String)session2.getAttribute("user"),(String)se
     else if(session.getAttribute("fname").equals("application_detail")){
         
     	page_bit=2;
+    	String id = request.getParameter("ID");
         rollno = (String)(session.getAttribute("rollno"));
-        boolean isapproved =CA.approve(rollno);
-        
-        if(isapproved){
+        if(id.equals("0")){
+        	String e_event= request.getParameter("Accept");      
+           	boolean isapproved =CA.approve(rollno,e_event);
         	
-        	String message="Application_details";
-            response.sendRedirect("Success_CEO.jsp?success="+message);
+        	if(isapproved){
+        		System.out.println("application approved");
+            	String message="Application_details";
+                response.sendRedirect("Success_CEO.jsp?success="+message);
+            }
+            else{
+            	System.out.println("error in approving application");
+            	String message="Invalid Entry";
+        		response.sendRedirect("error_page.jsp?error="+message);
+            }
         }
-        
-        else
-        {
-        	String message="Invalid Entry";
-    		response.sendRedirect("error_page.jsp?error="+message);
+        else if(id.equals("1")){
+        	boolean isrejected =CA.reject(rollno);
+        	if(isrejected){
+        		System.out.println("application rejected");
+            	String message="Application_details";
+                response.sendRedirect("Success_CEO.jsp?success="+message);
+            }
+            else{
+            	System.out.println("error in rejecting application");
+            	String message="Invalid Entry";
+        		response.sendRedirect("error_page.jsp?error="+message);
+            }
         }
     }
     

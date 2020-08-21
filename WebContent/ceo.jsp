@@ -169,18 +169,7 @@
 					</section>
 
 				</div>
-				<div class="6u 12u(narrower)">
-
-					<section>
-						<header>
-							<h3>
-								<a href="abort.jsp">ABORT ELECTION EVENT</a>
-							</h3>
-						</header>
-						<p></p>
-					</section>
-
-				</div>
+				
 				<div class="6u 12u(narrower)">
 
 					<section>

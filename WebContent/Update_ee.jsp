@@ -209,19 +209,23 @@
 					<div class="row 50%">
 						<div class="12u">
 							<p>Positions:</p>
-							<input type="checkbox" name="list" value="P">President<br>
-							<input type="checkbox" name="list" value="VP">Vice
-							President<br> <input type="checkbox" name="list" value="GSS">G.Sec
-							Sport<br> <input type="checkbox" name="list" value="GSC">G.sec
-							Cultural<br> <input type="checkbox" name="list" value="GSST">G.Sec
-							Science Tech.<br> <input type="checkbox" name="list"
-								value="UG_Senate_Fourth_Year">Senate Fourth Year UG<br>
-							<input type="checkbox" name="list" value="UG_Senate_Third_Year">Senate
-							Third Year UG<br> <input type="checkbox" name="list"
-								value="UG_Senate_Second_Year">Senate Second Year UG<br>
-							<input type="checkbox" name="list" value="UG_Senate_First_Year">Senate
-							First Year UG<br> <input type="checkbox" name="list"
-								value="PG">Post Graduate<br>
+							<input type="checkbox" name="list" value="President">President<br>
+							<input type="checkbox" name="list" value="Vice-President">Vice-President<br> 
+							<input type="checkbox" name="list" value="G.SecSports">G.SecSports<br>
+	 						<input type="checkbox" name="list" value="G.SecCultural">G.SecCultural<br>
+						</div>
+					</div>
+					<div class="row 50%">
+						<div class="12u">
+						<p>Allowed Candidates- (To apply for event):</p>
+						<select id="AllowedCand" name="AllowedCand">
+							<option  value="UG_Fourth_Year">UG_Fourth_Year</option>
+							<option  value="UG_Third_Year">UG_Third_Year</option>
+							<option  value="UG_Second_Year">UG_Second_Year</option>
+							<option  value="UG_First_Year">UG_First_Year</option>
+							<option  value="PG">PG</option>
+							<option value="All">All</option>
+						</select>
 						</div>
 					</div>
 					<div class="row">
