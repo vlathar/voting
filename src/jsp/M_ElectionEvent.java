@@ -10,7 +10,7 @@ public class M_ElectionEvent {
 
 	public boolean createEE(String EE, java.sql.Date date,
 			java.sql.Time startTime, java.sql.Time endTime,
-			ArrayList<String> positions) {
+			ArrayList<String> positions,ArrayList<String> AllowedC,ArrayList<String> A_Batch) {
 
 		Connection c = null;
 		ResultSet rs = null;
@@ -34,18 +34,18 @@ public class M_ElectionEvent {
 
 			while (rs.next())
 				eid = rs.getInt(1);
+			if(positions.size()==AllowedC.size()) System.out.println("same size");
+			for (int i=0;i<positions.size();i++) {
 
-			for (String position : positions) {
-
-				if (position.equals("P") || position.equals("VP")
-						|| position.equals("GSS") || position.equals("GSC")
-						|| position.equals("GSST"))
+				if ((positions.get(i).equals("President") || positions.get(i).equals("Vice-President")
+						|| positions.get(i).equals("G.Sec"))&&
+						(!AllowedC.get(i).equals("null"))&&(!A_Batch.get(i).equals("null")))
 					query = "insert into positions values (" + eid + ",'"
-							+ position + "','all');";
+							+ positions.get(i) + "','"+ AllowedC.get(i) +"','"+A_Batch.get(i)+"');";
 
 				else
 					query = "insert into positions values (" + eid + ",'"
-							+ position + "','" + position + "');";
+							+ positions.get(i) + "','" + "all" + "','all');";
 				System.out.println(query);
 
 				if (c != null) {
@@ -71,13 +71,13 @@ public class M_ElectionEvent {
 
 	public boolean updateEE(String EE, java.sql.Date date,
 			java.sql.Time startTime, java.sql.Time endTime,
-			ArrayList<String> positions) {
+			ArrayList<String> positions,ArrayList<String> AllowedCand,ArrayList<String> AB) {
 
 		boolean isdeleted = deleteEE(EE);
 		boolean iscreated = false;
 
 		if (isdeleted) {
-			iscreated = createEE(EE, date, startTime, endTime, positions);
+			iscreated = createEE(EE, date, startTime, endTime, positions,AllowedCand,AB);
 
 			if (iscreated) {
 				return true;
@@ -133,6 +133,37 @@ public class M_ElectionEvent {
 				r.add(t);
 			}
 
+			rs.close();
+			st.close();
+			return r;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return r;
+		} finally {
+			MySQL.close(c);
+		}
+	}
+	public int getEEId(String str) {
+
+		Connection c = null;
+		Statement st = null;
+		ResultSet rs = null;
+		int r = 0;
+		// r.add("test");
+		try {
+			c = MySQL.connect();
+			st = c.createStatement();
+			String query = "select eid from electionevent where name='"+str+"'";
+			System.out.println(query);
+			rs = st.executeQuery(query);
+
+			 while(rs.next()) {
+				String t = rs.getString(1);
+				System.out.println(t);
+				r=Integer.parseInt(t);
+				//r.add(t);
+			}
 			rs.close();
 			st.close();
 			return r;

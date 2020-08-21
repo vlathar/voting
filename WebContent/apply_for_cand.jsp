@@ -1,14 +1,10 @@
 <%@page import="jsp.*,java.util.*"%>
 <%@ include file="noCache.jsp"%>
-<!--
-AUTHOR                   : LNMIIT_ONLINE_VOTING_SYSTEM_TEAM
-LAST MODIFIED DATE       : 17-APRIL-2015
--->
 
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Apply for Candidature- LNMIIT_ONLINE_VOTING_PORTAL</title>
+<title>Apply for Candidature- MBM_ONLINE_VOTING_PORTAL</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
@@ -72,7 +68,7 @@ LAST MODIFIED DATE       : 17-APRIL-2015
 				return false;
 			}
 		//check for CGPA
-		double valu = document.getElementById("cgpa");
+		valu = document.getElementById("cgpa");
 		if (valu > 10 || valu < 0) {
 			alert("Invalid Input");
 		}
@@ -96,9 +92,7 @@ LAST MODIFIED DATE       : 17-APRIL-2015
 			response.sendRedirect("index.jsp");
 			return;
 		}
-		M_CandidatureApplication CA = new M_CandidatureApplication();
-		int batch = CA.getBatch((String) (session.getAttribute("user")));
-		session.setAttribute("fname", "apply");
+		
 	%>
 
 	<!-- Header -->
@@ -132,17 +126,13 @@ LAST MODIFIED DATE       : 17-APRIL-2015
 
 			<!-- Content -->
 			<div class="content">
-				<form name="form" action="C_msg.jsp" method="post">
+				<form name="form" action="Applicant_position.jsp" method="post">
 					<div class="row 50%">
 						<!--class= 6u 12u(mobile) -->
 						<div class="12u">
 							<input type="text" id="name" name="name" placeholder="NAME" />
 						</div>
 					</div>
-					<!-- <div class="row 50%">
-						<div class="12u">
-							<input type="text"  name="Roll_no" value="Roll No."
-								placeholder="Roll No." />
 						</div>
 					</div> -->
 					<div class="row 50%">
@@ -181,54 +171,10 @@ LAST MODIFIED DATE       : 17-APRIL-2015
 
 					<div class="row 50%">
 						<div class="12u">
-							<input type="text" id="cgpa" name="cgpa" placeholder="CGPA" />
-						</div>
-					</div>
-					<div class="row 50%">
-						<div class="12u">
 							<input type="text" id="phoneno" name="phoneno" placeholder="Phone No" />
 						</div>
 					</div>
-					<div class="row 50%">
-						<div class="12u">
-							Position Applying For: <select id="position" name="position">
-								<option value="P">President</option>
-								<option value="VP">Vice-President</option>
-								<option value="GSS">G.Sec. Sports</option>
-								<option value="GSC">G.Sec. Cultural</option>
-								<option value="GSST">G.Sec. Science and Tech.</option>
-								<%
-									if (batch == 1) {
-								%>
-								<option value="UG_Senate_First_Year">Senate First Year
-									UG</option>
-								<%
-									} else if (batch == 2) {
-								%><option value="UG_Senate_Second_Year">Senate Second
-									Year UG</option>
-								<%
-									} else if (batch == 3) {
-								%><option value="UG_Senate_Third_Year">Senate Third
-									Year UG</option>
-								<%
-									} else if (batch == 4) {
-								%><option value="UG_Senate_Fourth_Year">Senate Fourth
-									Year UG</option>
-								<%
-									} else if (batch == 5) {
-								%>
-
-								<option value="PG">Post Graduate</option>
-								<%
-									} else
-										System.out.println("Error options");
-								%>
-
-
-
-							</select>
-						</div>
-					</div>
+					
 					<div class="row">
 						<div class="12u">
 							<ul class="buttons">

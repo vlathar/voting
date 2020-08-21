@@ -184,7 +184,8 @@
 							<% boolean isceo=((String)session.getAttribute("user")).equalsIgnoreCase("CEO");
 							System.out.println(isceo);
 							if(isceo){%>
-								<li><input type="submit" class="special" value="Disqualify" /></li>
+								<li><input type="submit" class="special" value="Disqualify" /><% session.setAttribute("fname","view_candidate_portfolio"); %>
+								</li>
 								<li><input type="button" class="special" value="Back" onclick="window.location.href = 'ceo.jsp'" /></li> <%}
 								else{%>
 								<li><input type="button" class="special" value="Back" onclick="window.location.href = 'msg.jsp'" /></li><%} %>

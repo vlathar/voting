@@ -1,9 +1,5 @@
 <%@page import="jsp.*,java.util.*"%>
 <%@ include file="noCache.jsp"%>
-<!--
-AUTHOR                   : LNMIIT_ONLINE_VOTING_SYSTEM_TEAM
-LAST MODIFIED DATE       : 17-APRIL-2015
--->
 
 <!DOCTYPE HTML>
 <html>
@@ -50,6 +46,42 @@ LAST MODIFIED DATE       : 17-APRIL-2015
 }
 </style>
 <script type="text/javascript">
+	function disableCB(){
+		var x=document.getElementById("AllowedCand1");
+		var y=document.getElementById("CB1");
+		var x1=document.getElementById("AllowedBatch1");
+		if(y.checked){
+			x.disabled=false;
+			x1.disabled=false;
+		}
+		else{
+			x.disabled=true;
+			x1.disabled=true;
+		}
+		var x3=document.getElementById("AllowedCand3");
+		var y3=document.getElementById("CB3");
+		var x33=document.getElementById("AllowedBatch3");
+		if(y3.checked){
+			x3.disabled=false;
+			x33.disabled=false;
+		}
+		else{
+			x3.disabled=true;
+			x33.disabled=true;
+		}
+		var x2=document.getElementById("AllowedCand2");
+		var y2=document.getElementById("CB2");
+		var x22=document.getElementById("AllowedBatch2");
+		if(y2.checked){
+			x2.disabled=false;
+			x22.disabled=false;
+		}
+		else{
+			x2.disabled=true;
+			x22.disabled=true;
+		}
+		
+	}
 	
 	 function checkForm() {
 		 
@@ -154,7 +186,7 @@ LAST MODIFIED DATE       : 17-APRIL-2015
 		return;
 	}
 	%>
-
+	<%! HashMap<String,String> mp= new HashMap<String,String>();%>
 	<!-- Header -->
 	<header id="header" class="alt">
 		<h1 id="logo">
@@ -213,19 +245,87 @@ LAST MODIFIED DATE       : 17-APRIL-2015
 					<div class="row 50%">
 						<div class="12u">
 							<p>Positions:</p>
-							<input type="checkbox" name="list" value="P">President<br>
-							<input type="checkbox" name="list" value="VP">Vice
-							President<br> <input type="checkbox" name="list" value="GSS">G.Sec
-							Sports<br> <input type="checkbox" name="list" value="GSC">G.sec
-							Cultural<br> <input type="checkbox" name="list" value="GSST">G.Sec
-							Science and Tech.<br> <input type="checkbox" name="list"
-								value="UG_Senate_Fourth_Year">Senate Fourth Year UG<br>
-							<input type="checkbox" name="list" value="UG_Senate_Third_Year">Senate
-							Third Year UG<br> <input type="checkbox" name="list"
-								value="UG_Senate_Second_Year">Senate Second Year UG<br>
-							<input type="checkbox" name="list" value="UG_Senate_First_Year">Senate
-							First Year UG<br> <input type="checkbox" name="list"
-								value="PG">Post Graduate<br>
+							<input type="checkbox" name="list" id="CB1" value="President" onclick="disableCB()" >President<br>
+								<div class="row 50%">
+									<div class="12u">
+										<select id="AllowedCand1" name="AllowedCand" disabled>
+											<option value="NULL"> Allowed Candidates</option>
+											<option  value="UG_Fourth_Year">UG_Fourth_Year</option>
+											<option  value="UG_Third_Year">UG_Third_Year</option>
+											<option  value="UG_Second_Year">UG_Second_Year</option>
+											<option  value="UG_First_Year">UG_First_Year</option>
+											<option  value="PG">PG</option>
+											<option value="All">All</option>
+										</select>
+									</div>
+								</div>
+								<div class="row 50%">
+									<div class="12u">
+										<select id="AllowedBatch1" name="AllowedBatch" disabled>
+											<option value="NULL"> Allowed Batch - Voting</option>
+											<option  value="UG_Fourth_Year">UG_Fourth_Year</option>
+											<option  value="UG_Third_Year">UG_Third_Year</option>
+											<option  value="UG_Second_Year">UG_Second_Year</option>
+											<option  value="UG_First_Year">UG_First_Year</option>
+											<option  value="PG">PG</option>
+											<option value="All">All</option>
+										</select>
+									</div>
+								</div>								
+							<input type="checkbox" name="list" id="CB2" value="Vice-President" onclick="disableCB()" >Vice-President<br> 
+								<div class="row 50%">
+									<div class="12u">
+										<select id="AllowedCand2" name="AllowedCand" disabled>
+											<option value="NULL"> Allowed Candidates</option>
+											<option  value="UG_Fourth_Year">UG_Fourth_Year</option>
+											<option  value="UG_Third_Year">UG_Third_Year</option>
+											<option  value="UG_Second_Year">UG_Second_Year</option>
+											<option  value="UG_First_Year">UG_First_Year</option>
+											<option  value="PG">PG</option>
+											<option value="All">All</option>
+										</select>
+									</div>
+								</div>
+								<div class="row 50%">
+									<div class="12u">
+										<select id="AllowedBatch2" name="AllowedBatch" disabled>
+											<option value="NULL"> Allowed Batch - Voting</option>
+											<option  value="UG_Fourth_Year">UG_Fourth_Year</option>
+											<option  value="UG_Third_Year">UG_Third_Year</option>
+											<option  value="UG_Second_Year">UG_Second_Year</option>
+											<option  value="UG_First_Year">UG_First_Year</option>
+											<option  value="PG">PG</option>
+											<option value="All">All</option>
+										</select>
+									</div>
+								</div>															
+							<input type="checkbox" name="list" id="CB3" value="G.Sec" onclick="disableCB()">G.Sec<br>
+								<div class="row 50%">
+									<div class="12u">
+										<select id="AllowedCand3" name="AllowedCand" disabled>
+											<option value="NULL"> Allowed Candidates</option>
+											<option  value="UG_Fourth_Year">UG_Fourth_Year</option>
+											<option  value="UG_Third_Year">UG_Third_Year</option>
+											<option  value="UG_Second_Year">UG_Second_Year</option>
+											<option  value="UG_First_Year">UG_First_Year</option>
+											<option  value="PG">PG</option>
+											<option value="All">All</option>
+										</select>
+									</div>
+								</div>
+								<div class="row 50%">
+									<div class="12u">
+										<select id="AllowedBatch3" name="AllowedBatch" disabled>
+											<option value="NULL"> Allowed Batch -Voting</option>
+											<option  value="UG_Fourth_Year">UG_Fourth_Year</option>
+											<option  value="UG_Third_Year">UG_Third_Year</option>
+											<option  value="UG_Second_Year">UG_Second_Year</option>
+											<option  value="UG_First_Year">UG_First_Year</option>
+											<option  value="PG">PG</option>
+											<option value="All">All</option>
+										</select>
+									</div>
+								</div>								
 						</div>
 					</div>
 					<div class="row">

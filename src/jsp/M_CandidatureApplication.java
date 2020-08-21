@@ -113,7 +113,7 @@ public class M_CandidatureApplication {
 		try {
 			c = MySQL.connect();
 			st = c.createStatement();
-			String query = "select rollno from applicants";
+			String query = "select rollno from applicants where isapproved=0";
 			System.out.println(query+" M_CA.java");
 			rs = st.executeQuery(query);
 
@@ -264,10 +264,13 @@ public class M_CandidatureApplication {
 		try {
 			c = MySQL.connect();
 			Statement st = c.createStatement();
-			String query = "delete from applicants where rollno = '" + rollno
+			String query = "delete from candidates where rollno = '" + rollno
 					+ "'";
-			System.out.println(query+" M_CA.java");
-			st.executeUpdate(query);
+			String query2 = "update applicants set isapproved=0 where rollno= '"+rollno+"'";
+			st.addBatch(query);
+			st.addBatch(query2);
+			//System.out.println(query+" M_CA.java");
+			st.executeBatch();
 			st.close();
 			return true;
 

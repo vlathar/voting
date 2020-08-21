@@ -12,19 +12,25 @@
 String email = null;
 String EventName = null;
 String gender = null;
-double cgpa = 0;
+//double cgpa = 0.0;
 String phoneno = null;
 String rollno = null;
 String position = null;
 int page_bit=0;
-
+HttpSession session2 = request.getSession(false);
+if(Session.MultipleSessionCheck((String)session2.getAttribute("user"),(String)session2.getId())==true)
+{
+	System.out.println("different session--2");
+	response.sendRedirect("index.jsp");
+	return;
+}
 // 0 default
 // 1 Apply for Candidature
 // 2 Applications details
 // 3 Delete Applications
 %>
  
-<%try{
+<%//try{
     
     M_CandidatureApplication CA = new M_CandidatureApplication();
     String source = request.getPathTranslated();
@@ -32,18 +38,20 @@ int page_bit=0;
     page_bit=1;
     
     if(session.getAttribute("fname").equals("apply")){
-        name = request.getParameter("name");
-        email = request.getParameter("email");
-        EventName = request.getParameter("electionevent");
-        gender = request.getParameter("gender");
-        cgpa = Double.parseDouble(request.getParameter("cgpa"));
-        phoneno = request.getParameter("phoneno");
+    	System.out.println("Hello");
+        name = (String)session.getAttribute("AFCname");
+        email =(String) session.getAttribute("AFCemail");
+        EventName = (String)session.getAttribute("AFCelectionevent");
+        gender = (String)session.getAttribute("AFCgender");
+        //cgpa = Double.parseDouble((String)session.getAttribute("AFCcgpa"));
+        phoneno = (String)session.getAttribute("AFCphoneno");
         rollno = (String)(session.getAttribute("user"));
-        position = request.getParameter("position");
-        System.out.println("cgpaform"+cgpa);
-        double cg = CA.getcgpa(rollno);
-        System.out.println("cgpadb"+cg);
-        if(cgpa == cg && cg>=7.0){
+        position = request.getParameter("position21");
+        //System.out.println(name);
+        //System.out.println("  "+phoneno+"  "+rollno+"  "+position);
+        //double cg = CA.getcgpa(rollno);
+        //System.out.println("cgpadb"+cg);
+        //if(cgpa == cg && cg>=7.0){
             
             boolean isapplied = CA.createAP(EventName,position,rollno,name,email,phoneno,gender); 
             String message;
@@ -58,14 +66,7 @@ int page_bit=0;
             	message="Invalid Entry";
     			response.sendRedirect("error_pg_msg.jsp?error="+message);
             }
-        }
-        
-        else
-        {	
-        	String message="Invalid Entry";
-			response.sendRedirect("error_pg_msg.jsp?error="+message);
-        }
-        
+           
     }
     
     else if(session.getAttribute("fname").equals("application_detail")){
@@ -105,31 +106,12 @@ int page_bit=0;
         }
         
     }
+    else
+    {
+    	String message="Something went wrong";
+    	response.sendRedirect("error_pg_msg.jsp?error="+message);
+    }
     
-}catch(Exception e){
-	
-	if(EventName =="" || name== null || email== null || gender == null || phoneno==null ||rollno==null ||position==null)
-	{
-		String message="Invalid input";
-		if(page_bit== 1)
-		{
-			response.sendRedirect("apply_for_cand.jsp?error=" + message);
-		}
-		else if(page_bit== 2)
-		{
-			response.sendRedirect("application_detail.jsp?error=" + message);
-		}
-		else if(page_bit == 3)
-		{
-			response.sendRedirect("delete_ap.jsp?error=" + message);
-		}
-		else
-		{
-			response.sendRedirect("msg.jsp?error=" + message);
-		}
-	}
-    
-}
  
 %>
  
