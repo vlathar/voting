@@ -1,4 +1,4 @@
-<%@page import="jsp.*,java.sql.*,java.util.*,java.text.*"%>
+<%@page import="jsp.*,java.util.*, java.sql.*"%>
 <%@ include file="noCache.jsp"%>
 
 <!DOCTYPE HTML>
@@ -20,7 +20,7 @@
 <script src="js/skel.min.js"></script>
 <script src="js/skel-layers.min.js"></script>
 <script src="js/init.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="css/skel.css" />
 <link rel="stylesheet" href="css/style.css" />
 <link rel="stylesheet" href="css/style-wide.css" />
@@ -29,107 +29,140 @@
 	href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
 	rel="stylesheet">
 
+
+<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
+<style type="text/css">
+#nav ul li {
+	color: black;
+}
+.contact {
+	background-color: #000;
+	background: url("../images/LNMIIT-contact.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 75em, 60em, auto, cover;
+}
+</style>
 </head>
-<body>
-<script type="text/javascript">
-	 function checkForm() {
-		 
-		 if(document.form.position.value == "0")
-			{
-				alert (" Please Choose an position ");
-				document.form.electionevent.focus();
-				return false;
-			}
-	 }
-</script>
-			<%
-				HttpSession session2 = request.getSession(false);
-				if(Session.MultipleSessionCheck((String)session2.getAttribute("user"),(String)session2.getId())==true)
-				{
-					System.out.println("different session--2");
-					response.sendRedirect("index.jsp");
-					return;
-				}
-				M_CandidatureApplication CA = new M_CandidatureApplication();
-				//System.out.println((String)session.getAttribute("user"));
-				//System.out.println(request.getParameter("name"));
-				int batch = CA.getBatch((String) (session.getAttribute("user")));
-				session.setAttribute("fname", "apply");
-				session.setAttribute("AFCname",request.getParameter("name"));
-		        session.setAttribute("AFCemail",request.getParameter("email"));
-		        session.setAttribute("AFCelectionevent",request.getParameter("electionevent"));
-		        session.setAttribute("AFCgender",request.getParameter("gender"));
-		        session.setAttribute("AFCphoneno",request.getParameter("phoneno"));
-		        System.out.println(request.getParameter("name"));
-			%>
-			<form name="form" action="C_msg.jsp" method="post">
-				<div class="row 50%">
+<body class="contact">
+	<%
+		HttpSession session2 = request.getSession(false);
+		if(Session.MultipleSessionCheck((String)session2.getAttribute("user"),(String)session2.getId())==true)
+		{
+			System.out.println("different session--2");
+			response.sendRedirect("index.jsp");
+			return;
+		}
+		M_CandidatureApplication CA = new M_CandidatureApplication();
+		String batch = CA.getBatch((String) (session.getAttribute("user")));
+		session.setAttribute("fname", "apply");
+		String EventName=request.getParameter("electionevent");
+		session.setAttribute("EventName",EventName);
+	%>
+
+	<!-- Header -->
+	<header id="header" class="alt">
+		<h1 id="logo">
+			<a href="http://www.lnmiit.ac.in"><img
+				src="images/LNMIIT_logo.png" width="200px" height="100px"></a>
+		</h1>
+		<nav id="nav">
+			<ul>
+				<li><a href="index.jsp">Welcome</a></li>
+				<li><a href="">Election Rules</a></li>
+				<li><a href="">Help Page</a></li>
+				<li><a href="contact.jsp">Contact Us</a></li>
+				<li><a href="logout.jsp" class="button special">LOGOUT</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<!-- Main -->
+	<article id="main">
+
+		<header class="container">
+			<!-- <span class="icon fa-envelope"></span>-->
+			<h2 align="center">APPLY FOR CANDIDATURE</h2>
+			<p></p>
+		</header>
+
+		<!-- One -->
+		<section class="wrapper style4 special container 75%">
+
+			<!-- Content -->
+			<div class="content">
+				<form name="form" action="C_msg.jsp" method="post">
+					<div class="row">
 						<div class="12u">
-						
-							Position Applying For: <select id="position21" name="position21">
-																<option value="0">Choose An Position</option>
-	
-									<%!ArrayList<String> Positions = new ArrayList<String>();%>
-									<%
-										try {
-											M_ElectionEvent EE1= new M_ElectionEvent();
-											int x=EE1.getEEId((request.getParameter("electionevent")));
-											Positions = (ArrayList<String>) (EE1.getPositions(x));
-											for (int i = 0; i < Positions.size(); i++) {
-												String val = Positions.get(i);
-												System.out.println(val);
-									%>
-									<option value="<%=val%>"><%=val%></option>
-									<%
-										}
-										} catch (Exception e) {
-											e.printStackTrace();
-										}
-									%>
-								<!--<option value="P">President</option>
-								<option value="VP">Vice-President</option>
-								<option value="GSS">G.Sec. Sports</option>
-								<option value="GSC">G.Sec. Cultural</option>
-								<option value="GSST">G.Sec. Science and Tech.</option> -->
+							Choose An Event: <input type="text" name="electionevent" readonly value="<%=EventName%>" />		  
+						</div>
+					</div>
+					<div class="row 50%">
+						<div class="12u">
+							Position Applying For: <select id="position" name="position">
+								<option disabled="">Select Position</option>
+								<%!ArrayList<String> Positions = new ArrayList<String>();%>
 								<%
-									if (batch == 1) {
+									M_ElectionEvent EE1= new M_ElectionEvent();
+									int x=EE1.getEEId((request.getParameter("electionevent")));
+									Positions = (ArrayList<String>) (EE1.getPositions(x));
+									for (int i = 0; i < Positions.size(); i++) {
+										String val = Positions.get(i);
+										
 								%>
-								<option value="UG_Senate_First_Year">Senate First Year
-									UG</option>
+								<option value ="<%=val%>"><%=val%></option>
 								<%
-									} else if (batch == 2) {
-								%><option value="UG_Senate_Second_Year">Senate Second
-									Year UG</option>
-								<%
-									} else if (batch == 3) {
-								%><option value="UG_Senate_Third_Year">Senate Third
-									Year UG</option>
-								<%
-									} else if (batch == 4) {
-								%><option value="UG_Senate_Fourth_Year">Senate Fourth
-									Year UG</option>
-								<%
-									} else if (batch == 5) {
+					                }
 								%>
-
-								<option value="PG">Post Graduate</option>
-								<%
-									} else
-										System.out.println("Error options");
-								%>
-
-
-
 							</select>
-							<div class="row">
+						</div>
+					</div>
+					<div class="row 50%">
+						<div class="12u">
+							<input type="text" id="agenda" name="agenda" placeholder="Election Agenda" />
+						</div>
+					</div>
+					<div class="row 50%">
+						<div class="12u">
+							<input type="text" id="points" name="points" placeholder="Main Points/Issues" />
+						</div>
+					</div>
+					<div class="row">
 						<div class="12u">
 							<ul class="buttons">
-								<li><input type="submit" class="special" value="Apply" onclick="checkForm()"/></li>
+								<li><input type="submit" class="special" value="Apply" /></li>
 							</ul>
 						</div>
 					</div>
-						</div>
-					</div>
-					</form>
+				</form>
+			</div>
+
+		</section>
+
+	</article>
+
+	<!-- Footer -->
+	<footer id="footer">
+
+		<ul class="icons">
+			<li><a href="#" class="icon circle fa-twitter"><span
+					class="label">Twitter</span></a></li>
+			<li><a href="#" class="icon circle fa-facebook"><span
+					class="label">Facebook</span></a></li>
+			<li><a href="#" class="icon circle fa-google-plus"><span
+					class="label">Google+</span></a></li>
+			<li><a href="#" class="icon circle fa-github"><span
+					class="label">Github</span></a></li>
+			<li><a href="#" class="icon circle fa-dribbble"><span
+					class="label">Dribbble</span></a></li>
+		</ul>
+
+		<ul class="copyright">
+			<li>&copy; SEPM-GROUP 26</li>
+		</ul>
+
+	</footer>
+
 </body>
 </html>

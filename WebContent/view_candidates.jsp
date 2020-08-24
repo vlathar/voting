@@ -40,7 +40,6 @@
 #nav ul li {
 	color: black;
 }
-
 .contact {
 	background-color: #000;
 	background: url("../images/LNMIIT-contact.jpg");
@@ -103,43 +102,44 @@
 					<div class="row 50%">
 						<!--class= 6u 12u(mobile) -->
 						<div class="12u">
-								<%!ArrayList<String> Candidates = new ArrayList<String>();%>
+								
 								<%
-								try
-									{
+									try{
+										DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+										DateFormat df2 = new SimpleDateFormat("HH:mm:ss");
+										String dates= df.format(new java.util.Date());
+										String time=df2.format(new java.util.Date());
 										Map < String,ArrayList<String> > applications=M_CandidatureApplication.getApplications(1);
-										for (Map.Entry< String,ArrayList<String> > e : applications.entrySet())
-										{
+										for (Map.Entry< String,ArrayList<String> > e : applications.entrySet()){
 											String s=e.getKey();
-											System.out.println(s);
-											%>
-											<p><%=s%></p>
-										<%  for (String rollno:e.getValue())
-											{
-												String val = rollno;
-										%>      
-										<div class="content">
-									 		<div class="12u">
-												<form action="view_cpdetails.jsp" method="post">
-													<input type="submit" width ="100" class="buttons" name="rollno" value="<%=val%>" id="application" onclick="FormValidate()">
-												</form>
-											 </div>
-										</div>
-											<%}
+											String datetime[]=M_ElectionEvent.getDateTime(s);
+											if((datetime[0].compareTo(dates)==0&&datetime[2].compareTo(time)>=0)||datetime[0].compareTo(dates)>0)
+											{ System.out.println(s+" "+time);
+								%>
+								<p><%=s%></p>
+								<%  
+									for (String rollno:e.getValue()){
+										String val = rollno + ":" + s;
+								%>      
+								<div class="content">
+									<div class="12u">
+										<form action="view_cpdetails.jsp" method="post">
+											<input type="text" width ="100" class="buttons" name="rollno" readonly value="<%=rollno%>" id="application" >
+											<button type="submit" name="details" value="<%=val%>">Click Here for details</button>
+										</form>
+									 </div>
+								</div>
+								<%}
+									}
 										}
 									}
-									catch (Exception e) 
-									{
+									catch (Exception e) {
 										e.printStackTrace();
 									}
 								%>
 						</div>
 					</div>
-					
 					</div>
-				</form>
-			</div>
-
 		</section>
 
 	</article>

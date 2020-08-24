@@ -8,15 +8,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% String name = null;
-String email = null;
+<%
 String EventName = null;
-String gender = null;
-//double cgpa = 0.0;
-String phoneno = null;
 String rollno = null;
 String position = null;
+String agenda = null;
+String points = null;
+String message=null;
 int page_bit=0;
+
 HttpSession session2 = request.getSession(false);
 if(Session.MultipleSessionCheck((String)session2.getAttribute("user"),(String)session2.getId())==true)
 {
@@ -38,34 +38,33 @@ if(Session.MultipleSessionCheck((String)session2.getAttribute("user"),(String)se
     page_bit=1;
     
     if(session.getAttribute("fname").equals("apply")){
-    	System.out.println("Hello");
-        name = (String)session.getAttribute("AFCname");
-        email =(String) session.getAttribute("AFCemail");
-        EventName = (String)session.getAttribute("AFCelectionevent");
-        gender = (String)session.getAttribute("AFCgender");
-        //cgpa = Double.parseDouble((String)session.getAttribute("AFCcgpa"));
-        phoneno = (String)session.getAttribute("AFCphoneno");
+    	EventName = (String)session.getAttribute("EventName");
         rollno = (String)(session.getAttribute("user"));
-        position = request.getParameter("position21");
-        //System.out.println(name);
-        //System.out.println("  "+phoneno+"  "+rollno+"  "+position);
-        //double cg = CA.getcgpa(rollno);
-        //System.out.println("cgpadb"+cg);
-        //if(cgpa == cg && cg>=7.0){
-            
-            boolean isapplied = CA.createAP(EventName,position,rollno,name,email,phoneno,gender); 
-            String message;
-            if(isapplied){
-
-            	message="Successfully_applied_for_application";
-                response.sendRedirect("Success_MSG.jsp?success="+message);
-            	
-           }
-            else
-            {	
-            	message="Invalid Entry";
-    			response.sendRedirect("error_pg_msg.jsp?error="+message);
-            }
+        position = request.getParameter("position");
+        agenda = request.getParameter("agenda");
+        points = request.getParameter("points");
+        String batch_by_rollno = CA.getBatch(rollno);
+        String batch_by_position = CA.getBatch(EventName, position);
+        System.out.println("batch_by_rollno:"+batch_by_rollno);
+        System.out.println("batch_by_position:"+batch_by_position);  
+        if(batch_by_rollno.equals(batch_by_position)||batch_by_position.equals("all")){
+	        boolean isapplied = CA.createAP(EventName,position,rollno,agenda, points); 
+	        if(isapplied){
+	        	message="Successfully_applied_for_application";
+	        	System.out.println("C-msg.jsp: "+message);
+	        	response.sendRedirect("Success_MSG.jsp?success="+message);
+	       }
+	        else{	
+	        	message="Already applied";
+	        	System.out.println("C-msg.jsp: error in storing in database");
+	        	response.sendRedirect("error_pg_msg.jsp?error="+message);
+	        }
+        }
+        else
+        {	
+          	message="Invalid Entry";
+    		response.sendRedirect("error_pg_msg.jsp?error="+message);
+        }
            
     }
     
@@ -73,32 +72,35 @@ if(Session.MultipleSessionCheck((String)session2.getAttribute("user"),(String)se
         
     	page_bit=2;
     	String id = request.getParameter("ID");
-        rollno = (String)(session.getAttribute("rollno"));
-        if(id.equals("0")){
-        	String e_event= request.getParameter("Accept");      
-           	boolean isapproved =CA.approve(rollno,e_event);
+    	String val = (String)session.getAttribute("details");
+    	String arr[] = val.split(":");
+		rollno = arr[0]; 
+		EventName = arr[1];
+		position = arr[2];
+        if(id.equals("0")){     
+           	boolean isapproved =CA.approve(rollno,EventName,position);
         	
         	if(isapproved){
         		System.out.println("application approved");
-            	String message="Application_details";
+            	 message="Application_details";
                 response.sendRedirect("Success_CEO.jsp?success="+message);
             }
             else{
             	System.out.println("error in approving application");
-            	String message="Invalid Entry";
+            	 message="Invalid Entry";
         		response.sendRedirect("error_page.jsp?error="+message);
             }
         }
         else if(id.equals("1")){
-        	boolean isrejected =CA.reject(rollno);
+        	boolean isrejected =CA.reject(rollno,EventName);
         	if(isrejected){
         		System.out.println("application rejected");
-            	String message="Application_details";
+            	 message="Application_details";
                 response.sendRedirect("Success_CEO.jsp?success="+message);
             }
             else{
             	System.out.println("error in rejecting application");
-            	String message="Invalid Entry";
+            	 message="Invalid Entry";
         		response.sendRedirect("error_page.jsp?error="+message);
             }
         }
@@ -107,24 +109,27 @@ if(Session.MultipleSessionCheck((String)session2.getAttribute("user"),(String)se
     else if(session.getAttribute("fname").equals("delete_application")){
     	
     	page_bit=3;
-        rollno = (String)(session.getAttribute("user"));
-        System.out.println(session.getAttribute("fname"));
-        boolean isdeleted = CA.deleteAP(rollno);
+    	System.out.println(session.getAttribute("fname"));
+        String val = request.getParameter("details");
+		String arr[] = val.split(":");
+		rollno = arr[0]; 
+		EventName = arr[1];
+        boolean isdeleted = CA.deleteAP(rollno,EventName);
  
         if (isdeleted) {
-        	String message="Successfully deleted";
+        	 message="Successfully deleted";
             response.sendRedirect("Success_MSG.jsp?success="+message);
         }
         else{
         	
-        	String message="Invalid Entry";
+        	 message="Invalid Entry";
     		response.sendRedirect("error_pg_msg.jsp?error="+message);
         }
         
     }
     else
     {
-    	String message="Something went wrong";
+    	 message="Something went wrong";
     	response.sendRedirect("error_pg_msg.jsp?error="+message);
     }
     

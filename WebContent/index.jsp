@@ -1,4 +1,6 @@
+<%@page import="jsp.*,java.sql.*"%>
 <%@ include file="noCache.jsp"%>
+
 <!DOCTYPE HTML>
 
 <html>
@@ -42,7 +44,11 @@
 
 </head>
 <body class="index">
-
+<%
+	if((String)session.getAttribute("user")!=null){
+		Session.setSession((String)session.getAttribute("user"), "0");
+		}
+%>
 	<!-- Header -->
 	<header id="header" class="alt">
 		<h1 id="logo">

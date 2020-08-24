@@ -30,12 +30,11 @@
 	<%
 	
 		String sessionID = null;
-		int loginindex = 0;
+		//String username="";
 		//Cookie[] cookies = request.getCookies();
 		
 		HttpSession session2 = request.getSession(false);
-		//System.out.println((String)session2.getAttribute("user"));
-		//System.out.println(session2.getId()+" --- ");
+		//username=(String)session2.getAttribute("user");
 		if(Session.MultipleSessionCheck((String)session2.getAttribute("user"),(String)session2.getId())==true)
 		{
 			System.out.println("different session--2");
@@ -195,7 +194,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="6u 12u(narrower)" align="center">
+				<div class="6u 12u(narrower)" >
 
 					<section>
 						<header>
@@ -224,7 +223,7 @@
 
 			<footer class="major">
 				<ul class="buttons">
-					<li><a href="Voting_terminal_login.jsp" class="button">VOTING</a></li>
+					<li><a href="V-ShowActiveEvents.jsp" class="button">VOTING</a></li>
 				</ul>
 			</footer>
 

@@ -1,9 +1,9 @@
 package jsp;
 
 import java.sql.*;
-import java.util.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+//import java.util.Date;
+//import java.text.DateFormat;
+//import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class M_ElectionEvent {
@@ -176,62 +176,86 @@ public class M_ElectionEvent {
 		}
 	}
 
-	public int getCurrentEE() {
+	public static ArrayList<String> getEvents(String batch)
+	{
+		ArrayList<String> alist=new ArrayList<String>();
+		//String alwdbatch="all";
 
 		Connection c = null;
 		Statement st = null;
 		ResultSet rs = null;
-		int r = -1;
-		// r.add("test");
-		try {
+		String r=null ;
+	
+		try
+		{
 			c = MySQL.connect();
 			st = c.createStatement();
-			// getting current date and time using Date class
-			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			Date dateobj = new Date();
-			String currentdatetime = df.format(dateobj);
-			String currentdate = currentdatetime.substring(0, 10);
-			String currenttime = currentdatetime.substring(11, 13);
-			System.out.println(currentdate + "  " + currenttime);
-
-			String query = "select eid ,starttime , endtime from electionevent where date = '"
-					+ currentdate + "';";
+			String query = "select distinct e.name from positions p,electionevent e where "
+					+ "allowedcandidate = '"+batch+"' or allowedcandidate = 'all' and e.eid=p.eid;";
 			System.out.println(query);
 			rs = st.executeQuery(query);
-
-			int i = 0;
-			java.sql.Time start = null;
-			java.sql.Time end = null;
-
-			while (rs.next()) {
-				i = rs.getInt(1);
-				start = rs.getTime(2);
-				end = rs.getTime(3);
-
-				DateFormat df1 = new SimpleDateFormat("HH:mm:ss");
-				String startt = df1.format(start).substring(0, 2);
-				String endt = df1.format(end).substring(0, 2);
-				System.out.println(i + " " + startt + " " + endt);
-				if (Integer.parseInt(currenttime) >= Integer.parseInt(startt)
-						&& Integer.parseInt(currenttime) <= Integer
-								.parseInt(endt)) {
-					r = i;
-				}
-
+			while (rs.next()) 
+			{
+				r = rs.getString(1);
+				alist.add(r);
+				System.out.println(r);
 			}
-
+		
 			rs.close();
 			st.close();
-			return r;
-
-		} catch (Exception e) {
+			return alist;
+		} 
+		
+		catch (Exception e) {
 			e.printStackTrace();
-			return r;
-		} finally {
+			return alist;
+		} 
+		finally {
 			MySQL.close(c);
 		}
-
 	}
+
+public static String[] getDateTime(String eventname){
+	Connection c = null;
+	Statement st = null;
+	ResultSet rs = null;
+	String s[] = new String[3];
+	
+	try 
+	{
+		c = MySQL.connect();
+		st = c.createStatement();
+		String query = "select date,starttime,endtime from electionevent where name = '"+eventname+"';";
+		System.out.println(query);
+		rs = st.executeQuery(query);
+		
+		while (rs.next())
+		{
+			s[0] = rs.getString(1);
+			s[1] = rs.getString(2);
+			s[2] = rs.getString(3);
+			System.out.println(s[0]);
+			System.out.println(s[1]);
+			System.out.println(s[2]);
+		}
+		
+		rs.close();
+		st.close();
+		return s;
+		
+	} 
+	catch(Exception e)
+	{
+		e.printStackTrace();
+		return s;
+	} 
+	finally
+	{
+		MySQL.close(c);
+	}
+	
+}
+
 
 	public ArrayList<String> getPositions(int eid) {
 
@@ -266,7 +290,7 @@ public class M_ElectionEvent {
 		}
 	}
 
-	public void setVotedone(String rollno) {
+	public boolean setVotedone(String rollno,String eventname,String C_roll) {
 		Connection c = null;
 		Statement st = null;
         rollno = rollno.toUpperCase();
@@ -274,22 +298,26 @@ public class M_ElectionEvent {
 		try {
 			c = MySQL.connect();
 			st = c.createStatement();
-			String query = "update students set votegiven = 1 where rollno = '"
-					+ rollno + "';";
-			System.out.println(query);
-			st.executeUpdate(query);
-
+			String query1 = "insert into vote values('"+rollno+"','"+eventname+"');";
+			String query2 = "update candidate set votecount=votecount+1 where eventname='"+eventname+
+					"' and rollno='"+C_roll+"'";
+			System.out.println(query1+" \n "+query2);
+			st.addBatch(query1);
+			st.addBatch(query2);
+			st.executeBatch();
 			st.close();
+			return true;
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			return false;
 
 		} finally {
 			MySQL.close(c);
 		}
 
 	}
-	public boolean hasVoted(String rollno){
+	public boolean hasVoted(String rollno,String eventname){
         rollno = rollno.toUpperCase();
 		Connection c = null;
 		Statement st = null;
@@ -299,22 +327,21 @@ public class M_ElectionEvent {
 		try {
 			c = MySQL.connect();
 			st = c.createStatement();
-			String query = "select votegiven from students where rollno ='" + rollno
-					+ "';";
+			String query = "select * from vote where rollno ='" + rollno
+					+ "' and eventname='"+eventname+"';";
 			System.out.println(query);
 			rs = st.executeQuery(query);
-            int t=1;
-			while (rs.next()) {
-				t=rs.getInt(1);
-				System.out.println(t);
-				
-			}
+			int flag=0;
+			if (!rs.isBeforeFirst() ) {    
+			    System.out.println("No data");
+			    flag=1;
+			} 
 
 			rs.close();
 			st.close();
-			if (t==1)
-			return true;
-			else return false;
+			if (flag==1)
+			return false;
+			else return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return true;
@@ -355,6 +382,44 @@ public class M_ElectionEvent {
 		}
 
 		
+	}
+
+public ArrayList<String> getVotingCandidates(String ename,String post){
+	Connection c = null;
+	Statement st = null;
+	ResultSet rs = null;
+	String r = null;
+	ArrayList<String> res=new ArrayList<String>();
+	
+	try {
+		c = MySQL.connect();
+		st = c.createStatement();
+		String query = "select rollno from applicants where eventname ='"+ename+"' and appliedforpost='"
+				+post+ "' and isapproved=1;";
+		System.out.println(query);
+		rs = st.executeQuery(query);
+
+		while (rs.next()) {
+			 r = rs.getString(1);
+			 System.out.println(r);
+			 res.add(r);
+			
+		}
+
+		rs.close();
+		st.close();
+		return res;
+
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+			return res;
+		}
+		finally {
+			MySQL.close(c);
+		}
+
+	
 	}
 
 }

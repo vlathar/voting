@@ -8,7 +8,7 @@ DATE OF LAST UPDATE         : 7 May 2015
 -->
 <html>
 <head>
-<title>Successful Voting | LNMIIT ONLINE VOTING SYSTEM</title>
+<title>Successful Voting | MBM ONLINE VOTING SYSTEM</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />

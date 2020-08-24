@@ -36,7 +36,6 @@
 #nav ul li {
 	color: black;
 }
-
 .contact {
 	background-color: #000;
 	background: url("../images/LNMIIT-contact.jpg");
@@ -65,12 +64,7 @@
 		
 		//M_CandidatureApplication CA = new M_CandidatureApplication();
 		//int batch = CA.getBatch((String) (session.getAttribute("user")));
-		session.setAttribute("fname", "view_candidate_portfolio");
-		
-		String rollno = request.getParameter("rollno");
-		
-		
-		
+		session.setAttribute("fname", "view_candidate_portfolio");	
 	%>
 
 	<!-- Header -->
@@ -110,25 +104,29 @@
 			applicantdetails = CA.getAD(rollno);
 			session.setAttribute("rollno", rollno);	 */
 			M_CandidatePortfolio CP= new M_CandidatePortfolio();
+			String val = request.getParameter("details");
+			//System.out.println("details at view_cpdetails.jsp------"+val);
+			session.setAttribute("details",val);
+			String arr[] = val.split(":");
+			String rollno = arr[0], eventName = arr[1];
 			ArrayList<String> candidatedetails = new ArrayList<String>();
 			session.setAttribute("rollno", rollno);	
-			candidatedetails = CP.getPD(rollno);
+			candidatedetails = CP.getPD(rollno,eventName);
 			
 			
 				String electionevent = candidatedetails.get(0);
 				String position= candidatedetails.get(1);
-				String name= candidatedetails.get(2);
-				String email= candidatedetails.get(3);
-				String phoneno= candidatedetails.get(4);
-				String gender= candidatedetails.get(5);
-			    String agenda= candidatedetails.get(6);
-			    byte[] imgData=CP.getImage(rollno);
+				String name= "Name of Candidate";//candidatedetails.get(2);
+				String email= "Email of Candidate";//candidatedetails.get(3);
+				String phoneno= "Phone of Candidate";//candidatedetails.get(4);
+				String gender= "Gendder of Candidate";//candidatedetails.get(5);
+			    String agenda= candidatedetails.get(2);
+			    String points= candidatedetails.get(3);
+			    //byte[] imgData=CP.getImage(rollno);
 				
 			%><%
 /* <jsp:useBean id="img" class="fxs.ReadFileIntoByteArray" scope="session" />
 <jsp:useBean id="photo" class="fxs.Images" scope="session" /> */
-
-
 %>	
 				<form action="C_candidate.jsp" method="post">
 					<div class="row 50%">
@@ -176,6 +174,11 @@
 					<div class="row 50%">
 						<div class="12u">
 							Agenda:<textarea  name="Agenda" disabled><%=agenda%></textarea>
+						</div>
+					</div>
+					<div class="row 50%">
+						<div class="12u">
+							Points:<textarea  name="Points" disabled><%=points%></textarea>
 						</div>
 					</div>
 					<div class="row">

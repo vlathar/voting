@@ -1,14 +1,10 @@
 <%@page import="jsp.*,java.util.*"%>
 <%@ include file="noCache.jsp"%>
-<!--
-AUTHOR                   : LNMIIT_ONLINE_VOTING_SYSTEM_TEAM
-LAST MODIFIED DATE       : 17-APRIL-2015
--->
 
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Delete Your application - LNMIIT_ONLINE_VOTING_PORTAL</title>
+<title>Delete Your application - MBM_ONLINE_VOTING_PORTAL</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />

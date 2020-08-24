@@ -1,4 +1,4 @@
-<%@page import="jsp.*,java.util.*,javafx.util.Pair"%>
+<%@page import="jsp.*,java.util.*"%>
 <%@ include file="noCache.jsp"%>
 
 <!DOCTYPE HTML>
@@ -36,7 +36,6 @@
 #nav ul li {
 	color: black;
 }
-
 .contact {
 	background-color: #000;
 	background: url("../images/LNMIIT-contact.jpg");
@@ -107,20 +106,23 @@
 			
 			<%
 			ArrayList<String> applicantdetails = new ArrayList<String>();
-			String rollno = request.getParameter("rollno");
-			session.setAttribute("rollno", rollno);
-			applicantdetails = CA.getAD(rollno);
-				
+			String val = request.getParameter("details");
+			String arr[] = val.split(":");
+			String rollno = arr[0], eventName = arr[1];
 			
-			    
+			applicantdetails = CA.getAD(rollno, eventName);
 				
 				String electionevent = applicantdetails.get(0);
 				String position= applicantdetails.get(1);
-				String name=applicantdetails.get(2);
-				String email=applicantdetails.get(3);
-				String phoneno=applicantdetails.get(4);
-				String gender=applicantdetails.get(5);
-				Pair<String,String> pairr= new Pair<String,String>(rollno,electionevent);
+				String name="Name";//applicantdetails.get(2);
+				String email="email@email.com";//applicantdetails.get(3);
+				String phoneno="1234567890";//applicantdetails.get(4);
+				String gender="Male";//applicantdetails.get(5);
+				String agenda=applicantdetails.get(2);
+				String points=applicantdetails.get(3);
+				//System.out.println("position in C_MSG at approve:"+position);
+				val+=":"+position;
+				session.setAttribute("details", val);
 				
 				
 			%>
@@ -163,11 +165,21 @@
 							<b>Position:</b><input type="text" name="position" readonly value="<%=position%>" />
 						</div>
 					</div>
+					<div class="row 50%">
+						<div class="12u">
+							<b>Agenda:</b><input type="text" name="agenda" readonly value="<%=agenda%>" />
+						</div>
+					</div>
+					<div class="row 50%">
+						<div class="12u">
+							<b>Points:</b><input type="text" name="points" readonly value="<%=points%>" />
+						</div>
+					</div>
 					<div class="row">
 						<div class="12u">
 							<div class="buttons">
-								<div><a href="/PROJECT1/C_msg.jsp?ID=0"><input type="hidden" class="special" name="Accept" value="<%=electionevent%>" /> Accept</a></div><br/>
-								<!--  <div><input type="button" class="special" name="Accept" value="<%=electionevent%>" onclick="window.location.href = 'C_msg.jsp?ID=0'" /></div><br/>-->
+								
+								<div><input type="button" class="special" value="Approve" onclick="window.location.href = 'C_msg.jsp?ID=0'" /></div><br/>
 								<div><input type="button" class="special" value="Reject" onclick="window.location.href = 'C_msg.jsp?ID=1'" /></div><br/>																																																																																																																																																																																					
 								<div><input type="button" class="special" value="Back" onclick="window.location.href = 'view_applications.jsp'"/></div>
 								

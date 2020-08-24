@@ -6,12 +6,12 @@ import java.util.HashMap;
 import java.util.Map;
 public class M_CandidatureApplication {
 
-	public int getBatch(String rollno) {
+	public String getBatch(String rollno) {
 		rollno = rollno.toUpperCase();
 		Connection c = null;
 		Statement st = null;
 		ResultSet rs = null;
-		int batch = 0;
+		String batch = "";
 
 		try {
 
@@ -23,7 +23,7 @@ public class M_CandidatureApplication {
 			rs = st.executeQuery(query);
 
 			while (rs.next()) {
-				batch = rs.getInt(1);
+				batch = rs.getString(1);
 			}
 
 			rs.close();
@@ -39,6 +39,35 @@ public class M_CandidatureApplication {
 			MySQL.close(c);
 		}
 
+	}
+	public String getBatch(String eventname, String position) {
+		Connection c = null;
+		Statement st = null;
+		ResultSet rs = null;
+		String temp = "";
+		M_ElectionEvent me = new M_ElectionEvent();
+		int eid = me.getEEId(eventname);
+		try {
+
+			c = MySQL.connect();
+			st = c.createStatement();
+			String query = "select allowedcandidate from positions where eid ="
+					+ eid + " and position ='" + position + "';";
+			System.out.println(query+" M_CA.java");
+			rs = st.executeQuery(query);
+			while (rs.next()) {
+				 temp = rs.getString(1);
+				System.out.println("temp:---------------"+temp);
+			}
+			rs.close();
+			st.close();
+			return temp;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return temp;
+		} finally {
+			MySQL.close(c);
+		}
 	}
 
 	public double getcgpa(String rollno) {
@@ -76,32 +105,24 @@ public class M_CandidatureApplication {
 
 	}
 
-	public boolean createAP(String EventName, String position, String rollno,
-			String name, String email, String phoneno, String gender) {
+	public boolean createAP(String EventName, String position, String rollno, String agenda, String points) {
 		Connection c = null;
 		Statement st = null;
 		rollno=rollno.toUpperCase();
 		try {
 			c = MySQL.connect();
 			st = c.createStatement();
-			String query = "insert into applicants values ('" + EventName
-					+ "','" + position + "',0,'" + rollno + "','" + name
-					+ "','" + email + "','" + phoneno + "','" + gender + "');";
+			String query = "insert into applicants values ('" + EventName + "','" + position + "',0,'" + rollno + "','"+ agenda + "','"+ points + "');";
 			System.out.println(query+" M_CA.java");
 			st.executeUpdate(query);
-
 			st.close();
 			return true;
-
 		} catch (Exception e) {
-
 			e.printStackTrace();
 			return false;
 		} finally {
-
 			MySQL.close(c);
 		}
-
 	}
 
 	public ArrayList<String> getCA() {
@@ -136,50 +157,38 @@ public class M_CandidatureApplication {
 		}
 	}
 
-	public ArrayList<String> getAD(String rollno) {
+	public ArrayList<String> getAD(String rollno,String eventName) {
 		Connection c = null;
 		Statement st = null;
 		ResultSet rs = null;
 		ResultSetMetaData rsmd = null;
 		ArrayList<String> r = new ArrayList<String>();
-		// r.add("test");
 		try {
 			c = MySQL.connect();
 			st = c.createStatement();
 			String query = "select * from applicants where rollno = '" + rollno
-					+ "';";
+					+ "' and eventname ='" + eventName +"';" ;
 			System.out.println(query+" M_CA.java");
 			rs = st.executeQuery(query);
 			rsmd = rs.getMetaData();
 			int ss = rsmd.getColumnCount();
-
-			int i = 1;
+			int i = 0;
 			System.out.println(ss);
 			while (rs.next()) {
-				while (i <= ss) {
-					String t = rs.getString(i);
-					System.out.println(t);
+				while (i < ss) {
 					i++;
-					if (i == 4 || i == 5)
+					String t = rs.getString(i);
+					if(t==null)
+						t="add some value";
+					System.out.println(t);
+					if(i==3||i==4)
 						continue;
-					if (t.equals("P"))
-						t = "President";
-					else if (t.equals("VP"))
-						t = "Vice President";
-					else if (t.equals("GSS"))
-						t = "General Secretary Sports";
-					else if (t.equals("GSSC"))
-						t = "General Secretary Science and Technology";
-					else if (t.equals("GSC"))
-						t = "General Secretary Cultural";
 					r.add(t);
 				}
 			}
-
 			rs.close();
 			st.close();
 			return r;
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			return r;
@@ -189,7 +198,7 @@ public class M_CandidatureApplication {
 
 	}
 
-	public boolean approve(String rollno,String e_event) {
+	public boolean approve(String rollno,String eventName, String position) {
 		Connection c = null;
 		Statement st = null;
 		try {
@@ -197,11 +206,11 @@ public class M_CandidatureApplication {
 			st = c.createStatement();
 			rollno = rollno.toUpperCase();
 			String query = "update applicants set isapproved = 1 where rollno ='"
-					+ rollno + "' and eventname='"+e_event+"';";
+					+ rollno + "' and eventname ='" + eventName +"';" ;
 			System.out.println(query+" M_CA.java");
 			st.executeUpdate(query);
-			query = "insert into candidates (rollno, haswon) values ('"
-					+ rollno + "',0);";
+			query = "insert into candidate (rollno, eventname, position, votecount) values ('"
+					+ rollno +"', '" + eventName +"', '" + position + "',0);";
 			System.out.println(query+" M_CA.java");
 			st.executeUpdate(query);
 			st.close();
@@ -218,7 +227,7 @@ public class M_CandidatureApplication {
 		}
 
 	}
-	public boolean reject(String rollno) {
+	public boolean reject(String rollno,String EventName) {
 		Connection c = null;
 		Statement st = null;
 		try {
@@ -226,7 +235,7 @@ public class M_CandidatureApplication {
 			st = c.createStatement();
 			rollno = rollno.toUpperCase();
 			String query = "delete from applicants where rollno ='"
-					+ rollno + "';";
+					+ rollno + "' and eventname ='" + EventName +"';" ;
 			System.out.println(query+" M_CA.java");
 			st.executeUpdate(query);
 			st.close();
@@ -284,17 +293,18 @@ public class M_CandidatureApplication {
 
 	}
 
-	public boolean deleteAP(String rollno) {
+	public boolean deleteAP(String rollno,String eventName) {
 
 		Connection c = null;
 		try {
 			c = MySQL.connect();
 			Statement st = c.createStatement();
-			String query = "delete from candidates where rollno = '" + rollno
-					+ "'";
-			String query2 = "update applicants set isapproved=0 where rollno= '"+rollno+"'";
+			String query = "delete from candidate where rollno = '" + rollno
+					+ "' and eventname ='" + eventName +"';" ;
+			String query1 = "delete from applicants where isapproved=1 and rollno = '" + rollno
+					+ "' and eventname ='" + eventName +"';" ;
 			st.addBatch(query);
-			st.addBatch(query2);
+			st.addBatch(query1);
 			//System.out.println(query+" M_CA.java");
 			st.executeBatch();
 			st.close();

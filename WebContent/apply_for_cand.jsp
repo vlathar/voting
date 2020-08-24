@@ -127,58 +127,32 @@
 			<!-- Content -->
 			<div class="content">
 				<form name="form" action="Applicant_position.jsp" method="post">
-					<div class="row 50%">
-						<!--class= 6u 12u(mobile) -->
-						<div class="12u">
-							<input type="text" id="name" name="name" placeholder="NAME" />
-						</div>
-					</div>
-						</div>
-					</div> -->
-					<div class="row 50%">
-						<div class="12u">
-							<input type="email" id="email" name="email" placeholder="Email : format --> abc@xyz.com" />
-						</div>
-					</div>
 					<div class="row">
 						<div class="12u">
 							Choose An Event: <select  id="electionevent" name="electionevent">
-									<option value="0">Choose An Event</option>
+									<option value="">Choose An Event</option>
 	
-									<%!ArrayList<String> EventsAdded = new ArrayList<String>();%>
+									<%! ArrayList<String>EventsAdded = new ArrayList<String>();%>
 									<%
 										try {
 											EventsAdded = (ArrayList<String>) (session.getAttribute("EventsAdded"));
 											for (int i = 0; i < EventsAdded.size(); i++) {
-												String val = EventsAdded.get(i);
+												String eventname = EventsAdded.get(i);
 									%>
-									<option value="<%=val%>"><%=val%></option>
+									<option value="<%=eventname%>"><%=eventname%></option>
 									<%
 										}
 										} catch (Exception e) {
 											e.printStackTrace();
 										}
 									%>
-								</select>
-								
-								  Gender: 
-								<select id="gender" name="gender">
-									<option value="M">Male</option>
-									<option value="F">Female</option>
-								</select>
+								</select>		  
 						</div>
 					</div>
-
-					<div class="row 50%">
-						<div class="12u">
-							<input type="text" id="phoneno" name="phoneno" placeholder="Phone No" />
-						</div>
-					</div>
-					
 					<div class="row">
 						<div class="12u">
 							<ul class="buttons">
-								<li><input type="submit" class="special" value="Apply" onclick="checkForm()"/></li>
+								<li><input type="submit" class="special" value="Select Position"/></li>
 							</ul>
 						</div>
 					</div>

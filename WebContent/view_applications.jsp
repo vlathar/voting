@@ -40,7 +40,6 @@
 #nav ul li {
 	color: black;
 }
-
 .contact {
 	background-color: #000;
 	background: url("../images/LNMIIT-contact.jpg");
@@ -67,7 +66,6 @@
 			response.sendRedirect("index.jsp");
 			return;
 		}
-
 	%>
 
 	<!-- Header -->
@@ -106,34 +104,41 @@
 						<div class="12u">
 								<%!ArrayList<String> ApplicantsAdded = new ArrayList<String>();%>
 								<%
-								try
-								{
+								try{
+									DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+									DateFormat df2 = new SimpleDateFormat("HH:mm:ss");
+									String dates= df.format(new java.util.Date());
+									String time=df2.format(new java.util.Date());
 									Map < String,ArrayList<String> > applications=M_CandidatureApplication.getApplications(0);
-									for (Map.Entry< String,ArrayList<String> > e : applications.entrySet())
-									{
-										String s=e.getKey();
-										System.out.println(s);
-									%>
-									<p><%=s%></p>
-									<%  for (String rollno:e.getValue())
-									{
-											String val = rollno;
-									%>      
-									<div class="content">
-										<div class="12u">
+									for (Map.Entry< String,ArrayList<String> > e : applications.entrySet()){
+									String s=e.getKey();
+									System.out.println(s);
+									String datetime[]=M_ElectionEvent.getDateTime(s);
+									if((datetime[0].compareTo(dates)==0&&datetime[2].compareTo(time)>=0)||datetime[0].compareTo(dates)>0)
+									{ System.out.println(s+" "+time);
+									%><p><%=s%></p>
+									<%  for (String rollno:e.getValue()){
+											
+											String val = rollno + ":" + s;
+											%>      
+			
+											<div class="content">
+											 <div class="12u">
 											<form action="application_detail.jsp" method="post">
-												<input type="submit" width ="100" class="buttons" name="rollno" value="<%=val%>" id="application" >
+											<input type="text" width ="100" class="buttons" name="rollno" readonly value="<%=rollno%>" id="application" >
+											<button type="submit" name="details" value="<%=val%>">Click Here for details</button>
 											</form>
-									 	</div>
-									</div>
-									<%
+			
+											 </div>
+											</div>
+											
+											<%
+											}
+										}
 									}
-									} 
-								}
-								catch(Exception e)
-								{
-									String message="Some error encountered";
-									response.sendRedirect("msg.jsp?success=" + message);
+								} 
+								catch (Exception e) {
+									e.printStackTrace();
 								}
 								%>
 						</div>
@@ -141,7 +146,6 @@
 					
 					</div>
 					<br/><input type="button" width=100 name="BACK TO CEO-Treminal" value="BACK TO CEO-Treminal" id="viewtoceo" onclick="window.location = 'ceo.jsp';"/>
-
 		</section>
 
 	</article>

@@ -85,24 +85,27 @@ public class M_CandidatePortfolio {
 
 	}
 
-	public ArrayList<String> getCP() {
+	public  ArrayList<ArrayList<String> >getCP() {
 
 		Connection c = null;
 		Statement st = null;
 		ResultSet rs = null;
-		ArrayList<String> r = new ArrayList<String>();
+		ArrayList<ArrayList<String> > r = new ArrayList<ArrayList<String> >();
 		// r.add("test");
 		try {
 			c = MySQL.connect();
 			st = c.createStatement();
-			String query = "select rollno from candidates";
+			String query = "select rollno, eventname from applicants where isapproved = 1";
 			System.out.println(query+" M_CP.java");
 			rs = st.executeQuery(query);
 
 			while (rs.next()) {
-				String t = rs.getString(1);
-				System.out.println(t);
-				r.add(t);
+				ArrayList<String>temp = new ArrayList<String>();
+				String rollno = rs.getString(1);
+				String eventname = rs.getString(2);
+				temp.add(rollno);
+				temp.add(eventname);
+				r.add(temp);
 			}
 
 			rs.close();
@@ -117,88 +120,40 @@ public class M_CandidatePortfolio {
 		}
 	}
 
-	public ArrayList<String> getPD(String rollno) {
+	public ArrayList<String> getPD(String rollno,String eventName) {
 		Connection c = null;
 		Statement st = null;
 		ResultSet rs = null;
 		ResultSetMetaData rsmd = null;
 		ArrayList<String> r = new ArrayList<String>();
-		rollno=rollno.toUpperCase();
-		r.clear();
 		// r.add("test");
 		try {
 			c = MySQL.connect();
 			st = c.createStatement();
-			String query = "select * from applicants where rollno = '" + rollno
-					+ "';";
-			System.out.println(query+" M_CP.java");
+			String query = "select * from applicants where isapproved=1 and rollno = '" + rollno
+					+ "' and eventname ='" + eventName +"';" ;
+			System.out.println(query+" M_CA.java");
 			rs = st.executeQuery(query);
 			rsmd = rs.getMetaData();
 			int ss = rsmd.getColumnCount();
 
-			int i = 1;
+			int i = 0;
 			System.out.println(ss);
 			while (rs.next()) {
-				while (i <= ss) {
-					String t = rs.getString(i);
-					System.out.println(t);
-					
+				while (i < ss) {
 					i++;
-					if (i == 4 || i == 5)
+					String t = rs.getString(i);
+					if(t==null)
+						t="add some value";
+					System.out.println(t);
+					if(i==3||i==4)
 						continue;
-					
-					if(i==3)
-					if (t.equals("P"))
-						t = "President";
-					else if (t.equals("VP"))
-						t = "Vice President";
-					else if (t.equals("GSS"))
-						t = "General Secretary Sports";
-					else if (t.equals("GSST"))
-						t = "General Secretary Science and Technology";
-					else if (t.equals("GSC"))
-						t = "General Secretary Cultural";
-					
 					r.add(t);
 				}
-			}
-
-			query = "select * from candidates where rollno = '" + rollno + "';";
-			System.out.println(query);
-			rs = st.executeQuery(query);
-			rsmd = rs.getMetaData();
-			ss = rsmd.getColumnCount();
-
-			i = 1;
-			System.out.println(ss+" M_CP.java");
-			while (rs.next()) {
-				while (i <= ss) {
-					String t = rs.getString(i);
-					System.out.println(t);
-					i++;
-					if (i == 2||i==5||i==6 || i==8)
-						continue;
-					/*if (t.equals("P"))
-						t = "President";
-					else if (t.equals("VP"))
-						t = "Vice President";
-					else if (t.equals("GSS"))
-						t = "General Secretary Sports";
-					else if (t.equals("GSSC"))
-						t = "General Secretary Science and Technology";
-					else if (t.equals("GSC"))
-						t = "General Secretary Cultural";*/
-					r.add(t);
-				}
-			}
-
-			for(i=0;i<r.size();i++){
-				System.out.println(i+"" +r.get(i));
 			}
 			rs.close();
 			st.close();
 			return r;
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			return r;
