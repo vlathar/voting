@@ -1,6 +1,5 @@
 <%@page import="jsp.*,java.util.*"%>
 <%@ include file="noCache.jsp"%>
-<%@page import="jsp.*,java.sql.*,java.util.*,java.text.*"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -28,7 +27,7 @@
 
 </head>
 <body>
-	<%
+<% 
 		HttpSession session2 = request.getSession(false);
 		if(Session.MultipleSessionCheck((String)session2.getAttribute("user"),(String)session2.getId())==true)
 		{
@@ -36,22 +35,27 @@
 			response.sendRedirect("index.jsp");
 			return;
 		}
+		try{
 		String EName= request.getParameter("EName");
 		String loggedinuser= (String) session.getAttribute("user");
-		String candroll= request.getParameter("candroll");
+		String[] candroll= request.getParameterValues("candroll");
 		M_ElectionEvent EE= new M_ElectionEvent();
-		if(EE.setVotedone(loggedinuser,EName,candroll))
+		if(EE.setVotedone(loggedinuser,EName,candroll)==true)
 		{
 			response.sendRedirect("success_voting.jsp");
 			return;
 		}
 		else
 		{
-			String message="Something went wrong";
-			response.sendRedirect("C_msg.jsp?message="+message);
+			response.sendRedirect("C_msg.jsp");
 			return;
 		}
-	%>
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+%>
 
 </body>
 </html>

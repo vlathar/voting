@@ -290,7 +290,7 @@ public static String[] getDateTime(String eventname){
 		}
 	}
 
-	public boolean setVotedone(String rollno,String eventname,String C_roll) {
+	public boolean setVotedone(String rollno,String eventname,String[] C_roll) {
 		Connection c = null;
 		Statement st = null;
         rollno = rollno.toUpperCase();
@@ -299,11 +299,18 @@ public static String[] getDateTime(String eventname){
 			c = MySQL.connect();
 			st = c.createStatement();
 			String query1 = "insert into vote values('"+rollno+"','"+eventname+"');";
-			String query2 = "update candidate set votecount=votecount+1 where eventname='"+eventname+
-					"' and rollno='"+C_roll+"'";
-			System.out.println(query1+" \n "+query2);
+			for(String cr:C_roll)
+			{
+				if(!cr.equals("0"))
+				{
+					String query2 = "update candidate set votecount=votecount+1 where eventname='"+eventname+
+						"' and rollno='"+cr+"'";
+					System.out.println(" \n "+query2);
+					st.addBatch(query2);
+				}
+			}
 			st.addBatch(query1);
-			st.addBatch(query2);
+			
 			st.executeBatch();
 			st.close();
 			return true;
@@ -421,5 +428,37 @@ public ArrayList<String> getVotingCandidates(String ename,String post){
 
 	
 	}
+public ArrayList<String> getEligiblePositions(int eid,String batch) {
+
+	Connection c = null;
+	Statement st = null;
+	ResultSet rs = null;
+	ArrayList<String> r = new ArrayList<String>();
+	// r.add("test");
+	try {
+		c = MySQL.connect();
+		st = c.createStatement();
+		String query = "select position from positions where eid =" + eid
+				+ " and ( allowedbatch='"+batch+"' or allowedbatch='all') ;";
+		System.out.println(query);
+		rs = st.executeQuery(query);
+
+		while (rs.next()) {
+			String t = rs.getString(1);
+			System.out.println(t);
+			r.add(t);
+		}
+
+		rs.close();
+		st.close();
+		return r;
+
+	} catch (Exception e) {
+		e.printStackTrace();
+		return r;
+	} finally {
+		MySQL.close(c);
+	}
+}
 
 }

@@ -1,15 +1,10 @@
 <%@ include file="noCache.jsp"%>
 <%@page import="jsp.*,java.util.*"%>
 <!DOCTYPE HTML>
-<!--
 
-AUTHOR                      : LNMIIT_ONLINE_VOTING_SYSTEM_DEVELOPMENT_TEAM_GROUP-26 SEPM2015
-DATE OF LAST UPDATE         : 17 APRIL 2015 
-
--->
 <html>
 <head>
-<title>Error_Time | LNMIIT ONLINE VOTING SYSTEM</title>
+<title>Error_Time | MBM ONLINE VOTING SYSTEM</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
@@ -36,33 +31,13 @@ DATE OF LAST UPDATE         : 17 APRIL 2015
 <body class="index">
 
 <%
-		session.setAttribute("fname", "error_time_format");
-	String sessionID = null;
-	int loginindex = 0;
-	Cookie[] cookies = request.getCookies();
-	if (cookies != null) {
-		for (Cookie cooki : cookies) {
-			if (cooki.getName().equals("JSESSIONID")) {
-				sessionID = cooki.getValue();
-				System.out.println("JSESSIONID=" + sessionID);
-				break;
-			}
-
-		}
-		for (Cookie cooki : cookies) {
-			if (cooki.getName().equals("loginindex")) {
-				loginindex = Integer.parseInt(cooki.getValue());
-				System.out.println("loginindex=" + loginindex);
-				break;
-			}
-
-		}
-	}
-
-	if (!Session.isSameSession(sessionID, loginindex)) {
+	session.setAttribute("fname", "delete_ee");
+	HttpSession session2 = request.getSession(false);
+	if(Session.MultipleSessionCheck((String)session2.getAttribute("user"),(String)session2.getId())==true)
+	{
+		System.out.println("different session--2");
 		response.sendRedirect("index.jsp");
-		System.out.println("different session");
-
+		return;
 	}
 
 
@@ -96,9 +71,9 @@ DATE OF LAST UPDATE         : 17 APRIL 2015
 		<div class="inner">
 
 			<header>
-				<h3>LNMIIT ONLINE VOTING SYSTEM</h3>
+				<h3>MBM ONLINE VOTING SYSTEM</h3>
 			</header>
-			<h1>Invalid Preferences</h1>
+			<h1>Invalid Preferences-You are not eligible for this post. (Contact admin)</h1>
 			<input type="submit" class="buttons" id="myBtn" name="BACK" value="BACK" onclick="window.history.back()">
 		</div>
 

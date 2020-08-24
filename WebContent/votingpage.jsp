@@ -43,12 +43,14 @@ function checkForm()
 		return;
 	}
 	String message="";
+	String val="";
+	String val2="";
 	String eventname=request.getParameter("eventname");
 	M_CandidatureApplication CA = new M_CandidatureApplication();
 	String batch = CA.getBatch((String) (session.getAttribute("user")));
 	M_ElectionEvent EE = new M_ElectionEvent();
 	int eid= EE.getEEId(request.getParameter("eventname"));
-	ArrayList<String> pos=EE.getPositions(eid);
+	ArrayList<String> pos=EE.getEligiblePositions(eid,batch);
 	if(EE.hasVoted((String)session.getAttribute("user"),eventname))
 	{
 		message="You've already voted";
@@ -62,24 +64,25 @@ function checkForm()
 							<input type="hidden" name="EName" value="<%= eventname %>"/>
 							<%
 								for(int i=0;i<pos.size();i++){
-									String val=pos.get(i);
+									val=pos.get(i);
 									System.out.println(val);
 							%>
 							
-								Vote:<p name=""><%=val%></p>
+								<p>Vote for :<%= val %></p>
+								
 								 <select id="candroll" name="candroll">
-										<option value="0">NOTA</option>
-									
 									<%
 										ArrayList<String> cand = new ArrayList<String>();
 										cand= EE.getVotingCandidates(eventname, val);
 										for (int j = 0; j < cand.size(); j++) {
-											String val2 = cand.get(j);
-											System.out.println(val2);
+											val2 = cand.get(j);
+											//System.out.println(val2);
 									%>
-										<option value="<%=val2%>"><%=val2%></option>
-										<%}} %>
-							</select>
+										<option value="<%=val2%>"><%= val2%></option>
+										<% } %>
+										<option value="0">NOTA</option>
+								</select>
+								<% } %>
 							<div class="row">
 								<div class="12u">
 									<ul class="buttons">

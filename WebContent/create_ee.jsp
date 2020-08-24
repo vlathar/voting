@@ -255,7 +255,7 @@
 											<option  value="UG_Second_Year">UG_Second_Year</option>
 											<option  value="UG_First_Year">UG_First_Year</option>
 											<option  value="PG">PG</option>
-											<option value="All">All</option>
+											<option value="all">All</option>
 										</select>
 									</div>
 								</div>
@@ -268,7 +268,7 @@
 											<option  value="UG_Second_Year">UG_Second_Year</option>
 											<option  value="UG_First_Year">UG_First_Year</option>
 											<option  value="PG">PG</option>
-											<option value="All">All</option>
+											<option value="all">All</option>
 										</select>
 									</div>
 								</div>								
@@ -282,7 +282,7 @@
 											<option  value="UG_Second_Year">UG_Second_Year</option>
 											<option  value="UG_First_Year">UG_First_Year</option>
 											<option  value="PG">PG</option>
-											<option value="All">All</option>
+											<option value="all">All</option>
 										</select>
 									</div>
 								</div>
@@ -295,7 +295,7 @@
 											<option  value="UG_Second_Year">UG_Second_Year</option>
 											<option  value="UG_First_Year">UG_First_Year</option>
 											<option  value="PG">PG</option>
-											<option value="All">All</option>
+											<option value="all">All</option>
 										</select>
 									</div>
 								</div>															
@@ -309,7 +309,7 @@
 											<option  value="UG_Second_Year">UG_Second_Year</option>
 											<option  value="UG_First_Year">UG_First_Year</option>
 											<option  value="PG">PG</option>
-											<option value="All">All</option>
+											<option value="all">All</option>
 										</select>
 									</div>
 								</div>
@@ -322,7 +322,7 @@
 											<option  value="UG_Second_Year">UG_Second_Year</option>
 											<option  value="UG_First_Year">UG_First_Year</option>
 											<option  value="PG">PG</option>
-											<option value="All">All</option>
+											<option value="all">All</option>
 										</select>
 									</div>
 								</div>								

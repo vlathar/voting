@@ -28,6 +28,18 @@
 
 </head>
 <body>
+<div class="inner">
+				<h3>Welcome to the Chief Election Officer</h3>
+			<br />
+			<br />
+			<p class="ceo_quote">
+				"Elections belong to the people. It's their decision. <br />If they
+				decide to turn their back on the fire <br />and burn their
+				behinds,then they will just<br /> have to sit on their blisters."<br />
+				<br />
+			</p>
+			<p class="ceo_quote">-Abraham Lincoln</p>
+		</div>
 <%
 	HttpSession session2 = request.getSession(false);
 	if(Session.MultipleSessionCheck((String)session2.getAttribute("user"),(String)session2.getId())==true)
@@ -51,18 +63,7 @@
 			System.out.println(alist.get(i));
 			String s=alist.get(i);
 %>
-		<div class="inner">
-				<h3>Welcome to the Chief Election Officer</h3>
-			<br />
-			<br />
-			<p class="ceo_quote">
-				"Elections belong to the people. It's their decision. <br />If they
-				decide to turn their back on the fire <br />and burn their
-				behinds,then they will just<br /> have to sit on their blisters."<br />
-				<br />
-			</p>
-			<p class="ceo_quote">-Abraham Lincoln</p>
-		</div>
+		
 		<div class="content">
  			<div class="12u">
 				<form action="votingpage.jsp" method="post">
