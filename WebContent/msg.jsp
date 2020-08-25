@@ -5,7 +5,7 @@
 
 <html>
 <head>
-<title>Student_Terminal: LNMIIT ONLINE VOTING SYSTEM</title>
+<title>Student_Terminal: MBM ONLINE VOTING SYSTEM</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
@@ -45,7 +45,7 @@
 		M_ElectionEvent EE = new M_ElectionEvent();		
 		EventsAdded = EE.getEE();		
 		session.setAttribute("EventsAdded",EventsAdded);
-		ArrayList<String> rollno = new ArrayList<String>();
+		ArrayList<ArrayList<String> >rollno = new ArrayList<ArrayList<String> >();
 		M_CandidatePortfolio CP = new M_CandidatePortfolio();
 		rollno =CP.getCP();
 		session.setAttribute("rollno",rollno);
@@ -61,8 +61,8 @@
 	<!-- Header -->
 	<header id="header" class="alt">
 		<h1 id="logo">
-			<a href="http://www.lnmiit.ac.in"><img
-				src="images/LNMIIT_logo.png" width="200px" height="100px"></a>
+			<a href="http://www.mbm.ac.in"><img
+				src="images/MBM_logo.png" width="200px" height="100px"></a>
 		</h1>
 		<nav id="nav">
 			<ul>
@@ -88,7 +88,7 @@
 						</li>
 						<li><a href="#" class="button special">Sign Up</a></li>-->
 				<li><a href="">Election Rules</a></li>
-				<li><a href="Manual_for_LNMIIT_Online_Voting_System.html">Help Page</a></li>
+				<li><a href="Manual_for_MBM_Online_Voting_System.html">Help Page</a></li>
 				<li><a href="">Contact Us</a></li>
 				<li><a href="logout.jsp" class="button special">LOGOUT</a></li>
 			</ul>
@@ -248,10 +248,7 @@
 					class="label">Dribbble</span></a></li>
 		</ul>
 
-		<ul class="copyright">
-			<li>&copy; SEPM-GROUP-26</li>
-		</ul>
-
+		
 	</footer>
 </body>
 </html>

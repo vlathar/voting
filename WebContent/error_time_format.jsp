@@ -1,15 +1,10 @@
 <%@ include file="noCache.jsp"%>
 <%@page import="jsp.*,java.util.*"%>
 <!DOCTYPE HTML>
-<!--
 
-AUTHOR                      : LNMIIT_ONLINE_VOTING_SYSTEM_DEVELOPMENT_TEAM_GROUP-26 SEPM2015
-DATE OF LAST UPDATE         : 17 APRIL 2015 
-
--->
 <html>
 <head>
-<title>Error_Time | LNMIIT ONLINE VOTING SYSTEM</title>
+<title>Error_Time | MBM ONLINE VOTING SYSTEM</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
@@ -36,43 +31,15 @@ DATE OF LAST UPDATE         : 17 APRIL 2015
 <body class="index">
 
 <%
-		session.setAttribute("fname", "error_time_format");
-	String sessionID = null;
-	int loginindex = 0;
-	Cookie[] cookies = request.getCookies();
-	if (cookies != null) {
-		for (Cookie cooki : cookies) {
-			if (cooki.getName().equals("JSESSIONID")) {
-				sessionID = cooki.getValue();
-				System.out.println("JSESSIONID=" + sessionID);
-				break;
-			}
-
-		}
-		for (Cookie cooki : cookies) {
-			if (cooki.getName().equals("loginindex")) {
-				loginindex = Integer.parseInt(cooki.getValue());
-				System.out.println("loginindex=" + loginindex);
-				break;
-			}
-
-		}
-	}
-
-	if (!Session.isSameSession(sessionID, loginindex)) {
-		response.sendRedirect("index.jsp");
-		System.out.println("different session");
-
-	}
-
+		
 
 	%>
 
 	<!-- Header -->
 	<header id="header" class="alt">
 		<h1 id="logo">
-			<a href="http://www.lnmiit.ac.in"><img
-				src="images/LNMIIT_logo.png" width="200px" height="100px"></a>
+			<a href="http://www.mbm.ac.in"><img
+				src="images/MBM_logo.png" width="200px" height="100px"></a>
 		</h1>
 		<nav id="nav">
 			<ul>
@@ -96,7 +63,7 @@ DATE OF LAST UPDATE         : 17 APRIL 2015
 		<div class="inner">
 
 			<header>
-				<h3>LNMIIT ONLINE VOTING SYSTEM</h3>
+				<h3>MBM ONLINE VOTING SYSTEM</h3>
 			</header>
 			<h1>Error - Invalid Time Format</h1>
 			<input type="submit" class="buttons" id="myBtn" name="BACK" value="BACK" onclick="window.history.back()">
@@ -118,10 +85,6 @@ DATE OF LAST UPDATE         : 17 APRIL 2015
 					class="label">Github</span></a></li>
 			<li><a href="#" class="icon circle fa-dribbble"><span
 					class="label">Dribbble</span></a></li>
-		</ul>
-
-		<ul class="copyright">
-			<li>&copy; SEPM-Group-26</li>
 		</ul>
 
 	</footer>

@@ -43,7 +43,7 @@
 
 .contact {
 	background-color: #000;
-	background: url("../images/LNMIIT-contact.jpg");
+	background: url("../images/MBM-contact.jpg");
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: 75em, 60em, auto, cover;
@@ -125,8 +125,8 @@
 	<!-- Header -->
 	<header id="header" class="alt">
 		<h1 id="logo">
-			<a href="http://www.lnmiit.ac.in"><img
-				src="images/LNMIIT_logo.png" width="200px" height="100px"></a>
+			<a href="http://www.mbm.ac.in"><img
+				src="images/MBM_logo.png" width="200px" height="100px"></a>
 		</h1>
 		<nav id="nav">
 			<ul>
@@ -239,10 +239,6 @@
 					class="label">Github</span></a></li>
 			<li><a href="#" class="icon circle fa-dribbble"><span
 					class="label">Dribbble</span></a></li>
-		</ul>
-
-		<ul class="copyright">
-			<li>&copy; SEPM-GROUP 26</li>
 		</ul>
 
 	</footer>

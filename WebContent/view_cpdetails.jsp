@@ -38,7 +38,7 @@
 }
 .contact {
 	background-color: #000;
-	background: url("../images/LNMIIT-contact.jpg");
+	background: url("../images/MBM-contact.jpg");
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: 75em, 60em, auto, cover;
@@ -70,8 +70,8 @@
 	<!-- Header -->
 	<header id="header" class="alt">
 		<h1 id="logo">
-			<a href="http://www.lnmiit.ac.in"><img
-				src="images/LNMIIT_logo.png" width="200px" height="100px"></a>
+			<a href="http://www.mbm.ac.in"><img
+				src="images/MBM_logo.png" width="200px" height="100px"></a>
 		</h1>
 		<nav id="nav">
 			<ul>
@@ -133,7 +133,7 @@
 						<!--class= 6u 12u(mobile) -->
 						<div class="12u">
 							
-							<!--  images/LNMIIT_logo2.png use this as it is wrong src to check js -->
+							<!--  images/MBM_logo2.png use this as it is wrong src to check js -->
 							<img alt="Image" src="" name="photo" id="picture" onerror="if (this.src != 'images/df.png' && this.attribute('src') != 'error.jpg') this.src = 'images/df.png';" width= 240 height = 230/><br/>
 							<script type="text/javascript">
 								var currentSrc = $('#picture').attr('src');
@@ -219,10 +219,7 @@
 					class="label">Dribbble</span></a></li>
 		</ul>
 
-		<ul class="copyright">
-			<li>&copy; SEPM-GROUP 26</li>
-		</ul>
-
+		
 	</footer>
 
 </body>

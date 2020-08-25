@@ -1,14 +1,10 @@
 <%@page import="jsp.*,java.util.*"%>
 <%@ include file="noCache.jsp"%>
-<!--
-AUTHOR                   : LNMIIT_ONLINE_VOTING_SYSTEM_TEAM
-LAST MODIFIED DATE       : 17-APRIL-2015
--->
 
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Update_portfolio- LNMIIT_ONLINE_VOTING_PORTAL</title>
+<title>Update_portfolio- MBM_ONLINE_VOTING_PORTAL</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
@@ -43,7 +39,7 @@ LAST MODIFIED DATE       : 17-APRIL-2015
 
 .contact {
 	background-color: #000;
-	background: url("../images/LNMIIT-contact.jpg");
+	background: url("../images/MBM-contact.jpg");
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: 75em, 60em, auto, cover;
@@ -75,8 +71,8 @@ LAST MODIFIED DATE       : 17-APRIL-2015
 	<!-- Header -->
 	<header id="header" class="alt">
 		<h1 id="logo">
-			<a href="http://www.lnmiit.ac.in"><img
-				src="images/LNMIIT_logo.png" width="200px" height="100px"></a>
+			<a href="http://www.mbm.ac.in"><img
+				src="images/MBM_logo.png" width="200px" height="100px"></a>
 		</h1>
 		<nav id="nav">
 			<ul>
@@ -159,10 +155,7 @@ LAST MODIFIED DATE       : 17-APRIL-2015
 					class="label">Dribbble</span></a></li>
 		</ul>
 
-		<ul class="copyright">
-			<li>&copy; SEPM-GROUP 26</li>
-		</ul>
-
+		
 	</footer>
 
 </body>

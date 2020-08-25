@@ -1,11 +1,6 @@
 <%@ include file="noCache.jsp"%>
 <!DOCTYPE HTML>
-<!--
 
-AUTHOR                      : LNMIIT_ONLINE_VOTING_SYSTEM_DEVELOPMENT_TEAM_GROUP-26 SEPM2015
-DATE OF LAST UPDATE         : 7 May 2015 
-
--->
 <html>
 <head>
 <title>Error-page_Voting Terminal</title>
@@ -37,8 +32,8 @@ DATE OF LAST UPDATE         : 7 May 2015
 	<!-- Header -->
 	<header id="header" class="alt">
 		<h1 id="logo">
-			<a href="http://www.lnmiit.ac.in"><img
-				src="images/LNMIIT_logo.png" width="200px" height="100px"></a>
+			<a href="http://www.mbm.ac.in"><img
+				src="images/MBM_logo.png" width="200px" height="100px"></a>
 		</h1>
 		<nav id="nav">
 			<ul>
@@ -86,9 +81,6 @@ DATE OF LAST UPDATE         : 7 May 2015
 					class="label">Dribbble</span></a></li>
 		</ul>
 
-		<ul class="copyright">
-			<li>&copy; SEPM-Group-26</li>
-		</ul>
 
 	</footer>
 </body>

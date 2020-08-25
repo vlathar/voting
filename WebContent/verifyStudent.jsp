@@ -1,10 +1,10 @@
-<%@page import="jsp.*,java.util.*, java.sql.*"%>
+<%@page import="jsp.*,java.util.*"%>
 <%@ include file="noCache.jsp"%>
 
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Apply for Candidature- MBM_ONLINE_VOTING_PORTAL</title>
+<title>Verify_account- MBM_ONLINE_VOTING_PORTAL</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
@@ -36,6 +36,7 @@
 #nav ul li {
 	color: black;
 }
+
 .contact {
 	background-color: #000;
 	background: url("../images/MBM-contact.jpg");
@@ -46,21 +47,6 @@
 </style>
 </head>
 <body class="contact">
-	<%
-		HttpSession session2 = request.getSession(false);
-		if(Session.MultipleSessionCheck((String)session2.getAttribute("user"),(String)session2.getId())==true)
-		{
-			System.out.println("different session--2");
-			response.sendRedirect("index.jsp");
-			return;
-		}
-		M_CandidatureApplication CA = new M_CandidatureApplication();
-		String batch = CA.getBatch((String) (session.getAttribute("user")));
-		session.setAttribute("fname", "apply");
-		String EventName=request.getParameter("electionevent");
-		session.setAttribute("EventName",EventName);
-	%>
-
 	<!-- Header -->
 	<header id="header" class="alt">
 		<h1 id="logo">
@@ -83,8 +69,8 @@
 
 		<header class="container">
 			<!-- <span class="icon fa-envelope"></span>-->
-			<h2 align="center">APPLY FOR CANDIDATURE</h2>
-			<p></p>
+			<h2 align="center">Verify your Registration</h2>
+			<p class="lead">Please Check your email for otp</p>
 		</header>
 
 		<!-- One -->
@@ -92,46 +78,12 @@
 
 			<!-- Content -->
 			<div class="content">
-				<form name="form" action="C_msg.jsp" method="post">
-					<div class="row">
-						<div class="12u">
-							Choose An Event: <input type="text" name="electionevent" readonly value="<%=EventName%>" />		  
-						</div>
-					</div>
-					<div class="row 50%">
-						<div class="12u">
-							Position Applying For: <select id="position" name="position">
-								<option disabled="">Select Position</option>
-								<%!ArrayList<String> Positions = new ArrayList<String>();%>
-								<%
-									M_ElectionEvent EE1= new M_ElectionEvent();
-									int x=EE1.getEEId((request.getParameter("electionevent")));
-									Positions = (ArrayList<String>) (EE1.getPositions(x));
-									for (int i = 0; i < Positions.size(); i++) {
-										String val = Positions.get(i);
-										
-								%>
-								<option value ="<%=val%>"><%=val%></option>
-								<%
-					                }
-								%>
-							</select>
-						</div>
-					</div>
-					<div class="row 50%">
-						<div class="12u">
-							<input type="text" id="agenda" name="agenda" placeholder="Election Agenda" />
-						</div>
-					</div>
-					<div class="row 50%">
-						<div class="12u">
-							<input type="text" id="points" name="points" placeholder="Main Points/Issues" />
-						</div>
-					</div>
+				<form id="activate-account-form" name="activate-account-form" action="activateAccount.jsp" method="post">
+					<input type="text" placeholder="one time password" name="otp" size="20" value="">
 					<div class="row">
 						<div class="12u">
 							<ul class="buttons">
-								<li><input type="submit" class="special" value="Apply" /></li>
+								<li><input type="submit" class="special" value="Confirm OTP"/></li>
 							</ul>
 						</div>
 					</div>
@@ -158,7 +110,7 @@
 					class="label">Dribbble</span></a></li>
 		</ul>
 
-
+		
 	</footer>
 
 </body>

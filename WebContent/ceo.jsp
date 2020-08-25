@@ -42,7 +42,7 @@
 		M_CandidatureApplication CA = new M_CandidatureApplication();
 		aprollno =CA.getCA();
 		session.setAttribute("aprollno",aprollno);
-		ArrayList<String> rollno = new ArrayList<String>();
+		ArrayList<ArrayList<String> >rollno = new ArrayList<ArrayList<String> >();
 		M_CandidatePortfolio CP = new M_CandidatePortfolio();
 		rollno =CP.getCP();
 		session.setAttribute("rollno",rollno);
@@ -223,10 +223,7 @@
 					class="label">Dribbble</span></a></li>
 		</ul>
 
-		<ul class="copyright">
-			<li>&copy; SEPM-Group-26</li>
-		</ul>
-
+		
 	</footer>
 </body>
 </html>

@@ -32,8 +32,8 @@
 	<!-- Header -->
 	<header id="header" class="alt">
 		<h1 id="logo">
-			<a href="http://www.lnmiit.ac.in"><img
-				src="images/LNMIIT_logo.png" width="200px" height="100px"></a>
+			<a href="http://www.mbm.ac.in"><img
+				src="images/MBM_logo.png" width="200px" height="100px"></a>
 		</h1>
 		<nav id="nav">
 			<ul>
@@ -57,7 +57,7 @@
 		<div class="inner">
 
 			<header>
-				<h3>LNMIIT ONLINE VOTING SYSTEM</h3>
+				<h3>MBM ONLINE VOTING SYSTEM</h3>
 			</header>
 			<h1>SUCCESS</h1>
 			<input type="submit" class="buttons" id="myBtn" name="OK" value="OK" onclick="window.location = 'ceo.jsp';">
@@ -81,9 +81,7 @@
 					class="label">Dribbble</span></a></li>
 		</ul>
 
-		<ul class="copyright">
-			<li>&copy; SEPM-Group-26</li>
-		</ul>
+		
 
 	</footer>
 </body>

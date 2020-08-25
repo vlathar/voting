@@ -1,6 +1,5 @@
-<%@page import="jsp.*,java.sql.*"%>
+<%@ page import="jsp.*" %>
 <%@ include file="noCache.jsp"%>
-
 <!DOCTYPE HTML>
 
 <html>
@@ -40,14 +39,28 @@
 			return false;
 		}
 	}
+	function loginfunction(){
+		var x = document.getElementById("login-form");
+		if(x.style.display == "none")
+			x.style.display = "block";
+		else
+			x.style.display = "none";
+	}
+	function signupfunction(){
+		var x = document.getElementById("signup-form");
+		if(x.style.display == "none")
+			x.style.display = "block";
+		else
+			x.style.display = "none";
+	}
 </script>
 
 </head>
 <body class="index">
-<%
+<% 
 	if((String)session.getAttribute("user")!=null){
-		Session.setSession((String)session.getAttribute("user"), "0");
-		}
+		Session.setSession((String)session.getAttribute("user"),"0");
+	}
 %>
 	<!-- Header -->
 	<header id="header" class="alt">
@@ -59,7 +72,7 @@
 			<ul>
 				<li class="current"><a href="index.jsp">Welcome</a></li>
 				<li><a href="#">Election Rules</a></li>
-				<li><a href="Manual_for_MBM_Online_Voting_System.html">Help Page</a></li>
+				<li><a href="Manual_for_Online_Voting_System.html">Help Page</a></li>
 				<li><a href="contact.jsp">Contact Us</a></li>
 			</ul>
 		</nav>
@@ -73,15 +86,33 @@
 			<header>
 				<h3>MBM ONLINE VOTING SYSTEM</h3>
 			</header>
-			<form name="form" action="loginp.jsp" method="post">
-
-				<input type="text" placeholder="Username" name="username" size="20"
-					value=""><br> <input type="password"
-					placeholder="Password" name="password" size="20" value=""><br>
-				<input type="submit" class="buttons" name="LOG IN" value="LOG IN"
-					id="login_sub" onclick="validLogin()">
-
+			<div>
+				<button class="special" onclick="loginfunction()">LogIn</button>
+				<button class="special" onclick="signupfunction()">Signup</button>
+			</div>
+			<form id="login-form" name="login-form" action="loginp.jsp" method="post" style="display:none;">
+				<input type="text" placeholder="Username" name="username" size="20"value=""><br> 
+				<input type="password" placeholder="Password" name="password" size="20" value=""><br>
+				<input type="submit" class="buttons" name="LOG IN" value="LOG IN" id="login_sub" onclick="validLogin()">
 			</form>
+			<form id="signup-form" name="signup-form" action="signup.jsp" method="post" style="display:none;">
+				<input type="text" placeholder="rollno" name="rollno" size="20" value="">
+				<br>
+				<input type="text" placeholder="name" name="name" size="20" value="">
+				<br>
+				<input type="text" placeholder="batch" name="batch" size="20" value="">
+				<br>
+				<input type="text" placeholder="gender" name="gender" size="20" value="">
+				<br>
+				<input type="text" placeholder="email" name="email" size="20" value="">
+				<br>
+				<input type="text" placeholder="mobile" name="mobile" size="20" value="">
+				<br>
+				<input type="text" placeholder="cgpa" name="cgpa" size="20" value="">
+				<br>
+				<input type="text" placeholder="password" name="password" size="20" value="">
+				<input type="submit">
+		    </form>
 
 		</div>
 
@@ -102,10 +133,6 @@
 					class="label">Github</span></a></li>
 			<li><a href="#" class="icon circle fa-dribbble"><span
 					class="label">Dribbble</span></a></li>
-		</ul>
-
-		<ul class="copyright">
-			<li>&copy; SEPM-Group-26</li>
 		</ul>
 
 	</footer>

@@ -1,11 +1,6 @@
 <%@ include file="noCache.jsp"%>
 <!DOCTYPE HTML>
-<!--
 
-AUTHOR                      : LNMIIT_ONLINE_VOTING_SYSTEM_DEVELOPMENT_TEAM_GROUP-26 SEPM2015
-DATE OF LAST UPDATE         : 7 May 2015 
-
--->
 <html>
 <head>
 <title>Successful Voting | MBM ONLINE VOTING SYSTEM</title>
