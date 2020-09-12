@@ -41,17 +41,20 @@
 	}
 	function loginfunction(){
 		var x = document.getElementById("login-form");
+		var y = document.getElementById("signup-form");
 		if(x.style.display == "none")
-			x.style.display = "block";
+		{	x.style.display = "block"; y.style.display="none";}
 		else
 			x.style.display = "none";
 	}
 	function signupfunction(){
 		var x = document.getElementById("signup-form");
+		var y = document.getElementById("login-form");
 		if(x.style.display == "none")
-			x.style.display = "block";
+			{x.style.display = "block";
+			y.style.display="none";}
 		else
-			x.style.display = "none";
+			{x.style.display = "none";}
 	}
 </script>
 
@@ -64,14 +67,13 @@
 %>
 	<!-- Header -->
 	<header id="header" class="alt">
-		<h1 id="logo">
-			<a href="http://www.mbm.ac.in"><img
-				src="images/MBM_logo.png" width="200px" height="100px"></a>
-		</h1>
+		<h2 id="logo">
+			<a href="http://www.mbm.ac.in" style="font: icon;">MBM</a>
+		</h2>
 		<nav id="nav">
 			<ul>
 				<li class="current"><a href="index.jsp">Welcome</a></li>
-				<li><a href="#">Election Rules</a></li>
+				<li><a href="Manual_for_Online_Voting_System.html">Election Rules</a></li>
 				<li><a href="Manual_for_Online_Voting_System.html">Help Page</a></li>
 				<li><a href="contact.jsp">Contact Us</a></li>
 			</ul>
@@ -87,8 +89,8 @@
 				<h3>MBM ONLINE VOTING SYSTEM</h3>
 			</header>
 			<div>
-				<button class="special" onclick="loginfunction()">LogIn</button>
-				<button class="special" onclick="signupfunction()">Signup</button>
+				<button class="button" onclick="loginfunction()">SignIn</button>
+				<button class="button" onclick="signupfunction()">Signup</button>
 			</div>
 			<form id="login-form" name="login-form" action="loginp.jsp" method="post" style="display:none;">
 				<input type="text" placeholder="Username" name="username" size="20"value=""><br> 

@@ -51,35 +51,14 @@
 
 	<!-- Header -->
 	<header id="header" class="alt">
-		<h1 id="logo">
-			<a href="http://www.mbm.ac.in"><img
-				src="images/mbm_logo.png" width="200px" height="100px"></a>
-		</h1>
+		<h2 id="logo">
+			<a href="http://www.mbm.ac.in" style="font: icon;">MBM</a>
+		</h2>
 		<nav id="nav">
 			<ul>
 				<li><a href="index.jsp">Welcome</a></li>
-				<!--<li class="submenu">
-							<a href="">Layouts</a>
-							<ul>
-								<li><a href="left-sidebar.html">Left Sidebar</a></li>
-								<li><a href="right-sidebar.html">Right Sidebar</a></li>
-								<li><a href="no-sidebar.html">No Sidebar</a></li>
-								<li><a href="contact.html">Contact</a></li>
-								<li class="submenu">
-									<a href="">Submenu</a>
-									<ul>
-										<li><a href="#">Dolore Sed</a></li>
-										<li><a href="#">Consequat</a></li>
-										<li><a href="#">Lorem Magna</a></li>
-										<li><a href="#">Sed Magna</a></li>
-										<li><a href="#">Ipsum Nisl</a></li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-						<li><a href="#" class="button special">Sign Up</a></li>-->
-				<li><a href="">Election Rules</a></li>
-				<li><a href="">Help Page</a></li>
+				<li><a href="Manual_for_Online_Voting_System.html">Election Rules</a></li>
+				<li><a href="Manual_for_Online_Voting_System.html">Help Page</a></li>
 				<li><a href="contact.jsp">Contact Us</a></li>
 				<li><a href="logout.jsp" class="button special">LOGOUT</a></li>
 			</ul>
@@ -89,12 +68,6 @@
 	<!-- Banner -->
 	<section id="banner">
 
-		<!--
-					".inner" is set up as an inline-block so it automatically expands
-					in both directions to fit whatever's inside it. This means it won't
-					automatically wrap lines, so be sure to use line breaks where
-					appropriate (<br />).
-				-->
 		<div class="inner">
 
 			<header>
@@ -148,7 +121,7 @@
 					<section>
 						<header>
 							<h3>
-								<a href="Update_ee.jsp">UPDATE ELECTION EVENT</a>
+								<a href="delete_ee.jsp">DELETE ELECTION EVENT</a>
 							</h3>
 						</header>
 						<p></p>
@@ -157,18 +130,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="6u 12u(narrower)">
-
-					<section>
-						<header>
-							<h3>
-								<a href="delete_ee.jsp">DELETE ELECTION EVENT</a>
-							</h3>
-						</header>
-						<p></p>
-					</section>
-
-				</div>
+				
 				
 				<div class="6u 12u(narrower)">
 
@@ -198,7 +160,7 @@
 
 			<footer class="major">
 				<ul class="buttons">
-					<li><a href="#" class="button">PUBLISH RESULTS</a></li>
+					<li><a href="#" class="button">RESULTS</a></li>
 				</ul>
 			</footer>
 
