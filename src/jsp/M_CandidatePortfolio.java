@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class M_CandidatePortfolio {
 
-	public boolean updatePortfolio(String email, String phoneno, byte[] photo,
+	public boolean updatePortfolio(String email, String phoneno,
 			String agenda, String rollno) {
 
 		rollno = rollno.toUpperCase();
@@ -25,7 +25,6 @@ public class M_CandidatePortfolio {
 
 			statement.setString(1, agenda);
 
-			statement.setBytes(2, photo);
 			statement.executeUpdate();
 
 			sql = "update applicants set email ='" + email + "', phoneno ='"
@@ -48,42 +47,6 @@ public class M_CandidatePortfolio {
 
 	}
 
-	public boolean isCand(String rollno) {
-
-		Connection c = null;
-		Statement st = null;
-		ResultSet rs = null;
-		try {
-			c = MySQL.connect();
-			st = c.createStatement();
-			rollno = rollno.toUpperCase();
-			String query = "select * from candidates where rollno ='" + rollno
-					+ "';";
-			System.out.println(query);
-			rs = st.executeQuery(query);
-			if (rs.absolute(1)) {
-
-				rs.close();
-				st.close();
-				return true;
-			} else {
-				rs.close();
-				st.close();
-				return false;
-
-			}
-
-		} catch (Exception e) {
-
-			e.printStackTrace();
-			return false;
-
-		} finally {
-
-			MySQL.close(c);
-		}
-
-	}
 
 	public  ArrayList<ArrayList<String> >getCP() {
 
@@ -163,38 +126,6 @@ public class M_CandidatePortfolio {
 
 	}
 	
-	public byte[] getImage(String rollno){
-		
-		byte[] imgData = null ;
-		try{
-		String req = "" ;
-	    Blob img ;
-	    
-	    Connection conn = MySQL.connect();
-	    Statement stmt = conn.createStatement ();
-	   
-	    // Query
-	    req = "Select photo from candidates where rollno = '" + rollno+"'" ;
-	   
-	    ResultSet rset  = stmt.executeQuery ( req );
-	   
-	    while (rset.next ())
-	    {   
-	      img = rset.getBlob(1);
-	      imgData = img.getBytes(1,(int)img.length());
-	    }   
-	   
-	    rset.close();
-	    stmt.close();
-	   
-	    return imgData ;
-	    
-		}catch(Exception e){
-			e.printStackTrace();
-			return imgData;
-			
-		}
-	}
 	
 	public ArrayList<String> getCand(String position, int eid){
 		Connection c = null;
@@ -229,70 +160,10 @@ public class M_CandidatePortfolio {
 		}
 
 	}
-	
-	public int getPoints(String cand){
 		
-		Connection c = null;
-		Statement st = null;
-		ResultSet rs = null;
-		int r= -1;
-		// r.add("test");
-		try {
-			c = MySQL.connect();
-			st = c.createStatement();
-			M_CandidatureApplication CA = new M_CandidatureApplication();
-			String rollno = CA.getRollno(cand);
-			String query = "select points from candidates where rollno ='"+rollno+"';";
-			System.out.println(query);
-			rs = st.executeQuery(query);
-
-			while (rs.next()) {
-				r=rs.getInt(1);
-				
-			}
-
-			rs.close();
-			st.close();
-			return r;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return r;
-		} finally {
-			MySQL.close(c);
-		}
-
-		
-	}
-	
-	
-	public void setPoints(String cand,int points){
-		Connection c = null;
-		Statement st = null;
-		// r.add("test");
-		try {
-			c = MySQL.connect();
-			st = c.createStatement();
-			M_CandidatureApplication CA = new M_CandidatureApplication();
-			String rollno = CA.getRollno(cand);
-			String query = "update candidates set points = "+points+" where rollno ='"+rollno+"';";
-			System.out.println(query);
-			st.executeUpdate(query);
-			st.close();
-			
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			
-		} finally {
-			MySQL.close(c);
-		}
 
 
 		
-	}
-	
-	
-	
-	
 }
+	
+	

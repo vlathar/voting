@@ -40,6 +40,34 @@ public class M_CandidatureApplication {
 		}
 
 	}
+	public ArrayList<String> getuserdetails(String rollno){
+		Connection c = null;
+		Statement st = null;
+		ResultSet rs = null;
+		ArrayList<String> detaillist = new ArrayList<String>();
+		try {
+			c = MySQL.connect();
+			st = c.createStatement();
+			String query = "Select name, cgpa, batch, gender, email, mobile from students where verified=1 and rollno='"+rollno+"';";
+			rs = st.executeQuery(query);
+			while(rs.next()) {
+				detaillist.add(rs.getString(1));
+				detaillist.add(rs.getString(2));
+				detaillist.add(rs.getString(3));
+				detaillist.add(rs.getString(4));
+				detaillist.add(rs.getString(5));
+				detaillist.add(rs.getString(6));
+			}
+			return detaillist;
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return detaillist;
+		}
+		finally {
+			MySQL.close(c);
+		}
+	}
 	public String getBatch(String eventname, String position) {
 		Connection c = null;
 		Statement st = null;

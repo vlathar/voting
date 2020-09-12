@@ -189,10 +189,9 @@
 	<%! HashMap<String,String> mp= new HashMap<String,String>();%>
 	<!-- Header -->
 	<header id="header" class="alt">
-		<h1 id="logo">
-			<a href="http://www.mbm.ac.in"><img
-				src="images/MBM_logo.png" width="200px" height="100px"></a>
-		</h1>
+		<h2 id="logo">
+			<a href="http://www.mbm.ac.in" style="font: icon;">MBM</a>
+		</h2>
 		<nav id="nav">
 			<ul>
 				<li><a href="index.jsp">Welcome</a></li>
