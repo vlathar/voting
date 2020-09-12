@@ -1,19 +1,23 @@
 <%@page import="jsp.*,java.util.*"%>
 <%@ include file="noCache.jsp"%>
-<%@page import="jsp.*,java.sql.*,java.util.*,java.text.*"%>
 
+<%@page import="jsp.*,java.sql.*,java.util.*,java.text.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	pageEncoding="ISO-8859-1"%>
+
+<!DOCTYPE HTML>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Active Election Events</title>
+<title>Vote- MBM_ONLINE_VOTING_PORTAL</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
 <!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
-<script src="js/jquery.min.js"></script>
+<script type="text/javascript" src="../1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="../1.8.11/jquery-ui.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<!-- <script src="js/jquery.min.js"></script>-->
 <script src="js/jquery.dropotron.min.js"></script>
 <script src="js/jquery.scrolly.min.js"></script>
 <script src="js/jquery.scrollgress.min.js"></script>
@@ -21,26 +25,48 @@
 <script src="js/skel-layers.min.js"></script>
 <script src="js/init.js"></script>
 
-	<link rel="stylesheet" href="css/skel.css" />
-	<link rel="stylesheet" href="css/style.css" />
-	<link rel="stylesheet" href="css/style-wide.css" />
-	<link rel="stylesheet" href="css/style-noscript.css" />
+<link rel="stylesheet" href="css/skel.css" />
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/style-wide.css" />
+<link rel="stylesheet" href="css/style-noscript.css" />
+<link
+	href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+	rel="stylesheet">
+
 
 </head>
-<body>
-<div class="inner">
-				<h3>Welcome to the Chief Election Officer</h3>
-			<br />
-			<br />
-			<p class="ceo_quote">
-				"Elections belong to the people. It's their decision. <br />If they
-				decide to turn their back on the fire <br />and burn their
-				behinds,then they will just<br /> have to sit on their blisters."<br />
-				<br />
-			</p>
-			<p class="ceo_quote">-Abraham Lincoln</p>
-		</div>
-<%
+<body class="contact">
+	<header id="header" class="alt">
+		<h2 id="logo">
+			<a href="http://www.mbm.ac.in" style="font: icon;">MBM</a>
+		</h2>
+		<nav id="nav">
+			<ul>
+				<li><a href="index.jsp">Welcome</a></li>
+				<li><a href="">Election Rules</a></li>
+				<li><a href="">Help Page</a></li>
+				<li><a href="contact.jsp">Contact Us</a></li>
+				<li><a href="logout.jsp" class="button special">LOGOUT</a></li>
+			</ul>
+		</nav>
+	</header>
+	<article id="main">
+
+		<header class="container">
+			<!-- <span class="icon fa-envelope"></span>-->
+			<h2 align="center">View Candidates Applications</h2>
+			<p></p>
+		</header>
+
+		<!-- One -->
+		<section class="wrapper style4 special container 75%">
+
+			<!-- Content -->
+			<div class="content">
+					<div class="row 50%">
+						<!--class= 6u 12u(mobile) -->
+						<div class="12u">
+								<%
 	HttpSession session2 = request.getSession(false);
 	if(Session.MultipleSessionCheck((String)session2.getAttribute("user"),(String)session2.getId())==true)
 	{
@@ -63,8 +89,7 @@
 			System.out.println(alist.get(i));
 			String s=alist.get(i);
 %>
-		
-		<div class="content">
+<div class="content">
  			<div class="12u">
 				<form action="votingpage.jsp" method="post">
 					<input type="submit" width ="100" class="buttons" name="eventname" value="<%=s %>" id="application" >
@@ -72,5 +97,32 @@
  			</div>
 		</div>
 <%}} %>
+						</div>
+					</div>
+					
+	</div>
+		</section>
+
+	</article>
+<footer id="footer">
+
+		<ul class="icons">
+			<li><a href="#" class="icon circle fa-twitter"><span
+					class="label">Twitter</span></a></li>
+			<li><a href="#" class="icon circle fa-facebook"><span
+					class="label">Facebook</span></a></li>
+			<li><a href="#" class="icon circle fa-google-plus"><span
+					class="label">Google+</span></a></li>
+			<li><a href="#" class="icon circle fa-github"><span
+					class="label">Github</span></a></li>
+			<li><a href="#" class="icon circle fa-dribbble"><span
+					class="label">Dribbble</span></a></li>
+		</ul>
+
+		
+	</footer>
+
+		
+		
 </body>
 </html>

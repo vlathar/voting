@@ -99,7 +99,7 @@
 	<header id="header" class="alt">
 		<h1 id="logo">
 			<a href="http://www.mbm.ac.in"><img
-				src="images/MBM_logo.png" width="200px" height="100px"></a>
+				src="images/mbm-logo.png" width="200px" height="100px"></a>
 		</h1>
 		<nav id="nav">
 			<ul>

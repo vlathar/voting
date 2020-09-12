@@ -38,7 +38,7 @@
 }
 .contact {
 	background-color: #000;
-	background: url("../images/MBM-contact.jpg");
+	background: url("../images/LNMIIT-contact.jpg");
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: 75em, 60em, auto, cover;
@@ -74,10 +74,9 @@
 
 	<!-- Header -->
 	<header id="header" class="alt">
-		<h1 id="logo">
-			<a href="http://www.mbm.ac.in"><img
-				src="images/MBM_logo.png" width="200px" height="100px"></a>
-		</h1>
+		<h2 id="logo">
+			<a href="http://www.mbm.ac.in" style="font: icon;">MBM</a>
+		</h2>
 		<nav id="nav">
 			<ul>
 				<li><a href="index.jsp">Welcome</a></li>
@@ -106,18 +105,21 @@
 			
 			<%
 			ArrayList<String> applicantdetails = new ArrayList<String>();
-			String val = request.getParameter("details");
+			String val = (String)session.getAttribute("details");
 			String arr[] = val.split(":");
 			String rollno = arr[0], eventName = arr[1];
 			
 			applicantdetails = CA.getAD(rollno, eventName);
-				
+				ArrayList<String> userdetails = new ArrayList<String>();
+				userdetails = CA.getuserdetails(rollno);
 				String electionevent = applicantdetails.get(0);
 				String position= applicantdetails.get(1);
-				String name="Name";//applicantdetails.get(2);
-				String email="email@email.com";//applicantdetails.get(3);
-				String phoneno="1234567890";//applicantdetails.get(4);
-				String gender="Male";//applicantdetails.get(5);
+				String name=userdetails.get(0);//applicantdetails.get(2);
+				String cgpa = userdetails.get(1);
+				String batch = userdetails.get(2);
+				String email=userdetails.get(4);//applicantdetails.get(3);
+				String phoneno=userdetails.get(5);//applicantdetails.get(4);
+				String gender=userdetails.get(3);//applicantdetails.get(5);
 				String agenda=applicantdetails.get(2);
 				String points=applicantdetails.get(3);
 				//System.out.println("position in C_MSG at approve:"+position);
@@ -178,10 +180,17 @@
 					<div class="row">
 						<div class="12u">
 							<div class="buttons">
-								
+								<% boolean isceo=((String)session.getAttribute("user")).equalsIgnoreCase("CEO");
+							System.out.println(isceo);
+							if(isceo){%>
 								<div><input type="button" class="special" value="Approve" onclick="window.location.href = 'C_msg.jsp?ID=0'" /></div><br/>
 								<div><input type="button" class="special" value="Reject" onclick="window.location.href = 'C_msg.jsp?ID=1'" /></div><br/>																																																																																																																																																																																					
 								<div><input type="button" class="special" value="Back" onclick="window.location.href = 'view_applications.jsp'"/></div>
+								<%}
+								else{%>
+									<div><input type="button" class="special" value="Back" onclick="window.location.href = 'view_your_ap.jsp'"/></div>
+								<%}
+								%>
 								
 							</div>
 						</div>
@@ -210,7 +219,9 @@
 					class="label">Dribbble</span></a></li>
 		</ul>
 
-	
+		<ul class="copyright">
+			<li>&copy; SEPM-GROUP 26</li>
+		</ul>
 
 	</footer>
 
