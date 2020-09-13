@@ -109,13 +109,14 @@ if(Session.MultipleSessionCheck((String)session2.getAttribute("user"),(String)se
     else if(session.getAttribute("fname").equals("delete_application")){
     	
     	page_bit=3;
-    	System.out.println(session.getAttribute("fname"));
-        String val = request.getParameter("details");
+        System.out.println(session.getAttribute("fname"));
+        String val = (String)session.getAttribute("details");
 		String arr[] = val.split(":");
 		rollno = arr[0]; 
 		EventName = arr[1];
+		System.out.println("calling delete function for rollno, eventname:"+rollno+"   "+ EventName);
         boolean isdeleted = CA.deleteAP(rollno,EventName);
- 
+ 		
         if (isdeleted) {
         	 message="Successfully deleted";
             response.sendRedirect("Success_MSG.jsp?success="+message);

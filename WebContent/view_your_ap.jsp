@@ -1,10 +1,14 @@
 <%@page import="jsp.*,java.util.*"%>
 <%@ include file="noCache.jsp"%>
 
+<%@page import="jsp.*,java.sql.*,java.util.*,java.text.*"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Update_portfolio- MBM_ONLINE_VOTING_PORTAL</title>
+<title>VIEW_YOUR_APPLICATIONS- MBM_ONLINE_VOTING_PORTAL</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
@@ -36,19 +40,25 @@
 #nav ul li {
 	color: black;
 }
-
 .contact {
 	background-color: #000;
-	background: url("../images/MBM-contact.jpg");
+	background: url("../images/LNMIIT-contact.jpg");
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: 75em, 60em, auto, cover;
 }
 </style>
+<script type="text/javascript">
+	function FormValidate()
+	{
+		
+	}
+</script>
 
 </head>
 <body class="contact">
-	<%
+	<% 
+		//session.setAttribute("fname", "delete_applications");
 		HttpSession session2 = request.getSession(false);
 		if(Session.MultipleSessionCheck((String)session2.getAttribute("user"),(String)session2.getId())==true)
 		{
@@ -56,24 +66,11 @@
 			response.sendRedirect("index.jsp");
 			return;
 		}
-
-		else {
-			M_CandidatePortfolio CA = new M_CandidatePortfolio();
-			if (!CA.isCand((String) session.getAttribute("user"))) {
-				
-				response.sendRedirect("msg.jsp");
-			}
-
-		}
-		session.setAttribute("fname", "update_portfolio");
 	%>
 
 	<!-- Header -->
 	<header id="header" class="alt">
-		<h1 id="logo">
-			<a href="http://www.mbm.ac.in"><img
-				src="images/mbm-logo.png" width="200px" height="100px"></a>
-		</h1>
+		
 		<nav id="nav">
 			<ul>
 				<li><a href="index.jsp">Welcome</a></li>
@@ -90,7 +87,7 @@
 
 		<header class="container">
 			<!-- <span class="icon fa-envelope"></span>-->
-			<h2 align="center">UPDATE PORTFOLIO</h2>
+			<h2 align="center">VIEW YOUR APPLICATIONS</h2>
 			<p></p>
 		</header>
 
@@ -99,42 +96,51 @@
 
 			<!-- Content -->
 			<div class="content">
-				<form name="form" action="C_candidate.jsp" method="post"
-					enctype="multipart/form-data">
-					<div class="row 50%">
-						<div class="12u">
-							<input type="email" id="email" name="email" placeholder="Email : format --> abc@xyz.com" />
-						</div>
-					</div>
-					<div class="row 50%">
-						<div class="12u">
-							<input type="text" id="phoneno" name="phoneno" placeholder="Phone No" />
-						</div>
-					</div>
-					<div class="row 50%">
-						<div class="12u">
-							<textarea id="agenda" name = "agenda" rows="5" cols="50" placeholder="Your Agenda"></textarea>
-						</div>
-					</div>
 					<div class="row 50%">
 						<!--class= 6u 12u(mobile) -->
-						<div class="6u">
-							<pre>
-								<b>Profile Image :</b>        <input id="photo" name="photo" type="file"
-									size="165"
-									accept="image/gif, image/jpeg,image/jpg, image/tiff, image/tif, image/png "> </pre>
-						</div>
-					</div>
-					<div class="row">
 						<div class="12u">
-							<ul class="buttons">
-								<li><input type="submit" class="special" value="Update" onclick="checkForm()"/></li>
-							</ul>
+								
+								<%
+									try{
+										DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+										DateFormat df2 = new SimpleDateFormat("HH:mm:ss");
+										String dates= df.format(new java.util.Date());
+										String time=df2.format(new java.util.Date());
+										String rollno = (String)session.getAttribute("user");
+										M_CandidatureApplication CA = new M_CandidatureApplication();
+										ArrayList<ArrayList<String> > elist = CA.geteventbyrollno(rollno,0);
+										for(int i=0;i<elist.size();i++){
+											String eventname = elist.get(i).get(0);
+											String position = elist.get(i).get(1);
+											String datetime[]=M_ElectionEvent.getDateTime(eventname);
+											System.out.println("currentdate:"+dates);
+											System.out.println("eventtdate:"+datetime[0]);
+											if(df.parse(dates).before(df.parse(datetime[0]))){ 
+												System.out.println(eventname+" "+position);
+												String val = rollno+":"+eventname+":"+position;
+												session.setAttribute("details",val);
+								%>
+								<div class="content">
+									<div class="12u">
+										<form action="C_msg.jsp" method="post">
+											<input type="text" width ="100" class="buttons" name="eventname" readonly value="<%=eventname%>" id="application" >
+											<input type="text" width ="100" class="buttons" name="position" readonly value="<%=position%>" id="application" ><br/>
+											<input type="button" class="special" value="View" onclick="window.location.href = 'application_detail.jsp'" /><br/>
+											<input type="submit" class="special" value="Delete" /><% session.setAttribute("fname","delete_application"); %>
+										</form>
+									 </div>
+								</div>
+								<%}
+									}
+									}
+									catch (Exception e) {
+										e.printStackTrace();
+									}
+								%>
 						</div>
+						<div><input type="button" class="special" value="Back" onclick="window.location.href = 'msg.jsp'" /></div>
 					</div>
-				</form>
-			</div>
-
+					</div>
 		</section>
 
 	</article>
@@ -155,7 +161,10 @@
 					class="label">Dribbble</span></a></li>
 		</ul>
 
-		
+		<ul class="copyright">
+			<li>&copy; SEPM-GROUP 26</li>
+		</ul>
+
 	</footer>
 
 </body>

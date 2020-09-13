@@ -5,49 +5,63 @@ import java.util.ArrayList;
 
 public class M_CandidatePortfolio {
 
-	public boolean updatePortfolio(String email, String phoneno,
-			String agenda, String rollno) {
+	public boolean isCand(String rollno, String eventname) {
 
-		rollno = rollno.toUpperCase();
-
-		Connection c = null; // connection to the database
-
+		Connection c = null;
+		Statement st = null;
+		ResultSet rs = null;
 		try {
-			// connects to the database
-
 			c = MySQL.connect();
+			st = c.createStatement();
+			rollno = rollno.toUpperCase();
+			String query = "select * from candidate where rollno ='" + rollno
+					+"' and eventname = '" + eventname + "';";
+			System.out.println(query);
+			rs = st.executeQuery(query);
+			if (rs.absolute(1)) {
 
-			// constructs SQL statement
-			String sql = "update candidates set agenda=?, photo=? where rollno ='"
-					+ rollno + "';";
-			System.out.println(sql);
-			PreparedStatement statement = c.prepareStatement(sql);
+				rs.close();
+				st.close();
+				return true;
+			} else {
+				rs.close();
+				st.close();
+				return false;
 
-			statement.setString(1, agenda);
+			}
 
-			statement.executeUpdate();
+		} catch (Exception e) {
 
-			sql = "update applicants set email ='" + email + "', phoneno ='"
-					+ phoneno + "' where rollno = '" + rollno + "';";
-			System.out.println(sql);
-			Statement st = c.createStatement();
-			st.executeUpdate(sql);
-			st.close();
-			statement.close();
-
-			return true;
-
-		} catch (Exception ex) {
-			System.out.println("Error in candidate portfolio updation");
-			ex.printStackTrace();
+			e.printStackTrace();
 			return false;
+
 		} finally {
+
 			MySQL.close(c);
 		}
 
 	}
 
-
+	public boolean deleteCN(String rollno, String eventName) {
+		Connection c = null;
+		try {
+			c = MySQL.connect();
+			Statement st = c.createStatement();
+			String query = "delete from candidate where rollno = '" + rollno
+					+ "' and eventname ='" + eventName +"';" ;
+			String query1 = "delete from applicants where isapproved=1 and rollno = '" + rollno
+					+ "' and eventname ='" + eventName +"';" ;
+			st.executeUpdate(query);
+			st.executeUpdate(query1);
+			st.close();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			MySQL.close(c);
+		}
+	}
 	public  ArrayList<ArrayList<String> >getCP() {
 
 		Connection c = null;

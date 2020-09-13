@@ -5,7 +5,38 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 public class M_CandidatureApplication {
-
+	public ArrayList<ArrayList<String> > geteventbyrollno(String rollno, int choice){
+		Connection c = null;
+		Statement st = null;
+		ResultSet rs = null;
+		
+		ArrayList<ArrayList<String> > eventpositionlist = new ArrayList<ArrayList<String> >();
+		try {
+			c = MySQL.connect();
+			st = c.createStatement();
+			String query = "select eventname, appliedforpost from applicants where isapproved = " + choice + " and rollno = '" + rollno +"';";
+			System.out.println("m_CA.java"+ query);
+			rs = st.executeQuery(query);
+			while(rs.next()) {
+				ArrayList<String> temp = new ArrayList<String>();
+				temp.add(rs.getString(1));
+				temp.add(rs.getString(2));
+				eventpositionlist.add(temp);
+			}
+			System.out.println("Successfully sent eventpositionlist in M_CA.java");
+			rs.close();
+			st.close();
+			return eventpositionlist;
+		}
+		catch(Exception e) {
+			System.out.println("error at M_CA.java in geteventbyrollno function");
+			e.printStackTrace();
+			return eventpositionlist;
+		}
+		finally {
+			MySQL.close(c);
+		}
+	}
 	public String getBatch(String rollno) {
 		rollno = rollno.toUpperCase();
 		Connection c = null;

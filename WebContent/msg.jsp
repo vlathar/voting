@@ -59,26 +59,6 @@
 		<nav id="nav">
 			<ul>
 				<li><a href="index.jsp">Welcome</a></li>
-				<!--<li class="submenu">
-							<a href="">Layouts</a>
-							<ul>
-								<li><a href="left-sidebar.html">Left Sidebar</a></li>
-								<li><a href="right-sidebar.html">Right Sidebar</a></li>
-								<li><a href="no-sidebar.html">No Sidebar</a></li>
-								<li><a href="contact.html">Contact</a></li>
-								<li class="submenu">
-									<a href="">Submenu</a>
-									<ul>
-										<li><a href="#">Dolore Sed</a></li>
-										<li><a href="#">Consequat</a></li>
-										<li><a href="#">Lorem Magna</a></li>
-										<li><a href="#">Sed Magna</a></li>
-										<li><a href="#">Ipsum Nisl</a></li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-						<li><a href="#" class="button special">Sign Up</a></li>-->
 				<li><a href="">Election Rules</a></li>
 				<li><a href="Manual_for_MBM_Online_Voting_System.html">Help Page</a></li>
 				<li><a href="">Contact Us</a></li>
@@ -89,13 +69,6 @@
 
 	<!-- Banner -->
 	<section id="banner">
-
-		<!--
-					".inner" is set up as an inline-block so it automatically expands
-					in both directions to fit whatever's inside it. This means it won't
-					automatically wrap lines, so be sure to use line breaks where
-					appropriate (<br />).
-				-->
 		<div class="inner">
 
 			<header>
@@ -151,7 +124,7 @@
 					<section>
 						<header>
 							<h3>
-								<a href="delete_ap.jsp">DELETE YOUR APPLICATION</a>
+								<a href="view_your_ap.jsp">VIEW YOUR APPLICATION</a>
 							</h3>
 						</header>
 						<p></p>
@@ -177,7 +150,7 @@
 					<section>
 						<header>
 							<h3>
-								<a href="delete_ap.jsp">DELETE YOUR CANDIDATURE</a>
+								<a href="view_your_candidature.jsp">VIEW YOUR CANDIDATURES</a>
 							</h3>
 						</header>
 						<p></p>
@@ -186,18 +159,6 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="6u 12u(narrower)" >
-
-					<section>
-						<header>
-							<h3>
-								<a href="update_portfolio.jsp">UPDATE PORTFOLIO</a>
-							</h3>
-						</header>
-						<p></p>
-					</section>
-
-				</div>
 				<div class="6u 12u(narrower)">
 
 					<section>
