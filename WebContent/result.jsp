@@ -98,26 +98,27 @@
 						<div class="12u">
 							
 
-								<%!ArrayList<String> ApplicantsAdded = new ArrayList<String>();%>
-								<%
+								<%String ename=request.getParameter("eventname");
+								//M_ElectionEvent EE= new M_ElectionEvent();
+									Map<String,String> result=M_ElectionEvent.getResult(ename);
+								
 									try 
 									{
-										ApplicantsAdded = (ArrayList<String>) (session.getAttribute("aprollno"));
-										for (int i = 0; i < ApplicantsAdded.size(); i++)
+										for (Map.Entry entry:result.entrySet())
 										{
-											String val = ApplicantsAdded.get(i);
+											String position = (String)entry.getKey();
+											String winner = (String)entry.getValue();
 								%>
 											
 											 <div class="content" align="center">
 													<div class="row">
-														<div class="coloumn" style="margin :40px;">	
-															NAME: <p><%=val%></p>
-														</div>	
-														<div class="coloumn" style="margin :60px;">	
-															POSITION: <p><%=val%></p>
+														
+														<div class="coloumn" style="margin :10px;">	
+															 <p> POSITION: <%=position%></p>
 														</div>
-														<div class="coloumn" style="margin :60px;">														
-															POINTS: <p><%=val%></p>
+														<div class="coloumn" style="margin :10px;">	
+															<p> NAME: <%=winner%></p>
+														</div>	
 														</div>
 													</div>
 												</div>
@@ -133,7 +134,7 @@
 					</div>
 					
 					</div>
-					<br/><input type="button" width=100 name="BACK" value="BACK" id="viewtoceo" onclick="window.location = 'ceo.jsp';"/>
+					<br/><input type="button" width=100 name="BACK" value="BACK" id="viewtoceo" onclick="window.history.back()"/>
 
 		</section>
 

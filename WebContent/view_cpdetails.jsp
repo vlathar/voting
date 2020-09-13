@@ -100,7 +100,7 @@
 			
 			<%
 			M_CandidatePortfolio CP= new M_CandidatePortfolio();
-			String val = (String)session.getAttribute("details");
+			String val = (String)request.getParameter("details");
 			//System.out.println("details at view_cpdetails.jsp------"+val);
 			session.setAttribute("details",val);
 			String arr[] = val.split(":");
@@ -179,11 +179,11 @@
 							<% boolean isceo=((String)session.getAttribute("user")).equalsIgnoreCase("CEO");
 							System.out.println(isceo);
 							if(isceo){%>
-								<li><input type="submit" class="special" value="Disqualify" /><% session.setAttribute("fname","view_candidate_portfolio"); %>
+								<li><input type="submit" class="button" value="Disqualify" /><% session.setAttribute("fname","view_candidate_portfolio"); %>
 								</li>
-								<li><input type="button" class="special" value="Back" onclick="window.location.href = 'ceo.jsp'" /></li> <%}
+								<li><input type="button" class="button" value="Back" onclick="window.location.href = 'ceo.jsp'" /></li> <%}
 								else{%>
-								<li><input type="button" class="special" value="Back" onclick="window.location.href = 'msg.jsp'" /></li><%} %>
+								<li><input type="button" class="button" value="Back" onclick="window.location.href = 'msg.jsp'" /></li><%} %>
 							</ul>
 						</div>
 					</div>

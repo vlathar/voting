@@ -160,7 +160,7 @@
 
 			<footer class="major">
 				<ul class="buttons">
-					<li><a href="#" class="button">RESULTS</a></li>
+					<li><a href="showeventforresult.jsp" class="button">RESULTS</a></li>
 				</ul>
 			</footer>
 

@@ -1,5 +1,8 @@
-<%@page import="jsp.*,java.util.*"%>
 <%@ include file="noCache.jsp"%>
+
+<%@page import="jsp.*,java.sql.*,java.util.*,java.text.*"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 
 <!DOCTYPE HTML>
 <html>
@@ -130,22 +133,27 @@
 					<div class="row">
 						<div class="12u">
 							Choose An Event: <select  id="electionevent" name="electionevent">
-									<option value="">Choose An Event</option>
-	
-									<%! ArrayList<String>EventsAdded = new ArrayList<String>();%>
-									<%
-										try {
-											EventsAdded = (ArrayList<String>) (session.getAttribute("EventsAdded"));
-											for (int i = 0; i < EventsAdded.size(); i++) {
-												String eventname = EventsAdded.get(i);
+							<%
+								try {
+									DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+									DateFormat df2 = new SimpleDateFormat("HH:mm:ss");
+									String dates= df.format(new java.util.Date());
+									String time=df2.format(new java.util.Date());
+									ArrayList<String> EventsAdded = (ArrayList<String>) (session.getAttribute("EventsAdded"));
+									for (int i = 0; i < EventsAdded.size(); i++) {
+									String datetime[]=M_ElectionEvent.getDateTime(EventsAdded.get(i));
+									if((datetime[0].compareTo(dates)>=0)){
+									String eventname=EventsAdded.get(i);
 									%>
-									<option value="<%=eventname%>"><%=eventname%></option>
+										<option value="<%=eventname%>"><%=eventname%></option>
 									<%
-										}
-										} catch (Exception e) {
-											e.printStackTrace();
-										}
-									%>
+									}
+									}
+								} 
+								catch (Exception e) {
+									e.printStackTrace();
+								}
+							%>
 								</select>		  
 						</div>
 					</div>

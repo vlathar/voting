@@ -1,10 +1,14 @@
 package jsp;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 //import java.util.Date;
 //import java.text.DateFormat;
 //import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class M_ElectionEvent {
 
@@ -144,7 +148,7 @@ public class M_ElectionEvent {
 			MySQL.close(c);
 		}
 	}
-	public int getEEId(String str) {
+	public static int getEEId(String str) {
 
 		Connection c = null;
 		Statement st = null;
@@ -257,7 +261,7 @@ public static String[] getDateTime(String eventname){
 }
 
 
-	public ArrayList<String> getPositions(int eid) {
+	public static ArrayList<String> getPositions(int eid) {
 
 		Connection c = null;
 		Statement st = null;
@@ -460,5 +464,84 @@ public ArrayList<String> getEligiblePositions(int eid,String batch) {
 		MySQL.close(c);
 	}
 }
+public static Map< String,String> getResult(String ename)
+{
+	Connection c = null;
+	Statement st = null;
+	ResultSet rs = null;
+	String winner;
+	int eid=getEEId(ename);
+	
+	ArrayList<String> alist=getPositions(eid);;
+	Map < String,String > result=new HashMap< String,String >();
+	try {
+		for(String s:alist)
+		{
+		c = MySQL.connect();
+		st = c.createStatement();
+		
+		
+		String query = "select rollno, max(votecount) from candidate where eventname ='"+ename+"' and position = '"+s+"';";
+		System.out.println(query);
+		rs = st.executeQuery(query);
+		while(rs.next()){
+			winner=rs.getString(1);
+			result.put(s,winner);		
+		}
+	
+		rs.close();
+		st.close();
+		MySQL.close(c);}
+		return result;
 
+	}
+	catch (Exception e) {
+		e.printStackTrace();
+		return result;
+	}
+	finally {
+		MySQL.close(c);
+	}
+
+
+}
+public static ArrayList<String> getEventsforresult()
+{
+	ArrayList<String> alist=new ArrayList<String>();
+	//String alwdbatch="all";
+	DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+	//DateFormat df2 = new SimpleDateFormat("HH:mm:ss");
+	String dates= df.format(new java.util.Date());
+	//String time=df2.format(new java.util.Date());
+	Connection c = null;
+	Statement st = null;
+	ResultSet rs = null;
+	String r=null ;
+	try
+	{
+		c = MySQL.connect();
+		st = c.createStatement();
+		String query = "select name from electionevent where date <' "+dates+"' order by date desc;";
+		System.out.println(query);
+		rs = st.executeQuery(query);
+		while (rs.next()) 
+		{
+			r = rs.getString(1);
+			alist.add(r);
+			System.out.println(r);
+		}
+	
+		rs.close();
+		st.close();
+		return alist;
+	} 
+	
+	catch (Exception e) {
+		e.printStackTrace();
+		return alist;
+	} 
+	finally {
+		MySQL.close(c);
+	}
+}
 }

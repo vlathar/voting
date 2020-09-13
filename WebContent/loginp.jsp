@@ -19,14 +19,8 @@
 			session.setAttribute("user", username);
 
 			//session.setMaxInactiveInterval(1800);
-			String value = Integer
-					.toString((int) (Math.random() * 2000));
-			System.out.println("Random index = " + value);
-			Cookie loginCookie = new Cookie("loginindex", value);
 			//Session.setlastSessionId("first", Integer.parseInt(value));
 			Session.setSession(username, session.getId());
-			loginCookie.setMaxAge(1800);
-			response.addCookie(loginCookie);
 			response.sendRedirect("ceo.jsp?success=" + message);
 		}
 

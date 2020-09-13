@@ -164,7 +164,7 @@
 					<section>
 						<header>
 							<h3>
-								<a href="#">RESULTS</a>
+								<a href="showeventforresult.jsp" >RESULTS</a>
 							</h3>
 						</header>
 						<p></p>

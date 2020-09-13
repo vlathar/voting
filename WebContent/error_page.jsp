@@ -59,7 +59,7 @@
 				<h3>MBM ONLINE VOTING SYSTEM</h3>
 			</header>
 			<h1>ERROR</h1>
-			<input type="submit" class="buttons" id="myBtn" name="BACK TO CEO-Termial" value="BACK TO CEO-Termial" onclick="window.location = 'msg.jsp';">
+			<input type="submit" class="buttons" id="myBtn" name="BACK TO CEO-Termial" value="BACK TO CEO-Termial" onclick="window.location = 'ceo.jsp';">
 		</div>
 
 	</section>

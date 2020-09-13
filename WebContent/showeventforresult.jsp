@@ -8,7 +8,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Vote- MBM_ONLINE_VOTING_PORTAL</title>
+<title>Events- MBM_ONLINE_VOTING_PORTAL</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
@@ -35,38 +35,7 @@
 
 
 </head>
-<script>
-function checkForm()
-{
-	
-}
-</script>
-<body>
-<%
-	HttpSession session2 = request.getSession(false);
-	if(Session.MultipleSessionCheck((String)session2.getAttribute("user"),(String)session2.getId())==true)
-	{
-		System.out.println("different session--2");
-		response.sendRedirect("index.jsp");
-		return;
-	}
-	String message="";
-	String val="";
-	String val2="";
-	String eventname=request.getParameter("eventname");
-	M_CandidatureApplication CA = new M_CandidatureApplication();
-	String batch = CA.getBatch((String) (session.getAttribute("user")));
-	M_ElectionEvent EE = new M_ElectionEvent();
-	int eid= EE.getEEId(request.getParameter("eventname"));
-	ArrayList<String> pos=EE.getEligiblePositions(eid,batch);
-	if(EE.hasVoted((String)session.getAttribute("user"),eventname))
-	{
-		message="You've already voted";
-		response.sendRedirect("msg.jsp?success=" + message);
-		return;
-	}
-%>
-<!-- Header -->
+<body class="contact">
 	<header id="header" class="alt">
 		<h2 id="logo">
 			<a href="http://www.mbm.ac.in" style="font: icon;">MBM</a>
@@ -81,44 +50,51 @@ function checkForm()
 			</ul>
 		</nav>
 	</header>
-<form name="form" action="votedone.jsp" method="post">
-				<div class="content">
-				<div class="row 50%">
-						<div class="12u" style="padding: 8em 4em 4em 4em;">
-							<input type="hidden" name="EName"  value="<%= eventname %>"/>
-							<%
-								for(int i=0;i<pos.size();i++){
-									val=pos.get(i);
-									System.out.println(val);
-							%>
-							
-								<p style="margin:0 0 0 0;">Vote for :<%= val %></p>
-								
-								 <select id="candroll" name="candroll" style="margin-bottom: 4em;">
-									<%
-										ArrayList<String> cand = new ArrayList<String>();
-										cand= EE.getVotingCandidates(eventname, val);
-										for (int j = 0; j < cand.size(); j++) {
-											val2 = cand.get(j);
-											//System.out.println(val2);
-									%>
-										<option value="<%=val2%>"><%= val2%></option>
-										<% } %>
-										<option value="0">NOTA</option>
-								</select>
-								<% } %>
-							<div class="row">
-								<div class="12u">
-									<ul class="buttons">
-										<li><input type="submit" class="special" value="Apply" onclick="checkForm()"/></li>
-									</ul>
-								</div>
-							</div>
+	<article id="main">
+
+		<header class="container">
+			<!-- <span class="icon fa-envelope"></span>-->
+			<h2 align="center">Event</h2>
+			<p></p>
+		</header>
+
+		<!-- One -->
+		<section class="wrapper style4 special container 75%">
+
+			<!-- Content -->
+			<div class="content">
+					<div class="row 50%">
+						<!--class= 6u 12u(mobile) -->
+						<div class="12u">
+								<%
+	HttpSession session2 = request.getSession(false);
+	if(Session.MultipleSessionCheck((String)session2.getAttribute("user"),(String)session2.getId())==true)
+	{
+		System.out.println("different session--2");
+		response.sendRedirect("index.jsp");
+		return;
+	}
+	
+	ArrayList<String> alist=M_ElectionEvent.getEventsforresult();
+	for(int i=0;i<alist.size();i++)
+	{
+		String s=alist.get(i);%>
+<div class="content">
+ 			<div class="12u">
+				<form action="result.jsp" method="post">
+					<input type="submit" width ="100" class="buttons" name="eventname" value="<%=s %>" id="application" >
+				</form>
+ 			</div>
+		</div>
+<%} %>
 						</div>
-				</div>
-				</div>
-	</form>
-	<footer id="footer">
+					</div>
+					
+	</div>
+		</section>
+
+	</article>
+<footer id="footer">
 
 		<ul class="icons">
 			<li><a href="#" class="icon circle fa-twitter"><span
@@ -135,5 +111,8 @@ function checkForm()
 
 		
 	</footer>
+
+		
+		
 </body>
 </html>

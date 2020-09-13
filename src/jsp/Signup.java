@@ -19,13 +19,14 @@ public class Signup {
 			pst.setString(5,gender);
 			pst.setString(6,email);
 			pst.setString(7,mobile);
+			password="md5('"+password+"')";
 			pst.setString(8, password);
 			pst.setInt(9, verified);
 			int i = pst.executeUpdate();
 			if(i!=0) {
 				System.out.println("message at signup.java:student registered into database");
 				Statement st = con.createStatement();
-				sqlQuery = "insert into login values('" + rollno + "' , '" + password + "');";
+				sqlQuery = "insert into login values('" + rollno + "' ,md5( '" + password + "'));";
 				System.out.println(sqlQuery+":Signup.java");
 				st.executeUpdate(sqlQuery);
 				return true;

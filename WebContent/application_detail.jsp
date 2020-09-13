@@ -105,7 +105,7 @@
 			
 			<%
 			ArrayList<String> applicantdetails = new ArrayList<String>();
-			String val = (String)session.getAttribute("details");
+			String val = (String)request.getParameter("details");
 			String arr[] = val.split(":");
 			String rollno = arr[0], eventName = arr[1];
 			

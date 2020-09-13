@@ -57,7 +57,7 @@ if(Session.MultipleSessionCheck((String)session2.getAttribute("user"),(String)se
 	        else{	
 	        	message="Already applied";
 	        	System.out.println("C-msg.jsp: error in storing in database");
-	        	response.sendRedirect("error_page.jsp?error="+message);
+	        	response.sendRedirect("error_preferences.jsp?error="+message);
 	        }
         }
         else

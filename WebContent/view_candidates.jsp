@@ -124,7 +124,7 @@
 									<div class="12u">
 										<form action="view_cpdetails.jsp" method="post">
 											<input type="text" width ="100" class="buttons" name="rollno" readonly value="<%=rollno%>" id="application" >
-											<button type="submit" name="details" value="<%=val%>">Click Here for details</button>
+											<button type="submit" class="button" name="details" value="<%=val%>">Click Here for details</button>
 										</form>
 									 </div>
 								</div>
