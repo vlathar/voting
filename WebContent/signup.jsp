@@ -1,4 +1,4 @@
-<%@ page import="jsp.*, java.sql.*" %>
+<%@ page import="jsp.*, java.sql.*,java.util.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -15,7 +15,10 @@
     System.out.println("reached to signup.jsp");
    try{
 	   //function to form 4 digit otp
-	   String myHash="1234";
+	   String numbers="0123456789";
+	   Random rand= new Random();
+	   String myHash=new String();
+	   for(int i=0;i<4;i++){ myHash+=numbers.charAt(rand.nextInt(numbers.length()));}
 	   session.setAttribute("hash",myHash);
 	   SendingEmail se = new SendingEmail(rollno, email, myHash);
 	   if(se.sendMail()){
