@@ -38,7 +38,7 @@
 }
 .contact {
 	background-color: #000;
-	background: url("../images/LNMIIT-contact.jpg");
+	background: url("../images/MBM-contact.jpg");
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: 75em, 60em, auto, cover;

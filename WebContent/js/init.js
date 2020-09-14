@@ -1,10 +1,3 @@
-/**
-
-AUTHOR                   : LNMIIT_ONLINE_VOTING_SYSTEM_TEAM
-LAST MODIFIED DATE       : 17-APRIL-2015
-
-**/
-
 
 (function($) {
 
