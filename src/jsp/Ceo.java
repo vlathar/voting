@@ -14,12 +14,19 @@ public class Ceo {
 		try {
 			c = MySQL.connect();
 			st = c.createStatement();
+			password="md5('"+password+"')";
 			rs = st.executeQuery("select * from voting.admin where username='"
-					+ username + "' and password='" + password + "'");
+					+ username + "' and password=" + password + ";");
 			String uname = "", pass = "";
 			if (rs.next()) {
 				uname = rs.getString("username");
 				pass = rs.getString("password");
+			}
+			rs = st.executeQuery("Select "+password+";");
+			//String password2="";
+			if(rs.next())
+			{
+				password=rs.getString(password);
 			}
 			rs.close();
 			st.close();

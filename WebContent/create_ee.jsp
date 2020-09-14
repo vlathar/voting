@@ -190,8 +190,8 @@
 	<!-- Header -->
 	<header id="header" class="alt">
 		<h2 id="logo">
-			<a href="http://www.mbm.ac.in" style="font: icon;">MBM</a>
-		</h2>
+			<a href="http://www.mbm.ac.in"><img
+				src="images/mbm-logo.png" width="100px" height="100px"></a>		</h2>
 		<nav id="nav">
 			<ul>
 				<li><a href="index.jsp">Welcome</a></li>
@@ -226,7 +226,7 @@
 					</div>
 					<div class="row 50%">
 						<div class="12u">
-							<input type="date" id="date" name="date" value="" placeholder="Date" />
+							<input type="text" id="date" name="date" value="" placeholder="Date" />
 						</div>
 					</div>
 					<div class="row 50%">

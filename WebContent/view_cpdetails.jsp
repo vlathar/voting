@@ -70,7 +70,8 @@
 	<!-- Header -->
 	<header id="header" class="alt">
 		<h2 id="logo">
-			<a href="http://www.mbm.ac.in" style="font: icon;">MBM</a>
+			<a href="http://www.mbm.ac.in"><img
+				src="images/mbm-logo.png" width="100px" height="100px"></a>
 		</h2>
 		<nav id="nav">
 			<ul>
@@ -100,7 +101,7 @@
 			
 			<%
 			M_CandidatePortfolio CP= new M_CandidatePortfolio();
-			String val = (String)request.getParameter("details");
+			String val = (String)session.getAttribute("details");
 			//System.out.println("details at view_cpdetails.jsp------"+val);
 			session.setAttribute("details",val);
 			String arr[] = val.split(":");
@@ -181,9 +182,9 @@
 							if(isceo){%>
 								<li><input type="submit" class="button" value="Disqualify" /><% session.setAttribute("fname","view_candidate_portfolio"); %>
 								</li>
-								<li><input type="button" class="button" value="Back" onclick="window.location.href = 'ceo.jsp'" /></li> <%}
+								<li><input type="button" class="button" value="Back" onclick="window.history.back()" /></li> <%}
 								else{%>
-								<li><input type="button" class="button" value="Back" onclick="window.location.href = 'msg.jsp'" /></li><%} %>
+								<li><input type="button" class="button" value="Back" onclick="window.history.back()" /></li><%} %>
 							</ul>
 						</div>
 					</div>

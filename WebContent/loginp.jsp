@@ -18,7 +18,7 @@
 			session = request.getSession();
 			session.setAttribute("user", username);
 
-			//session.setMaxInactiveInterval(1800);
+			session.setMaxInactiveInterval(1800);
 			//Session.setlastSessionId("first", Integer.parseInt(value));
 			Session.setSession(username, session.getId());
 			response.sendRedirect("ceo.jsp?success=" + message);

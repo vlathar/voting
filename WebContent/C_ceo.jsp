@@ -115,7 +115,71 @@
  
                 }
             }
- 
+            else if (session.getAttribute("fname").equals("update_ee")) {
+            	 
+                page_bit= 2;
+               
+                    positions.clear();
+     
+                    SimpleDateFormat formatter = new SimpleDateFormat(
+                            "yyyy-MM-dd");
+                    System.out.println(session.getAttribute("fname"));
+     
+                    EventName = request.getParameter("electionevent");
+                    System.out.println("testname" + EventName);
+                    date = new java.sql.Date(formatter.parse(
+                            request.getParameter("date")).getTime());
+     
+                    String[] ids = request.getParameterValues("list");
+                    // this will get array of values of all checked checkboxes
+                    for (String id : ids) {
+                        // do something with id, this is checkbox value
+                        positions.add(id);
+                        System.out.println(id);
+                    }
+                    SimpleDateFormat timeformatter = new SimpleDateFormat(
+                            "HH:mm:ss");
+     
+                    startTime = new java.sql.Time(timeformatter.parse(
+                            request.getParameter("starttime")).getTime());
+     
+                    Time24HoursValidator time24HoursValidator = new Time24HoursValidator();
+                    boolean valid = time24HoursValidator.validate(startTime
+                            .toString());
+                    allowedC.add(request.getParameter("AllowedCand"));
+                    endTime = new java.sql.Time(timeformatter.parse(
+                            request.getParameter("endtime")).getTime());
+     
+                    boolean valid_e = time24HoursValidator.validate(endTime
+                            .toString());
+                    if (!valid_e || !valid) {
+                        String message = "Invalid Input Time Format";
+                        response.sendRedirect("error_time_format.jsp?error="+ message);
+                    }
+                    else if(EventName =="0" || date == null || startTime == null || endTime == null)
+                    {
+                    String message="Invalid Entry";
+                response.sendRedirect("error_page.jsp?error="+message);
+                    }
+     
+                    else {
+                        boolean iscreated = EE.updateEE(EventName, date,
+                                startTime, endTime, positions,allowedC,allowedB);
+                        String message=null;
+                        if (iscreated) {
+     
+                        message="Successfully_Updated_election_event";
+                            response.sendRedirect("Success_CEO.jsp?success="+message);
+                        }
+     
+                        else
+                        {
+                        message="Invalid Entry";
+                    response.sendRedirect("error_page.jsp?error="+message);
+                        }
+     
+                    }
+                }
             else if (session.getAttribute("fname").equals("delete_ee")) {
  
             	page_bit= 3;

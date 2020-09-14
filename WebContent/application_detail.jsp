@@ -75,7 +75,8 @@
 	<!-- Header -->
 	<header id="header" class="alt">
 		<h2 id="logo">
-			<a href="http://www.mbm.ac.in" style="font: icon;">MBM</a>
+			<a href="http://www.mbm.ac.in"><img
+				src="images/mbm-logo.png" width="100px" height="100px"></a>
 		</h2>
 		<nav id="nav">
 			<ul>
@@ -105,7 +106,7 @@
 			
 			<%
 			ArrayList<String> applicantdetails = new ArrayList<String>();
-			String val = (String)request.getParameter("details");
+			String val = (String)session.getAttribute("details");
 			String arr[] = val.split(":");
 			String rollno = arr[0], eventName = arr[1];
 			

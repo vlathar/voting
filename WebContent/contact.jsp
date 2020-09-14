@@ -28,7 +28,7 @@ color: black;
 .contact{
 
 background-color: #000;
-background: url("../images/LNMIIT-contact.jpg");
+background: url("../images/mbm-contact.jpg");
 background-position:center;
 background-repeat: no-repeat;
 background-size: 75em, 60em, auto, cover;
@@ -40,7 +40,8 @@ background-size: 75em, 60em, auto, cover;
 
 <!-- Header -->
 <header id="header" class="alt">
-<h1 id="logo"><a href="http://www.lnmiit.ac.in"><img src="images/LNMIIT_logo.png" width="200px" height="100px"></a></h1>
+<h1 id="logo"><a href="http://www.mbm.ac.in"><img
+				src="images/mbm-logo.png" width="100px" height="100px"></a></h1>
 <nav id="nav">
 <ul>
 <li><a href="index.jsp">Welcome</a></li>

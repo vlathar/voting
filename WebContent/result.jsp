@@ -59,14 +59,15 @@
 </head>
 <body class="contact">
 	<% 
-
+	String position = "NA";
+	String winner="NA";
 	%>
 
 	<!-- Header -->
 	<header id="header" class="alt">
 		<h1 id="logo">
 			<a href="http://www.mbm.ac.in"><img
-				src="images/mbm-logo.png" width="200px" height="100px"></a>
+				src="images/mbm-logo.png" width="100px" height="100px"></a>
 		</h1>
 		<nav id="nav">
 			<ul>
@@ -106,8 +107,9 @@
 									{
 										for (Map.Entry entry:result.entrySet())
 										{
-											String position = (String)entry.getKey();
-											String winner = (String)entry.getValue();
+											 position = (String)entry.getKey();
+											 winner = (String)entry.getValue();
+											
 								%>
 											
 											 <div class="content" align="center">

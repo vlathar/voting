@@ -71,7 +71,8 @@
 	<!-- Header -->
 	<header id="header" class="alt">
 		<h2 id="logo">
-			<a href="http://www.mbm.ac.in" style="font: icon;">MBM</a>
+			<a href="http://www.mbm.ac.in"><img
+				src="images/mbm-logo.png" width="100px" height="100px"></a>
 		</h2>
 		<nav id="nav">
 			<ul>
@@ -119,6 +120,7 @@
 								<%  
 									for (String rollno:e.getValue()){
 										String val = rollno + ":" + s;
+										session.setAttribute("details",val);
 								%>      
 								<div class="content">
 									<div class="12u">

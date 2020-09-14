@@ -52,7 +52,8 @@
 	<!-- Header -->
 	<header id="header" class="alt">
 		<h2 id="logo">
-			<a href="http://www.mbm.ac.in" style="font: icon;">MBM</a>
+			<a href="http://www.mbm.ac.in"><img
+				src="images/mbm-logo.png" width="100px" height="100px"></a>
 		</h2>
 		<nav id="nav">
 			<ul>
@@ -121,14 +122,16 @@
 					<section>
 						<header>
 							<h3>
-								<a href="delete_ee.jsp">DELETE ELECTION EVENT</a>
+								<a href="update_ee.jsp">UPDATE ELECTION EVENT</a>
 							</h3>
 						</header>
 						<p></p>
 					</section>
 
 				</div>
-			</div>
+				</div>
+				
+			
 			<div class="row">
 				
 				
@@ -150,6 +153,20 @@
 						<header>
 							<h3>
 								<a href="view_candidates.jsp">VIEW CANDIDATE PORTFOLIOS</a>
+							</h3>
+						</header>
+						<p></p>
+					</section>
+
+				</div>
+			</div>
+			<div class="row">
+			<div class="6u 12u(narrower)">
+
+					<section>
+						<header>
+							<h3>
+								<a href="delete_ee.jsp">DELETE ELECTION EVENT</a>
 							</h3>
 						</header>
 						<p></p>

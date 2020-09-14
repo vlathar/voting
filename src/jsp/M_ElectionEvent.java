@@ -148,7 +148,7 @@ public class M_ElectionEvent {
 			MySQL.close(c);
 		}
 	}
-	public static int getEEId(String str) {
+	public int getEEId(String str) {
 
 		Connection c = null;
 		Statement st = null;
@@ -261,7 +261,7 @@ public static String[] getDateTime(String eventname){
 }
 
 
-	public static ArrayList<String> getPositions(int eid) {
+	public ArrayList<String> getPositions(int eid) {
 
 		Connection c = null;
 		Statement st = null;
@@ -470,9 +470,10 @@ public static Map< String,String> getResult(String ename)
 	Statement st = null;
 	ResultSet rs = null;
 	String winner;
-	int eid=getEEId(ename);
+	M_ElectionEvent EE= new M_ElectionEvent();
+	int eid=EE.getEEId(ename);
 	
-	ArrayList<String> alist=getPositions(eid);;
+	ArrayList<String> alist=EE.getPositions(eid);;
 	Map < String,String > result=new HashMap< String,String >();
 	try {
 		for(String s:alist)
@@ -486,6 +487,8 @@ public static Map< String,String> getResult(String ename)
 		rs = st.executeQuery(query);
 		while(rs.next()){
 			winner=rs.getString(1);
+			if(winner==null) winner="NA";
+			//System.out.println(s+" "+winner);
 			result.put(s,winner);		
 		}
 	

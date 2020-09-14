@@ -26,7 +26,7 @@ public class Signup {
 			if(i!=0) {
 				System.out.println("message at signup.java:student registered into database");
 				Statement st = con.createStatement();
-				sqlQuery = "insert into login values('" + rollno + "' ,md5( '" + password + "'));";
+				sqlQuery = "insert into login values('" + rollno + "'," + password + ");";
 				System.out.println(sqlQuery+":Signup.java");
 				st.executeUpdate(sqlQuery);
 				return true;

@@ -70,7 +70,10 @@
 
 	<!-- Header -->
 	<header id="header" class="alt">
-		
+		<h1 id="logo">
+		<a href="http://www.mbm.ac.in"><img
+				src="images/mbm-logo.png" width="100px" height="100px"></a>
+		</h1>
 		<nav id="nav">
 			<ul>
 				<li><a href="index.jsp">Welcome</a></li>

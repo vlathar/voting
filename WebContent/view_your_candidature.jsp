@@ -70,7 +70,10 @@
 
 	<!-- Header -->
 	<header id="header" class="alt">
-		
+		<h1 id="logo">
+		<a href="http://www.mbm.ac.in"><img
+				src="images/mbm-logo.png" width="100px" height="100px"></a>
+		</h1>
 		<nav id="nav">
 			<ul>
 				<li><a href="index.jsp">Welcome</a></li>
@@ -87,7 +90,7 @@
 
 		<header class="container">
 			<!-- <span class="icon fa-envelope"></span>-->
-			<h2 align="center">VIEW YOUR APPLICATIONS</h2>
+			<h2 align="center">VIEW YOUR CANDIDATURE</h2>
 			<p></p>
 		</header>
 
