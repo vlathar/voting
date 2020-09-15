@@ -26,7 +26,7 @@
 			response.sendRedirect("index.jsp");
 		}
 		else{
-			response.sendRedirect("error_page.jsp");
+			response.sendRedirect("error.jsp");
 		}
 	}
 %>

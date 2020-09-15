@@ -229,18 +229,18 @@
 							<input type="text" id="date" name="date" value="" placeholder="Date" />
 						</div>
 					</div>
-					<div class="row 50%">
-						<div class="12u">
-							<input type="time" id="starttime" name="starttime"
+						<div class="row 50%">
+							<div class="12u">
+								<input type="text" id="starttime" name="starttime"
 								placeholder="Start Time 24 hr format HH:MM:SS" value=""/>
+							</div>
 						</div>
-					</div>
-					<div class="row 50%">
-						<div class="12u">
-							<input type="time" id="endtime" name="endtime"
+						<div class="row 50%">
+							<div class="12u">
+								<input type="text" id="endtime" name="endtime"
 								placeholder="End Time 24 hr format HH:MM:SS" value=""/>
+							</div>
 						</div>
-					</div>
 					<div class="row 50%">
 						<div class="12u">
 							<p>Positions:</p>

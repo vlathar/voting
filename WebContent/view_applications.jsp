@@ -127,7 +127,7 @@
 											 <div class="12u">
 											<form action="application_detail.jsp" method="post">
 											<input type="text" width ="100" class="buttons" name="rollno" readonly value="<%=rollno%>" id="application" >
-											<button type="submit" name="details" value="<%=val%>">Click Here for details</button>
+											<button class="button" type="submit" name="details" value="<%=val%>">Click Here for details</button>
 											</form>
 			
 											 </div>

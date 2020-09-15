@@ -20,7 +20,7 @@
 
 			session.setMaxInactiveInterval(1800);
 			//Session.setlastSessionId("first", Integer.parseInt(value));
-			Session.setSession(username, session.getId());
+			Session.setSession(username, (String)session.getId());
 			response.sendRedirect("ceo.jsp?success=" + message);
 		}
 

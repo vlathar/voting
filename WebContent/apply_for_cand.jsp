@@ -142,7 +142,7 @@
 									ArrayList<String> EventsAdded = (ArrayList<String>) (session.getAttribute("EventsAdded"));
 									for (int i = 0; i < EventsAdded.size(); i++) {
 									String datetime[]=M_ElectionEvent.getDateTime(EventsAdded.get(i));
-									if((datetime[0].compareTo(dates)>=0)){
+									if((datetime[0].compareTo(dates)>=1)){
 									String eventname=EventsAdded.get(i);
 									%>
 										<option value="<%=eventname%>"><%=eventname%></option>

@@ -10,7 +10,6 @@ public class Session {
 	public static void setSession(String username,String sessionid){
 		if(mulsession.containsKey(username)) mulsession.remove(username);
 		mulsession.put(username, sessionid);
-		
 	}
 	
 }

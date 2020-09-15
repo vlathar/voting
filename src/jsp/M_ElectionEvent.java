@@ -481,8 +481,10 @@ public static Map< String,String> getResult(String ename)
 		c = MySQL.connect();
 		st = c.createStatement();
 		
-		
-		String query = "select rollno, max(votecount) from candidate where eventname ='"+ename+"' and position = '"+s+"';";
+		String query="select rollno from candidate where votecount ="
+				+ "(select max(votecount) from candidate where eventname='"+ename+"' and position = '"+s+"')"
+						+ " and eventname='"+ename+"' and position = '"+s+"';";
+		//String query = "select rollno, max(votecount) from candidate where eventname ='"+ename+"' and position = '"+s+"';";
 		System.out.println(query);
 		rs = st.executeQuery(query);
 		while(rs.next()){

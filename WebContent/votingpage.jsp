@@ -85,7 +85,7 @@ function checkForm()
 <form name="form" action="votedone.jsp" method="post">
 				<div class="content">
 				<div class="row 50%">
-						<div class="12u" style="padding: 8em 4em 4em 4em;">
+						<div class="12u" style="padding: 10em 4em 4em 4em;">
 							<input type="hidden" name="EName"  value="<%= eventname %>"/>
 							<%
 								for(int i=0;i<pos.size();i++){

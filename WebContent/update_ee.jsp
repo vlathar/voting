@@ -212,15 +212,23 @@ return;
 <%!ArrayList<String> EventsAdded = new ArrayList<String>();%>
 <%
 try {
-EventsAdded = (ArrayList<String>) (session.getAttribute("EventsAdded"));
-for (int i = 0; i < EventsAdded.size(); i++) {
-String val = EventsAdded.get(i);
-%>
-<option value="<%=val%>"><%=val%></option>
-<%
-}
-} catch (Exception e) {
-e.printStackTrace();
+	DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+	DateFormat df2 = new SimpleDateFormat("HH:mm:ss");
+	String dates= df.format(new java.util.Date());
+	String time=df2.format(new java.util.Date());
+	ArrayList<String> EventsAdded = (ArrayList<String>) (session.getAttribute("EventsAdded"));
+	for (int i = 0; i < EventsAdded.size(); i++) {
+	String datetime[]=M_ElectionEvent.getDateTime(EventsAdded.get(i));
+	if((datetime[0].compareTo(dates)>=0)){
+	String eventname=EventsAdded.get(i);
+	%>
+		<option value="<%=eventname%>"><%=eventname%></option>
+	<%
+	}
+	}
+	}
+catch (Exception e) {
+	e.printStackTrace();
 }
 %>
 </select>

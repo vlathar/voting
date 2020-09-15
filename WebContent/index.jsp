@@ -103,7 +103,19 @@
 				<br>
 				<input type="text" placeholder="name" name="name" size="20" value="">
 				<br>
-				<input type="text" placeholder="batch" name="batch" size="20" value="">
+				<div class="row 50%">
+				
+									<div class="12u">
+									<input type="text" placeholder="batch" value="" disabled>	
+										<select id="batch" name="batch">
+											<option  value="UG_Fourth_Year">UG_Fourth_Year</option>
+											<option  value="UG_Third_Year">UG_Third_Year</option>
+											<option  value="UG_Second_Year">UG_Second_Year</option>
+											<option  value="UG_First_Year">UG_First_Year</option>
+											<option  value="PG">PG</option>
+										</select>
+									</div>
+				</div>
 				<br>
 				<input type="text" placeholder="gender" name="gender" size="20" value="">
 				<br>
@@ -113,7 +125,7 @@
 				<br>
 				<input type="text" placeholder="cgpa" name="cgpa" size="20" value="">
 				<br>
-				<input type="text" placeholder="password" name="password" size="20" value="">
+				<input type="password" placeholder="password" name="password" size="20" value="">
 				<input type="submit">
 		    </form>
 
