@@ -43,9 +43,9 @@ public class M_ElectionEvent {
 
 				if ((positions.get(i).equals("President") || positions.get(i).equals("Vice-President")
 						|| positions.get(i).equals("G.Sec"))&&
-						(!AllowedC.get(i).equals("null"))&&(!A_Batch.get(i).equals("null")))
+						(!AllowedC.get(i).equals("NULL"))&&(!A_Batch.get(i).equals("NULL")))
 					query = "insert into positions values (" + eid + ",'"
-							+ positions.get(i) + "','"+ AllowedC.get(i) +"','"+A_Batch.get(i)+"');";
+							+ positions.get(i) + "','"+ A_Batch.get(i) +"','"+AllowedC.get(i)+"');";
 
 				else
 					query = "insert into positions values (" + eid + ",'"
@@ -405,8 +405,8 @@ public ArrayList<String> getVotingCandidates(String ename,String post){
 	try {
 		c = MySQL.connect();
 		st = c.createStatement();
-		String query = "select rollno from applicants where eventname ='"+ename+"' and appliedforpost='"
-				+post+ "' and isapproved=1;";
+		String query = "select name from students where rollno in (select rollno from candidate where eventname ='"+ename+"' and position='"
+				+post+ "');";
 		System.out.println(query);
 		rs = st.executeQuery(query);
 
@@ -461,6 +461,32 @@ public ArrayList<String> getEligiblePositions(int eid,String batch) {
 		e.printStackTrace();
 		return r;
 	} finally {
+		MySQL.close(c);
+	}
+}
+public String getEmail(String rollno) {
+	Connection c = null;
+	Statement st = null;
+	ResultSet rs = null;
+	String email="abc@gmail.com";
+	try {
+		c = MySQL.connect();
+		st = c.createStatement();
+		String query = "select email from students where rollno ='"+rollno+"';";
+		System.out.println(query);
+		rs = st.executeQuery(query);
+		while(rs.next()) {
+			email = rs.getString(1);
+		}
+		rs.close();
+		st.close();
+		return email;
+	}
+	catch(Exception e) {
+		e.printStackTrace();
+		return email;
+	}
+	finally {
 		MySQL.close(c);
 	}
 }

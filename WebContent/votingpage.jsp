@@ -53,11 +53,11 @@ function checkForm()
 	String message="";
 	String val="";
 	String val2="";
-	String eventname=request.getParameter("eventname");
+	String eventname=(String)session.getAttribute("Eventvote");
 	M_CandidatureApplication CA = new M_CandidatureApplication();
 	String batch = CA.getBatch((String) (session.getAttribute("user")));
 	M_ElectionEvent EE = new M_ElectionEvent();
-	int eid= EE.getEEId(request.getParameter("eventname"));
+	int eid= EE.getEEId(eventname);
 	ArrayList<String> pos=EE.getEligiblePositions(eid,batch);
 	if(EE.hasVoted((String)session.getAttribute("user"),eventname))
 	{
@@ -95,7 +95,7 @@ function checkForm()
 							
 								<p style="margin:0 0 0 0;">Vote for :<%= val %></p>
 								
-								 <select id="candroll" name="candroll" style="margin-bottom: 4em;">
+								 <select id="candroll" class="dropotron" name="candroll" style="margin-bottom: 4em; padding: 0em;">
 									<%
 										ArrayList<String> cand = new ArrayList<String>();
 										cand= EE.getVotingCandidates(eventname, val);
@@ -108,6 +108,11 @@ function checkForm()
 										<option value="0">NOTA</option>
 								</select>
 								<% } %>
+								<div class="row">
+								<div class="12u">
+									<input type = "text" style="width: 400px;"placeholder="enter the otp sent on registered email" name="otp" value="">
+									</div>
+								</div>
 							<div class="row">
 								<div class="12u">
 									<ul class="buttons">

@@ -55,7 +55,7 @@
 
 		<header class="container">
 			<!-- <span class="icon fa-envelope"></span>-->
-			<h2 align="center">View Candidates Applications</h2>
+			<h2 align="center">Ongoing Events</h2>
 			<p></p>
 		</header>
 
@@ -92,7 +92,7 @@
 %>
 <div class="content">
  			<div class="12u">
-				<form action="votingpage.jsp" method="post">
+				<form action="sendotpforvote.jsp" method="post">
 					<input type="submit" width ="100" class="buttons" name="eventname" value="<%=s %>" id="application" >
 				</form>
  			</div>

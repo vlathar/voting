@@ -125,7 +125,7 @@
 					</div>
 					<div class="row 50%">
 						<div class="12u">
-							<input type="text" id="points" name="points" placeholder="Main Points/Issues" />
+							<input type="text" id="points" name="points"  placeholder="Main Points/Issues" />
 						</div>
 					</div>
 					<div class="row">

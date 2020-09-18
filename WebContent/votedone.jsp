@@ -36,11 +36,15 @@
 			return;
 		}
 		try{
+		String myHash = (String)session.getAttribute("hash");
+		String hash = request.getParameter("otp");
+			//and change if condition to this
+			
 		String EName= request.getParameter("EName");
 		String loggedinuser= (String) session.getAttribute("user");
 		String[] candroll= request.getParameterValues("candroll");
 		M_ElectionEvent EE= new M_ElectionEvent();
-		if(EE.setVotedone(loggedinuser,EName,candroll)==true)
+		if(hash.equals(myHash) && EE.setVotedone(loggedinuser,EName,candroll)==true)
 		{
 			response.sendRedirect("success_voting.jsp");
 			return;
